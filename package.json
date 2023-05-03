@@ -1,0 +1,45 @@
+{
+  "name": "@crowdstrike/falcon-app-platform-sdk",
+  "version": "0.0.0",
+  "description": "CrowdStrike Foundry.js SDK",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CrowdStrike/foundry-js.git"
+  },
+  "license": "UNLICENSED",
+  "author": "CrowdStrike UX Team",
+  "exports": {
+    ".": "./dist/index.js",
+    "./*": "./dist/*"
+  },
+  "directories": {},
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "_build": "concurrently 'npm:build:*'",
+    "_start": "concurrently 'npm:watch:*'",
+    "build": "rollup -c ./config/rollup.config.ts --configPlugin typescript",
+    "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
+    "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "prepublishOnly": "yarn build",
+    "start": "yarn build:js --watch"
+  },
+  "dependencies": {
+    "uuid": "9.0.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "14.1.0",
+    "@rollup/plugin-typescript": "11.0.0",
+    "@types/uuid": "9.0.1",
+    "concurrently": "^8.0.1",
+    "rollup": "2.79.1",
+    "tslib": "2.5.0",
+    "typescript": "5.0.2"
+  },
+  "engines": {
+    "node": ">=18.12.0"
+  }
+}
