@@ -25,7 +25,7 @@
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "prepublishOnly": "yarn build",
-    "start": "yarn build:js --watch"
+    "start": "yarn build --watch"
   },
   "dependencies": {
     "uuid": "9.0.0"
