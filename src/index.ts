@@ -1,4 +1,5 @@
-import { publicApis } from './apis/public-api';
+import FalconPublicApis from 'apis/public-api';
+
 import { PLATFORM_EVENTS } from './apis/types';
 import { getBridgeInstance } from './bridge';
 
@@ -9,10 +10,10 @@ interface ReadyEventData {
   };
 }
 
-export const falcon = {
-  bridge: getBridgeInstance(),
+export default class FalconApi extends FalconPublicApis {
+  constructor() {
+    const bridge = getBridgeInstance();
 
-  init() {
     const handleReadyEvent = (data: ReadyEventData) => {
       if (data.payload.name === PLATFORM_EVENTS.READY) {
         this.bridge.message.off(handleReadyEvent);
@@ -22,8 +23,8 @@ export const falcon = {
       }
     };
 
-    this.bridge.message.on(handleReadyEvent);
-  },
+    bridge.message.on(handleReadyEvent);
 
-  ...publicApis,
-};
+    super(bridge);
+  }
+}
