@@ -10,21 +10,37 @@ interface ReadyEventData {
   };
 }
 
+const CONNECTION_TIMEOUT = 5000;
+
 export default class FalconApi extends FalconPublicApis {
-  constructor() {
-    const bridge = getBridgeInstance();
+  bridge = getBridgeInstance();
 
-    const handleReadyEvent = (data: ReadyEventData) => {
-      if (data.payload.name === PLATFORM_EVENTS.READY) {
+  async connect(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      const timeoutTimer = setTimeout(() => {
         this.bridge.message.off(handleReadyEvent);
+        reject(
+          new Error(
+            `Connection to foundry host timed out after ${CONNECTION_TIMEOUT}ms!`
+          )
+        );
+      }, CONNECTION_TIMEOUT);
 
-        this.bridge.setOrigin(data.payload?.origin);
-        this.bridge.postMessage({ type: PLATFORM_EVENTS.READY });
-      }
-    };
+      const handleReadyEvent = (data: ReadyEventData) => {
+        if (data.payload.name === PLATFORM_EVENTS.READY) {
+          this.bridge.message.off(handleReadyEvent);
+          clearTimeout(timeoutTimer);
 
-    bridge.message.on(handleReadyEvent);
+          this.bridge.setOrigin(data.payload?.origin);
+          this.bridge.postMessage({ type: PLATFORM_EVENTS.READY });
 
-    super(bridge);
+          this.isConnected = true;
+
+          resolve();
+        }
+      };
+
+      this.bridge.message.on(handleReadyEvent);
+    });
   }
 }
