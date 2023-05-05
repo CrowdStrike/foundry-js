@@ -13,22 +13,19 @@
  *
  **/
 
-import { setupApiBridgeInstance } from '../bridge';
 import { IncidentsApiBridge } from './incidents/bridge';
 import { RemoteResponseApiBridge } from './remote-response/bridge';
 
-export const publicApis = {
-  incidents: () => {
-    return setupApiBridgeInstance<IncidentsApiBridge>(
-      IncidentsApiBridge,
-      (bridge) => new IncidentsApiBridge(bridge),
-    );
-  },
+import type { Bridge } from '../bridge';
 
-  remoteResponse: () => {
-    return setupApiBridgeInstance<RemoteResponseApiBridge>(
-      RemoteResponseApiBridge,
-      (bridge) => new RemoteResponseApiBridge(bridge),
-    );
-  },
-};
+export default class FalconPublicApis {
+  bridge: Bridge;
+  incidents: IncidentsApiBridge;
+  remoteResponse: RemoteResponseApiBridge;
+
+  constructor(bridge: Bridge) {
+    this.bridge = bridge;
+    this.incidents = new IncidentsApiBridge(bridge);
+    this.remoteResponse = new RemoteResponseApiBridge(bridge);
+  }
+}

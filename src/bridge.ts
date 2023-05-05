@@ -18,7 +18,10 @@ interface PostMessageParams {
 }
 
 export class Bridge {
-  private pendingMessages = new Map<CommunicationMessageId, (result: never) => void>();
+  private pendingMessages = new Map<
+    CommunicationMessageId,
+    (result: never) => void
+  >();
 
   private callbackHandlers: ((data: any) => void)[] = [];
 
@@ -33,7 +36,10 @@ export class Bridge {
   }
 
   // TODO: what to do if we can't resolve back the promise?
-  async postMessage<T>(payload: Message, { type }: PostMessageParams = {}): Promise<T> {
+  async postMessage<T>(
+    payload: Message,
+    { type }: PostMessageParams = {}
+  ): Promise<T> {
     return new Promise((resolve) => {
       const __csMessageId__ = uuidv4();
 
@@ -48,7 +54,7 @@ export class Bridge {
             version: VERSION,
           },
         },
-        this.targetOrigin,
+        this.targetOrigin
       );
     });
   }
@@ -59,7 +65,9 @@ export class Bridge {
         this.callbackHandlers.push(callback);
       },
       off: (callback: (data: any) => void) => {
-        this.callbackHandlers = this.callbackHandlers.filter((handler) => handler !== callback);
+        this.callbackHandlers = this.callbackHandlers.filter(
+          (handler) => handler !== callback
+        );
       },
     };
   }
@@ -88,21 +96,6 @@ export class Bridge {
 }
 
 const cache = new WeakMap();
-
-export function setupApiBridgeInstance<T>(
-  bridgeClass: object,
-  initializationCallback: (bridge: Bridge) => T,
-): T {
-  if (!cache.has(Bridge)) {
-    cache.set(Bridge, new Bridge());
-  }
-
-  if (!cache.has(bridgeClass)) {
-    cache.set(bridgeClass, initializationCallback(cache.get(Bridge)));
-  }
-
-  return cache.get(bridgeClass) as T;
-}
 
 export function getBridgeInstance(): Bridge {
   if (!cache.has(Bridge)) {
