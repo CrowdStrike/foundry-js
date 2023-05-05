@@ -13,19 +13,33 @@
  *
  **/
 
+import { Memoize } from 'typescript-memoize';
+
 import { IncidentsApiBridge } from './incidents/bridge';
 import { RemoteResponseApiBridge } from './remote-response/bridge';
 
 import type { Bridge } from '../bridge';
+import { assertConnection } from './utils';
 
 export default class FalconPublicApis {
+  isConnected = false;
   bridge: Bridge;
-  incidents: IncidentsApiBridge;
-  remoteResponse: RemoteResponseApiBridge;
+
+  @Memoize()
+  get incidents(): IncidentsApiBridge {
+    assertConnection(this);
+
+    return new IncidentsApiBridge(this.bridge);
+  }
+
+  @Memoize()
+  get remoteResponse(): RemoteResponseApiBridge {
+    assertConnection(this);
+
+    return new RemoteResponseApiBridge(this.bridge);
+  }
 
   constructor(bridge: Bridge) {
     this.bridge = bridge;
-    this.incidents = new IncidentsApiBridge(bridge);
-    this.remoteResponse = new RemoteResponseApiBridge(bridge);
   }
 }
