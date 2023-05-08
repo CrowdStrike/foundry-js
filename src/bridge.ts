@@ -8,7 +8,7 @@ type Message = any;
 
 type CommunicationMessageId = string;
 
-interface ReceivedMessage {
+export interface ReceivedMessage {
   meta: { __csMessageId__: CommunicationMessageId };
   payload: unknown;
 }
@@ -28,7 +28,11 @@ export class Bridge {
   private targetOrigin = '*';
 
   constructor() {
-    window.addEventListener('message', this.handleMessage.bind(this));
+    window.addEventListener('message', this.handleMessage);
+  }
+
+  public destroy() {
+    window.removeEventListener('message', this.handleMessage);
   }
 
   public setOrigin(origin: string) {
@@ -72,7 +76,7 @@ export class Bridge {
     };
   }
 
-  private handleMessage(event: MessageEvent<ReceivedMessage>) {
+  private handleMessage = (event: MessageEvent<ReceivedMessage>) => {
     const csMessageId = event?.data?.meta?.__csMessageId__;
 
     if (csMessageId === undefined || csMessageId === null) {
@@ -92,15 +96,5 @@ export class Bridge {
     this.pendingMessages.delete(csMessageId);
 
     callback(event.data.payload as never);
-  }
-}
-
-const cache = new WeakMap();
-
-export function getBridgeInstance(): Bridge {
-  if (!cache.has(Bridge)) {
-    cache.set(Bridge, new Bridge());
-  }
-
-  return cache.get(Bridge);
+  };
 }
