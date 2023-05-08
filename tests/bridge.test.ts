@@ -1,5 +1,6 @@
 import { expect, test, vi, beforeEach, afterEach } from 'vitest';
 import { Bridge, ReceivedMessage } from '../src/bridge';
+import { uuidV4Regex } from './helpers';
 
 let bridge: Bridge;
 
@@ -31,13 +32,16 @@ test('it can send a message', () => {
   expect(spy.mock.lastCall?.[0]).toEqual(
     expect.objectContaining({
       payload: { foo: 'bar' },
+      meta: {
+        type: 'bridge',
+        version: 'current',
+        __csMessageId__: expect.stringMatching(uuidV4Regex),
+      },
     })
   );
 });
 
 test('it resolves with the response', async () => {
-  const spy = vi.spyOn(window.parent, 'postMessage');
-
   window.parent.addEventListener('message', (message) => {
     window.postMessage({
       payload: { ...message.data.payload, status: 'ok' },

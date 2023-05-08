@@ -1,4 +1,4 @@
-import { expect, test, vi, beforeEach, afterEach } from 'vitest';
+import { expect, test, beforeEach, afterEach } from 'vitest';
 import FalconApi from '../src/';
 import { Bridge } from '../src/bridge';
 import { PLATFORM_EVENTS } from '../src/apis/types';
