@@ -4,7 +4,7 @@ import { VERSION } from './apis/version';
 
 import type { RequestApi } from './apis/available-apis';
 
-type Message = any;
+type Message = unknown;
 
 type CommunicationMessageId = string;
 
@@ -87,7 +87,7 @@ export class Bridge {
       return;
     }
 
-    let callback = this.pendingMessages.get(csMessageId);
+    const callback = this.pendingMessages.get(csMessageId);
 
     if (!callback) {
       throw new Error(`Received unexpected message`);
