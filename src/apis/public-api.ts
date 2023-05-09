@@ -18,12 +18,12 @@ import { Memoize } from 'typescript-memoize';
 import { IncidentsApiBridge } from './incidents/bridge';
 import { RemoteResponseApiBridge } from './remote-response/bridge';
 
-import type { Bridge } from '../bridge';
+import { Bridge } from '../bridge';
 import { assertConnection } from './utils';
 
-export default class FalconPublicApis {
+export default abstract class FalconPublicApis {
   isConnected = false;
-  bridge: Bridge;
+  bridge = new Bridge();
 
   @Memoize()
   get incidents(): IncidentsApiBridge {
@@ -37,9 +37,5 @@ export default class FalconPublicApis {
     assertConnection(this);
 
     return new RemoteResponseApiBridge(this.bridge);
-  }
-
-  constructor(bridge: Bridge) {
-    this.bridge = bridge;
   }
 }

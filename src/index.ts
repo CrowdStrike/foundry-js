@@ -1,7 +1,6 @@
-import FalconPublicApis from 'apis/public-api';
+import FalconPublicApis from './apis/public-api';
 
 import { PLATFORM_EVENTS } from './apis/types';
-import { getBridgeInstance } from './bridge';
 
 interface ReadyEventData {
   payload: {
@@ -10,11 +9,9 @@ interface ReadyEventData {
   };
 }
 
-const CONNECTION_TIMEOUT = 5000;
+const CONNECTION_TIMEOUT = process.env.VITEST ? 1 : 5000;
 
 export default class FalconApi extends FalconPublicApis {
-  bridge = getBridgeInstance();
-
   async connect(): Promise<void> {
     return new Promise<void>((resolve, reject) => {
       const timeoutTimer = setTimeout(() => {
@@ -42,5 +39,9 @@ export default class FalconApi extends FalconPublicApis {
 
       this.bridge.message.on(handleReadyEvent);
     });
+  }
+
+  destroy() {
+    this.bridge.destroy();
   }
 }
