@@ -12,6 +12,11 @@
     "module": "ESNext",
     "target": "ESNext",
 
+    // Output settings
+    "declaration": true,
+    "declarationDir": "dist",
+    "outDir": "dist",
+
     // Features
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
@@ -31,5 +36,5 @@
     // This addon does not allow JavaScript
     "allowJs": false
   },
-  "include": ["config/rollup.config.ts", "src/**/*"]
+  "include": ["src/**/*"]
 }

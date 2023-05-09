@@ -9,8 +9,17 @@
   "license": "UNLICENSED",
   "author": "CrowdStrike UX Team",
   "exports": {
-    ".": "./dist/index.js",
-    "./*": "./dist/*"
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*"
+      ]
+    }
   },
   "directories": {},
   "files": [
