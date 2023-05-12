@@ -2,12 +2,15 @@ import FalconApi from '../src';
 import { PLATFORM_EVENTS } from '../src/apis/types';
 
 export async function connectApi(api: FalconApi) {
-  const promise = api.connect();
+  // simulate ready answer coming back from main thread
+  window.parent.addEventListener('message', (message) => {
+    window.postMessage({
+      payload: { name: PLATFORM_EVENTS },
+      meta: { __csMessageId__: message.data.meta.__csMessageId__ },
+    });
+  });
 
-  // simulate ready event coming from main thread
-  window.postMessage({ payload: { name: PLATFORM_EVENTS.READY } });
-
-  await promise;
+  return api.connect();
 }
 
 export const uuidV4Regex =

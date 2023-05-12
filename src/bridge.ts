@@ -17,6 +17,8 @@ interface PostMessageParams {
   type?: RequestApi;
 }
 
+const CONNECTION_TIMEOUT = process.env.VITEST ? 10 : 5000;
+
 export class Bridge {
   private pendingMessages = new Map<
     CommunicationMessageId,
@@ -39,15 +41,25 @@ export class Bridge {
     this.targetOrigin = origin;
   }
 
-  // TODO: what to do if we can't resolve back the promise?
   async postMessage<T>(
     payload: Message,
     { type }: PostMessageParams = {}
   ): Promise<T> {
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       const __csMessageId__ = uuidv4();
 
-      this.pendingMessages.set(__csMessageId__, resolve);
+      const timeoutTimer = setTimeout(() => {
+        reject(
+          new Error(
+            `Waiting for response from foundry host for "${type}" message (ID: ${__csMessageId__}) timed out after ${CONNECTION_TIMEOUT}ms`
+          )
+        );
+      }, CONNECTION_TIMEOUT);
+
+      this.pendingMessages.set(__csMessageId__, (result: T) => {
+        clearTimeout(timeoutTimer);
+        resolve(result);
+      });
 
       window.parent.postMessage(
         {
