@@ -35,7 +35,7 @@
     "lint:js:fix": "eslint . --fix",
     "lint:types": "tsc --noEmit",
     "prepublishOnly": "yarn build",
-    "start": "yarn build:js --watch",
+    "start": "yarn build --watch",
     "test": "vitest"
   },
   "dependencies": {

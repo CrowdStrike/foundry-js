@@ -21,11 +21,17 @@ test('it has a bridge', () => {
 });
 
 test('it can connect to main thread', async () => {
-  expect(api.isConnected).toEqual(false);
-  const promise = api.connect();
+  // simulate ready answer coming back from main thread
+  window.parent.addEventListener('message', (message) => {
+    window.postMessage({
+      payload: { name: PLATFORM_EVENTS, origin: 'www.example.com' },
+      meta: { __csMessageId__: message.data.meta.__csMessageId__ },
+    });
+  });
 
-  // simulate ready event coming from main thread
-  window.postMessage({ payload: { name: PLATFORM_EVENTS.READY } });
+  expect(api.isConnected).toEqual(false);
+
+  const promise = api.connect();
 
   await promise;
   expect(api.isConnected).toEqual(true);
