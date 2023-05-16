@@ -32,28 +32,25 @@ export class RemoteResponseApiBridge {
   }
 
   async getScriptIds(
-    urlParams: GetQueriesScriptsV1QueryParams = {},
+    urlParams: GetQueriesScriptsV1QueryParams = {}
   ): Promise<GetQueriesScriptsV1ApiResponse> {
-    return this.bridge.postMessage(
-      {
-        name: 'getQueriesScriptsV1',
-        params: urlParams,
-      },
-      { type: 'remoteResponse' },
-    );
+    return this.bridge.postMessage({
+      type: 'api',
+      api: 'remoteResponse',
+      method: 'getQueriesScriptsV1',
+      payload: { params: urlParams },
+    });
   }
 
   async getScriptEntities(
     postBody: PostEntitiesScriptsGetV2PostData,
-    urlParams: PostEntitiesScriptsGetV2QueryParams = {},
+    urlParams: PostEntitiesScriptsGetV2QueryParams = {}
   ): Promise<PostEntitiesScriptsGetV2ApiResponse> {
-    return this.bridge.postMessage(
-      {
-        name: 'postEntitiesScriptsGetV2',
-        body: postBody,
-        params: urlParams,
-      },
-      { type: 'remoteResponse' },
-    );
+    return this.bridge.postMessage({
+      type: 'api',
+      api: 'remoteResponse',
+      method: 'postEntitiesScriptsGetV2',
+      payload: { body: postBody, params: urlParams },
+    });
   }
 }

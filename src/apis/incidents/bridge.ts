@@ -16,13 +16,9 @@
 import type { Bridge } from '../../bridge';
 import type {
   GetQueriesIncidentsV1QueryParams,
+  PostEntitiesIncidentsGetV1PostData,
   PostEntitiesIncidentsGetV1QueryParams,
-} from './types-query';
-import type { PostEntitiesIncidentsGetV1PostData } from './types-request';
-import type {
-  GetQueriesIncidentsV1ApiResponse,
-  PostEntitiesIncidentsGetV1ApiResponse,
-} from './types-response';
+} from './types';
 
 export class IncidentsApiBridge {
   private bridge;
@@ -32,28 +28,30 @@ export class IncidentsApiBridge {
   }
 
   async getIncidentIds(
-    urlParams: GetQueriesIncidentsV1QueryParams = {},
+    urlParams: GetQueriesIncidentsV1QueryParams = {}
   ): Promise<GetQueriesIncidentsV1ApiResponse> {
-    return this.bridge.postMessage(
-      {
-        name: 'getQueriesIncidentsV1',
+    return this.bridge.postMessage({
+      type: 'api',
+      api: 'incidents',
+      method: 'getQueriesIncidentsV1',
+      payload: {
         params: urlParams,
       },
-      { type: 'incidents' },
-    );
+    });
   }
 
   async getIncidentEntities(
     postBody: PostEntitiesIncidentsGetV1PostData,
-    urlParams: PostEntitiesIncidentsGetV1QueryParams = {},
+    urlParams: PostEntitiesIncidentsGetV1QueryParams = {}
   ): Promise<PostEntitiesIncidentsGetV1ApiResponse> {
-    return this.bridge.postMessage(
-      {
-        name: 'postEntitiesIncidentsGetV1',
+    return this.bridge.postMessage({
+      type: 'api',
+      api: 'incidents',
+      method: 'postEntitiesIncidentsGetV1',
+      payload: {
         body: postBody,
         params: urlParams,
       },
-      { type: 'incidents' },
-    );
+    });
   }
 }

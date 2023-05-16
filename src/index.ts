@@ -1,14 +1,10 @@
 import FalconPublicApis from './apis/public-api';
 
-import { PLATFORM_EVENTS } from './apis/types';
-
 export default class FalconApi extends FalconPublicApis {
   async connect(): Promise<void> {
-    const data: any = await this.bridge.postMessage({
-      type: PLATFORM_EVENTS.READY,
-    });
+    const { origin } = await this.bridge.postMessage({ type: 'connect' });
 
-    this.bridge.setOrigin(data.origin);
+    this.bridge.setOrigin(origin);
     this.isConnected = true;
   }
 

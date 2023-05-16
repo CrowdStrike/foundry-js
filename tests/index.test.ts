@@ -1,7 +1,12 @@
 import { expect, test, beforeEach, afterEach } from 'vitest';
 import FalconApi from '../src/';
 import { Bridge } from '../src/bridge';
-import { PLATFORM_EVENTS } from '../src/apis/types';
+
+import type {
+  ConnectRequestMessage,
+  ConnectResponseMessage,
+  MessageEnvelope,
+} from '../src/types';
 
 let api: FalconApi;
 
@@ -22,12 +27,24 @@ test('it has a bridge', () => {
 
 test('it can connect to main thread', async () => {
   // simulate ready answer coming back from main thread
-  window.parent.addEventListener('message', (message) => {
-    window.postMessage({
-      payload: { name: PLATFORM_EVENTS, origin: 'www.example.com' },
-      meta: { __csMessageId__: message.data.meta.__csMessageId__ },
-    });
-  });
+  window.parent.addEventListener(
+    'message',
+    (message: MessageEvent<MessageEnvelope<ConnectRequestMessage>>) => {
+      const response: MessageEnvelope<ConnectResponseMessage> = {
+        message: {
+          type: 'connect',
+          payload: {
+            origin: 'www.example.com',
+          },
+        },
+        meta: {
+          messageId: message.data.meta.messageId,
+          version: 'current',
+        },
+      };
+      window.postMessage(response);
+    }
+  );
 
   expect(api.isConnected).toEqual(false);
 
