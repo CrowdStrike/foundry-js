@@ -13,10 +13,17 @@
  *
  **/
 
-import { ApiRequestMessage } from '../../types';
-import type { BaseUrlParams, QueryParam } from '../types';
+import type {
+  BaseApiRequestMessage,
+  BaseApiResponseMessage,
+  ApiResponsePayload,
+  BaseUrlParams,
+  QueryParam,
+} from '../../types';
 
 export type IncidentsRequestApi = 'incidents';
+
+// types for getQueriesIncidentsV1
 
 export interface GetQueriesIncidentsV1QueryParams extends BaseUrlParams {
   filter?: string;
@@ -25,28 +32,42 @@ export interface GetQueriesIncidentsV1QueryParams extends BaseUrlParams {
   sort?: QueryParam;
 }
 
+export type GetQueriesIncidentsV1ApiResponse = ApiResponsePayload<string>;
+
+export interface GetQueriesIncidentsV1RequestMessage
+  extends BaseApiRequestMessage<GetQueriesIncidentsV1QueryParams> {
+  api: IncidentsRequestApi;
+  method: 'getQueriesIncidentsV1';
+}
+
+export type GetQueriesIncidentsV1ResponseMessage =
+  BaseApiResponseMessage<GetQueriesIncidentsV1ApiResponse>;
+
+// types for postEntitiesIncidentsGetV1
+
 export interface PostEntitiesIncidentsGetV1QueryParams extends BaseUrlParams {}
 
 export interface PostEntitiesIncidentsGetV1PostData {}
 
-export type GetQueriesIncidentsV1ApiResponse = any;
-
-export type PostEntitiesIncidentsGetV1ApiResponse = any;
-
-export interface GetQueriesIncidentsV1RequestMessage extends ApiRequestMessage {
-  api: IncidentsRequestApi;
-  method: 'getQueriesIncidentsV1';
-  payload: {
-    params: GetQueriesIncidentsV1QueryParams;
-  };
-}
+export type PostEntitiesIncidentsGetV1ApiResponse = ApiResponsePayload<any>;
 
 export interface PostEntitiesIncidentsGetV1RequestMessage
-  extends ApiRequestMessage {
+  extends BaseApiRequestMessage<
+    PostEntitiesIncidentsGetV1QueryParams,
+    PostEntitiesIncidentsGetV1PostData
+  > {
   api: IncidentsRequestApi;
   method: 'postEntitiesIncidentsGetV1';
-  payload: {
-    body: PostEntitiesIncidentsGetV1PostData;
-    params: PostEntitiesIncidentsGetV1QueryParams;
-  };
 }
+
+export type PostEntitiesIncidentsGetV1ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesIncidentsGetV1ApiResponse>;
+
+// general types
+
+export type IncidentsApiRequestMessage =
+  | GetQueriesIncidentsV1RequestMessage
+  | PostEntitiesIncidentsGetV1RequestMessage;
+export type IncidentsApiResponseMessage =
+  | GetQueriesIncidentsV1ResponseMessage
+  | PostEntitiesIncidentsGetV1ResponseMessage;

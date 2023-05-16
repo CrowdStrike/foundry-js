@@ -1,5 +1,2 @@
-export type QueryParam = string | number | string[] | number[] | boolean;
-
-export interface BaseUrlParams {
-  [key: string]: QueryParam | undefined;
-}
+export * from './incidents/types';
+export * from './remote-response/types';

@@ -13,4 +13,4 @@
  *
  **/
 
-export type RequestApi = 'incidents' | 'remoteResponse';
+export type ApiIdentifier = 'incidents' | 'remoteResponse';
