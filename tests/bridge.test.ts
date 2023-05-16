@@ -1,6 +1,8 @@
-import { expect, test, vi, beforeEach, afterEach } from 'vitest';
-import { Bridge, ReceivedMessage } from '../src/bridge';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
+import { Bridge } from '../src/bridge';
 import { uuidV4Regex } from './helpers';
+
+import type { MessageEnvelope } from '../src/types';
 
 let bridge: Bridge;
 
@@ -16,9 +18,9 @@ test('it can be instantiated', () => {
 });
 
 test('it throws when receiving an unexpected message', () => {
-  const invalidMessage: ReceivedMessage = {
-    meta: { __csMessageId__: 'foo' },
-    payload: {},
+  const invalidMessage: MessageEnvelope<unknown> = {
+    meta: { messageId: 'foo', version: 'current' },
+    message: {},
   };
   expect(() => window.postMessage(invalidMessage)).toThrow();
 });
@@ -26,32 +28,36 @@ test('it throws when receiving an unexpected message', () => {
 test('it can send a message', () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
 
-  bridge.postMessage({ foo: 'bar' }, { type: 'bridge' });
+  bridge.postMessage({ type: 'connect' });
 
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
     expect.objectContaining({
-      payload: { foo: 'bar' },
+      message: { type: 'connect' },
       meta: {
-        type: 'bridge',
         version: 'current',
-        __csMessageId__: expect.stringMatching(uuidV4Regex),
+        messageId: expect.stringMatching(uuidV4Regex),
       },
     })
   );
 });
 
-test('it resolves with the response', async () => {
-  window.parent.addEventListener('message', (message) => {
-    window.postMessage({
-      payload: { ...message.data.payload, status: 'ok' },
-      meta: { __csMessageId__: message.data.meta.__csMessageId__ },
-    });
-  });
+test('it resolves with the response payload', async () => {
+  const request = { type: 'connect' } as const;
 
-  const promise = expect(
-    bridge.postMessage({ foo: 'bar' }, { type: 'bridge' })
-  ).resolves.toEqual({ foo: 'bar', status: 'ok' });
+  window.parent.addEventListener(
+    'message',
+    (message: MessageEvent<MessageEnvelope<typeof request>>) => {
+      window.postMessage({
+        message: { ...message.data.message, payload: { status: 'ok' } },
+        meta: { messageId: message.data.meta.messageId },
+      });
+    }
+  );
+
+  const promise = expect(bridge.postMessage(request)).resolves.toEqual({
+    status: 'ok',
+  });
 
   // make sure we have no false positives
   await promise;

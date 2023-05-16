@@ -20,11 +20,15 @@ test('it can call getIncidentIds', async () => {
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
     expect.objectContaining({
-      payload: { name: 'getQueriesIncidentsV1', params: {} },
+      message: {
+        type: 'api',
+        api: 'incidents',
+        method: 'getQueriesIncidentsV1',
+        payload: { params: {} },
+      },
       meta: {
-        type: 'incidents',
         version: 'current',
-        __csMessageId__: expect.stringMatching(uuidV4Regex),
+        messageId: expect.stringMatching(uuidV4Regex),
       },
     })
   );
@@ -37,11 +41,15 @@ test('it can call getIncidentEntities', async () => {
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
     expect.objectContaining({
-      payload: { name: 'postEntitiesIncidentsGetV1', body: {}, params: {} },
+      message: {
+        type: 'api',
+        api: 'incidents',
+        method: 'postEntitiesIncidentsGetV1',
+        payload: { body: {}, params: {} },
+      },
       meta: {
-        type: 'incidents',
         version: 'current',
-        __csMessageId__: expect.stringMatching(uuidV4Regex),
+        messageId: expect.stringMatching(uuidV4Regex),
       },
     })
   );

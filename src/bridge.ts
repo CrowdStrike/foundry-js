@@ -1,28 +1,22 @@
 import { v4 as uuidv4 } from 'uuid';
 
+import { isValidResponse } from './utils';
 import { VERSION } from './apis/version';
 
-import type { RequestApi } from './apis/available-apis';
+import type {
+  MessageEnvelope,
+  PayloadOf,
+  RequestMessage,
+  ResponseFor,
+  ResponseMessage,
+} from 'types';
 
-type Message = unknown;
-
-type CommunicationMessageId = string;
-
-export interface ReceivedMessage {
-  meta: { __csMessageId__: CommunicationMessageId };
-  payload: unknown;
-}
-
-interface PostMessageParams {
-  type?: RequestApi;
-}
-
-const CONNECTION_TIMEOUT = process.env.VITEST ? 10 : 5000;
+const CONNECTION_TIMEOUT = process.env.VITEST ? 100 : 5000;
 
 export class Bridge {
   private pendingMessages = new Map<
-    CommunicationMessageId,
-    (result: never) => void
+    string,
+    (result: PayloadOf<ResponseMessage>) => void
   >();
 
   private callbackHandlers: ((data: any) => void)[] = [];
@@ -41,37 +35,37 @@ export class Bridge {
     this.targetOrigin = origin;
   }
 
-  async postMessage<T>(
-    payload: Message,
-    { type }: PostMessageParams = {}
-  ): Promise<T> {
+  async postMessage<REQ extends RequestMessage>(
+    message: REQ
+  ): Promise<PayloadOf<ResponseFor<REQ>>> {
     return new Promise((resolve, reject) => {
-      const __csMessageId__ = uuidv4();
+      const messageId = uuidv4();
 
       const timeoutTimer = setTimeout(() => {
         reject(
           new Error(
-            `Waiting for response from foundry host for "${type}" message (ID: ${__csMessageId__}) timed out after ${CONNECTION_TIMEOUT}ms`
+            `Waiting for response from foundry host for "${message.type}" message (ID: ${messageId}) timed out after ${CONNECTION_TIMEOUT}ms`
           )
         );
       }, CONNECTION_TIMEOUT);
 
-      this.pendingMessages.set(__csMessageId__, (result: T) => {
-        clearTimeout(timeoutTimer);
-        resolve(result);
-      });
-
-      window.parent.postMessage(
-        {
-          payload,
-          meta: {
-            __csMessageId__,
-            type,
-            version: VERSION,
-          },
-        },
-        this.targetOrigin
+      this.pendingMessages.set(
+        messageId,
+        (result: PayloadOf<ResponseMessage>) => {
+          clearTimeout(timeoutTimer);
+          resolve(result as ResponseFor<REQ>);
+        }
       );
+
+      const eventData: MessageEnvelope<REQ> = {
+        message,
+        meta: {
+          messageId,
+          version: VERSION,
+        },
+      };
+
+      window.parent.postMessage(eventData, this.targetOrigin);
     });
   }
 
@@ -88,10 +82,10 @@ export class Bridge {
     };
   }
 
-  private handleMessage = (event: MessageEvent<ReceivedMessage>) => {
-    const csMessageId = event?.data?.meta?.__csMessageId__;
-
-    if (csMessageId === undefined || csMessageId === null) {
+  private handleMessage = (
+    event: MessageEvent<MessageEnvelope<ResponseMessage> | unknown>
+  ) => {
+    if (!isValidResponse(event.data)) {
       for (const callback of this.callbackHandlers) {
         callback(event.data);
       }
@@ -99,14 +93,15 @@ export class Bridge {
       return;
     }
 
-    const callback = this.pendingMessages.get(csMessageId);
+    const { messageId } = event.data.meta;
+    const callback = this.pendingMessages.get(messageId);
 
     if (!callback) {
       throw new Error(`Received unexpected message`);
     }
 
-    this.pendingMessages.delete(csMessageId);
+    this.pendingMessages.delete(messageId);
 
-    callback(event.data.payload as never);
+    callback(event.data.message.payload);
   };
 }
