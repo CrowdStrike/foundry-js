@@ -9,7 +9,7 @@ import type {
   RequestMessage,
   ResponseFor,
   ResponseMessage,
-} from 'types';
+} from './types';
 
 const CONNECTION_TIMEOUT = process.env.VITEST ? 100 : 5000;
 
@@ -49,13 +49,10 @@ export class Bridge {
         );
       }, CONNECTION_TIMEOUT);
 
-      this.pendingMessages.set(
-        messageId,
-        (result: PayloadOf<ResponseMessage>) => {
-          clearTimeout(timeoutTimer);
-          resolve(result as ResponseFor<REQ>);
-        }
-      );
+      this.pendingMessages.set(messageId, (result) => {
+        clearTimeout(timeoutTimer);
+        resolve(result as PayloadOf<ResponseFor<REQ>>);
+      });
 
       const eventData: MessageEnvelope<REQ> = {
         message,
