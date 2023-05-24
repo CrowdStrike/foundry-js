@@ -26,8 +26,6 @@ export class Bridge<DATA extends LocalData = LocalData> {
     (result: PayloadOf<ResponseMessage>) => void
   >();
 
-  private callbackHandlers: ((data: any) => void)[] = [];
-
   private targetOrigin = '*';
 
   constructor({ onDataUpdate }: BridgeOptions<DATA> = {}) {
@@ -75,48 +73,31 @@ export class Bridge<DATA extends LocalData = LocalData> {
     });
   }
 
-  get message() {
-    return {
-      on: (callback: (data: any) => void) => {
-        this.callbackHandlers.push(callback);
-      },
-      off: (callback: (data: any) => void) => {
-        this.callbackHandlers = this.callbackHandlers.filter(
-          (handler) => handler !== callback
-        );
-      },
-    };
-  }
-
   private handleMessage = (
     event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | unknown>
   ) => {
     if (!isValidResponse<DATA>(event)) {
-      for (const callback of this.callbackHandlers) {
-        callback(event.data);
-      }
-
       return;
-    } else {
-      const message = event.data.message;
-
-      if (message.type === 'data') {
-        this.onDataUpdate?.(message);
-
-        // data update events are unidirectional and originated from the host, so there cannot be a callback waiting for this message
-        return;
-      }
-
-      const { messageId } = event.data.meta;
-      const callback = this.pendingMessages.get(messageId);
-
-      if (!callback) {
-        throw new Error(`Received unexpected message`);
-      }
-
-      this.pendingMessages.delete(messageId);
-
-      callback(message.payload);
     }
+
+    const message = event.data.message;
+
+    if (message.type === 'data') {
+      this.onDataUpdate?.(message);
+
+      // data update events are unidirectional and originated from the host, so there cannot be a callback waiting for this message
+      return;
+    }
+
+    const { messageId } = event.data.meta;
+    const callback = this.pendingMessages.get(messageId);
+
+    if (!callback) {
+      throw new Error(`Received unexpected message`);
+    }
+
+    this.pendingMessages.delete(messageId);
+
+    callback(message.payload);
   };
 }
