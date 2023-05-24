@@ -20,11 +20,15 @@ test('it can call getScriptIds', async () => {
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
     expect.objectContaining({
-      payload: { name: 'getQueriesScriptsV1', params: {} },
+      message: {
+        type: 'api',
+        api: 'remoteResponse',
+        method: 'getQueriesScriptsV1',
+        payload: { params: {} },
+      },
       meta: {
-        type: 'remoteResponse',
         version: 'current',
-        __csMessageId__: expect.stringMatching(uuidV4Regex),
+        messageId: expect.stringMatching(uuidV4Regex),
       },
     })
   );
@@ -37,11 +41,15 @@ test('it can call getIncidentEntities', async () => {
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
     expect.objectContaining({
-      payload: { name: 'postEntitiesScriptsGetV2', body: {}, params: {} },
+      message: {
+        type: 'api',
+        api: 'remoteResponse',
+        method: 'postEntitiesScriptsGetV2',
+        payload: { body: {}, params: {} },
+      },
       meta: {
-        type: 'remoteResponse',
         version: 'current',
-        __csMessageId__: expect.stringMatching(uuidV4Regex),
+        messageId: expect.stringMatching(uuidV4Regex),
       },
     })
   );

@@ -13,5 +13,4 @@
  *
  **/
 
-export type SystemApis = 'bridge';
-export type RequestApi = SystemApis | 'incidents' | 'remoteResponse';
+export type ApiIdentifier = 'incidents' | 'remoteResponse';

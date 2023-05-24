@@ -19,7 +19,7 @@ import { IncidentsApiBridge } from './incidents/bridge';
 import { RemoteResponseApiBridge } from './remote-response/bridge';
 
 import { Bridge } from '../bridge';
-import { assertConnection } from './utils';
+import { assertConnection } from '../utils';
 
 export default abstract class FalconPublicApis {
   isConnected = false;

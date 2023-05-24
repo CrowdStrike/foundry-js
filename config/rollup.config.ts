@@ -17,7 +17,9 @@ export default defineConfig({
   },
   plugins: [
     nodeResolve(),
-    typescript(),
+    typescript({
+      include: ['src/**/*'],
+    }),
     replace({
       'process.env.VITEST': false,
       preventAssignment: true,

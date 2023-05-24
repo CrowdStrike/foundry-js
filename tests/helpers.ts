@@ -1,14 +1,23 @@
+import {
+  ConnectRequestMessage,
+  ConnectResponseMessage,
+  MessageEnvelope,
+} from 'types';
 import FalconApi from '../src';
-import { PLATFORM_EVENTS } from '../src/apis/types';
 
 export async function connectApi(api: FalconApi) {
   // simulate ready answer coming back from main thread
-  window.parent.addEventListener('message', (message) => {
-    window.postMessage({
-      payload: { name: PLATFORM_EVENTS },
-      meta: { __csMessageId__: message.data.meta.__csMessageId__ },
-    });
-  });
+  window.parent.addEventListener(
+    'message',
+    (message: MessageEvent<MessageEnvelope<ConnectRequestMessage>>) => {
+      const { meta } = message.data;
+      const response: MessageEnvelope<ConnectResponseMessage> = {
+        message: { type: 'connect', payload: { origin: '' } },
+        meta,
+      };
+      window.postMessage(response);
+    }
+  );
 
   return api.connect();
 }

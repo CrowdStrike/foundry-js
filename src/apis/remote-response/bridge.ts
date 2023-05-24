@@ -14,15 +14,15 @@
  **/
 
 import type { Bridge } from '../../bridge';
-import type {
-  GetQueriesScriptsV1QueryParams,
-  PostEntitiesScriptsGetV2QueryParams,
-} from './types-query';
-import type { PostEntitiesScriptsGetV2PostData } from './types-request';
-import type {
+import {
   GetQueriesScriptsV1ApiResponse,
+  GetQueriesScriptsV1QueryParams,
+  GetQueriesScriptsV1RequestMessage,
   PostEntitiesScriptsGetV2ApiResponse,
-} from './types-response';
+  PostEntitiesScriptsGetV2PostData,
+  PostEntitiesScriptsGetV2QueryParams,
+  PostEntitiesScriptsGetV2RequestMessage,
+} from './types';
 
 export class RemoteResponseApiBridge {
   private bridge;
@@ -32,28 +32,29 @@ export class RemoteResponseApiBridge {
   }
 
   async getScriptIds(
-    urlParams: GetQueriesScriptsV1QueryParams = {},
+    urlParams: GetQueriesScriptsV1QueryParams = {}
   ): Promise<GetQueriesScriptsV1ApiResponse> {
-    return this.bridge.postMessage(
-      {
-        name: 'getQueriesScriptsV1',
-        params: urlParams,
-      },
-      { type: 'remoteResponse' },
-    );
+    const message: GetQueriesScriptsV1RequestMessage = {
+      type: 'api',
+      api: 'remoteResponse',
+      method: 'getQueriesScriptsV1',
+      payload: { params: urlParams },
+    };
+
+    return this.bridge.postMessage(message);
   }
 
   async getScriptEntities(
     postBody: PostEntitiesScriptsGetV2PostData,
-    urlParams: PostEntitiesScriptsGetV2QueryParams = {},
+    urlParams: PostEntitiesScriptsGetV2QueryParams = {}
   ): Promise<PostEntitiesScriptsGetV2ApiResponse> {
-    return this.bridge.postMessage(
-      {
-        name: 'postEntitiesScriptsGetV2',
-        body: postBody,
-        params: urlParams,
-      },
-      { type: 'remoteResponse' },
-    );
+    const message: PostEntitiesScriptsGetV2RequestMessage = {
+      type: 'api',
+      api: 'remoteResponse',
+      method: 'postEntitiesScriptsGetV2',
+      payload: { body: postBody, params: urlParams },
+    };
+
+    return this.bridge.postMessage(message);
   }
 }
