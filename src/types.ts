@@ -22,7 +22,9 @@ export interface BaseUrlParams {
   [key: string]: QueryParam | undefined;
 }
 
-export type MessageType = 'connect' | 'api';
+export type LocalData = unknown;
+
+export type MessageType = 'connect' | 'api' | 'data';
 
 export interface BaseMessage {
   type: MessageType;
@@ -33,11 +35,19 @@ export interface ConnectRequestMessage extends BaseMessage {
   type: 'connect';
 }
 
-export interface ConnectResponseMessage extends BaseMessage {
+export interface ConnectResponseMessage<DATA extends LocalData = LocalData>
+  extends BaseMessage {
   type: 'connect';
   payload: {
     origin: string;
+    data?: DATA;
   };
+}
+
+export interface DataUpdateMessage<DATA extends LocalData = LocalData>
+  extends BaseMessage {
+  type: 'data';
+  payload: DATA;
 }
 
 export interface ApiRequestGetPayload<
@@ -97,7 +107,10 @@ export type ApiResponseMessage =
   | IncidentsApiResponseMessage
   | RemoteResponseApiResponseMessage;
 
-export type ResponseMessage = ConnectResponseMessage | ApiResponseMessage;
+export type ResponseMessage<DATA extends LocalData = LocalData> =
+  | ConnectResponseMessage<DATA>
+  | ApiResponseMessage
+  | DataUpdateMessage<DATA>;
 
 export interface MessageMetadata {
   messageId: string;
@@ -110,18 +123,20 @@ export interface MessageEnvelope<M> {
 }
 
 // @todo can we make this less explicit?
-export type ResponseFor<REQ extends RequestMessage> =
-  REQ extends ConnectRequestMessage
-    ? ConnectResponseMessage
-    : REQ extends GetQueriesIncidentsV1RequestMessage
-    ? GetQueriesIncidentsV1ResponseMessage
-    : REQ extends PostEntitiesIncidentsGetV1RequestMessage
-    ? PostEntitiesIncidentsGetV1ResponseMessage
-    : REQ extends GetQueriesScriptsV1RequestMessage
-    ? GetQueriesScriptsV1ResponseMessage
-    : REQ extends PostEntitiesScriptsGetV2RequestMessage
-    ? PostEntitiesScriptsGetV2ResponseMessage
-    : unknown;
+export type ResponseFor<
+  REQ extends RequestMessage,
+  DATA extends LocalData
+> = REQ extends ConnectRequestMessage
+  ? ConnectResponseMessage<DATA>
+  : REQ extends GetQueriesIncidentsV1RequestMessage
+  ? GetQueriesIncidentsV1ResponseMessage
+  : REQ extends PostEntitiesIncidentsGetV1RequestMessage
+  ? PostEntitiesIncidentsGetV1ResponseMessage
+  : REQ extends GetQueriesScriptsV1RequestMessage
+  ? GetQueriesScriptsV1ResponseMessage
+  : REQ extends PostEntitiesScriptsGetV2RequestMessage
+  ? PostEntitiesScriptsGetV2ResponseMessage
+  : unknown;
 
 export type PayloadOf<RESPONSE extends ResponseMessage> = RESPONSE['payload'];
 
