@@ -36,5 +36,5 @@
     // This addon does not allow JavaScript
     "allowJs": false
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "tests/**/*"]
 }
