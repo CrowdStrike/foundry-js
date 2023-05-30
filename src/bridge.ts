@@ -4,6 +4,8 @@ import { isValidResponse } from './utils';
 import { VERSION } from './apis/version';
 
 import type {
+  DataUpdateMessage,
+  LocalData,
   MessageEnvelope,
   PayloadOf,
   RequestMessage,
@@ -13,17 +15,22 @@ import type {
 
 const CONNECTION_TIMEOUT = process.env.VITEST ? 100 : 5000;
 
-export class Bridge {
+interface BridgeOptions<DATA extends LocalData> {
+  onDataUpdate?: (event: DataUpdateMessage<DATA>) => void;
+}
+
+export class Bridge<DATA extends LocalData = LocalData> {
+  private onDataUpdate: BridgeOptions<DATA>['onDataUpdate'];
   private pendingMessages = new Map<
     string,
     (result: PayloadOf<ResponseMessage>) => void
   >();
 
-  private callbackHandlers: ((data: any) => void)[] = [];
-
   private targetOrigin = '*';
 
-  constructor() {
+  constructor({ onDataUpdate }: BridgeOptions<DATA> = {}) {
+    this.onDataUpdate = onDataUpdate;
+
     window.addEventListener('message', this.handleMessage);
   }
 
@@ -37,7 +44,7 @@ export class Bridge {
 
   async postMessage<REQ extends RequestMessage>(
     message: REQ
-  ): Promise<PayloadOf<ResponseFor<REQ>>> {
+  ): Promise<PayloadOf<ResponseFor<REQ, DATA>>> {
     return new Promise((resolve, reject) => {
       const messageId = uuidv4();
 
@@ -51,7 +58,7 @@ export class Bridge {
 
       this.pendingMessages.set(messageId, (result) => {
         clearTimeout(timeoutTimer);
-        resolve(result as PayloadOf<ResponseFor<REQ>>);
+        resolve(result as PayloadOf<ResponseFor<REQ, DATA>>);
       });
 
       const eventData: MessageEnvelope<REQ> = {
@@ -66,27 +73,19 @@ export class Bridge {
     });
   }
 
-  get message() {
-    return {
-      on: (callback: (data: any) => void) => {
-        this.callbackHandlers.push(callback);
-      },
-      off: (callback: (data: any) => void) => {
-        this.callbackHandlers = this.callbackHandlers.filter(
-          (handler) => handler !== callback
-        );
-      },
-    };
-  }
-
   private handleMessage = (
-    event: MessageEvent<MessageEnvelope<ResponseMessage> | unknown>
+    event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | unknown>
   ) => {
-    if (!isValidResponse(event.data)) {
-      for (const callback of this.callbackHandlers) {
-        callback(event.data);
-      }
+    if (!isValidResponse<DATA>(event)) {
+      return;
+    }
 
+    const message = event.data.message;
+
+    if (message.type === 'data') {
+      this.onDataUpdate?.(message);
+
+      // data update events are unidirectional and originated from the host, so there cannot be a callback waiting for this message
       return;
     }
 
@@ -99,6 +98,6 @@ export class Bridge {
 
     this.pendingMessages.delete(messageId);
 
-    callback(event.data.message.payload);
+    callback(message.payload);
   };
 }

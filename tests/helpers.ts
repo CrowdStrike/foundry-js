@@ -1,18 +1,19 @@
 import {
   ConnectRequestMessage,
   ConnectResponseMessage,
+  LocalData,
   MessageEnvelope,
 } from 'types';
 import FalconApi from '../src';
 
-export async function connectApi(api: FalconApi) {
+export async function connectApi(api: FalconApi, data?: LocalData) {
   // simulate ready answer coming back from main thread
   window.parent.addEventListener(
     'message',
     (message: MessageEvent<MessageEnvelope<ConnectRequestMessage>>) => {
       const { meta } = message.data;
       const response: MessageEnvelope<ConnectResponseMessage> = {
-        message: { type: 'connect', payload: { origin: '' } },
+        message: { type: 'connect', payload: { origin: '', data } },
         meta,
       };
       window.postMessage(response);

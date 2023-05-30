@@ -1,4 +1,4 @@
-import { MessageEnvelope, ResponseMessage } from 'types';
+import { LocalData, MessageEnvelope, ResponseMessage } from './types';
 import FalconPublicApis from './apis/public-api';
 
 export function assertConnection(falcon: FalconPublicApis) {
@@ -9,9 +9,9 @@ export function assertConnection(falcon: FalconPublicApis) {
   }
 }
 
-export function isValidResponse(
+export function isValidResponse<DATA extends LocalData>(
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  eventData: any
-): eventData is MessageEnvelope<ResponseMessage> {
-  return !!eventData.meta.messageId;
+  event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | any>
+): event is MessageEvent<MessageEnvelope<ResponseMessage<DATA>>> {
+  return !!event?.data?.meta?.messageId;
 }
