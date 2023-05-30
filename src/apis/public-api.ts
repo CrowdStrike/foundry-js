@@ -23,7 +23,7 @@ import { assertConnection } from '../utils';
 
 export default abstract class FalconPublicApis {
   isConnected = false;
-  bridge = new Bridge();
+  abstract bridge: Bridge<any>;
 
   @Memoize()
   get incidents(): IncidentsApiBridge {

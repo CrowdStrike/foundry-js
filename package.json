@@ -39,6 +39,7 @@
     "test": "vitest"
   },
   "dependencies": {
+    "emittery": "^1.0.1",
     "typescript-memoize": "^1.1.1",
     "uuid": "9.0.0"
   },
@@ -52,6 +53,7 @@
     "concurrently": "^8.0.1",
     "eslint": "^8.40.0",
     "happy-dom": "^9.10.9",
+    "p-event": "^5.0.1",
     "rollup": "2.79.1",
     "tslib": "2.5.0",
     "typescript": "5.0.2",
