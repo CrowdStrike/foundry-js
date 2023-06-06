@@ -13,4 +13,4 @@
  *
  **/
 
-export type ApiIdentifier = 'incidents' | 'remoteResponse';
+export type ApiIdentifier = 'actors' | 'alerts' | 'detects' | 'devices' | 'fwmgr' | 'incidents' | 'remoteResponse' | 'workflows';

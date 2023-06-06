@@ -15,8 +15,15 @@
 
 import { Memoize } from 'typescript-memoize';
 
+
+import { ActorsApiBridge } from './actors/bridge';
+import { AlertsApiBridge } from './alerts/bridge';
+import { DetectsApiBridge } from './detects/bridge';
+import { DevicesApiBridge } from './devices/bridge';
+import { FwmgrApiBridge } from './fwmgr/bridge';
 import { IncidentsApiBridge } from './incidents/bridge';
 import { RemoteResponseApiBridge } from './remote-response/bridge';
+import { WorkflowsApiBridge } from './workflows/bridge';
 
 import { Bridge } from '../bridge';
 import { assertConnection } from '../utils';
@@ -25,17 +32,61 @@ export default abstract class FalconPublicApis {
   isConnected = false;
   abstract bridge: Bridge<any>;
 
+  
+  @Memoize()
+  get actors(): ActorsApiBridge {
+    assertConnection(this);
+
+    return new ActorsApiBridge(this.bridge);
+  }
+  
+  @Memoize()
+  get alerts(): AlertsApiBridge {
+    assertConnection(this);
+
+    return new AlertsApiBridge(this.bridge);
+  }
+  
+  @Memoize()
+  get detects(): DetectsApiBridge {
+    assertConnection(this);
+
+    return new DetectsApiBridge(this.bridge);
+  }
+  
+  @Memoize()
+  get devices(): DevicesApiBridge {
+    assertConnection(this);
+
+    return new DevicesApiBridge(this.bridge);
+  }
+  
+  @Memoize()
+  get fwmgr(): FwmgrApiBridge {
+    assertConnection(this);
+
+    return new FwmgrApiBridge(this.bridge);
+  }
+  
   @Memoize()
   get incidents(): IncidentsApiBridge {
     assertConnection(this);
 
     return new IncidentsApiBridge(this.bridge);
   }
-
+  
   @Memoize()
   get remoteResponse(): RemoteResponseApiBridge {
     assertConnection(this);
 
     return new RemoteResponseApiBridge(this.bridge);
   }
+  
+  @Memoize()
+  get workflows(): WorkflowsApiBridge {
+    assertConnection(this);
+
+    return new WorkflowsApiBridge(this.bridge);
+  }
+  
 }

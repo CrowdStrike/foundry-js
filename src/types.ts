@@ -1,20 +1,4 @@
 import type { ApiIdentifier } from './apis/available-apis';
-import {
-  GetQueriesIncidentsV1RequestMessage,
-  GetQueriesIncidentsV1ResponseMessage,
-  IncidentsApiRequestMessage,
-  IncidentsApiResponseMessage,
-  PostEntitiesIncidentsGetV1RequestMessage,
-  PostEntitiesIncidentsGetV1ResponseMessage,
-} from './apis/incidents/types';
-import {
-  GetQueriesScriptsV1RequestMessage,
-  GetQueriesScriptsV1ResponseMessage,
-  PostEntitiesScriptsGetV2RequestMessage,
-  PostEntitiesScriptsGetV2ResponseMessage,
-  RemoteResponseApiRequestMessage,
-  RemoteResponseApiResponseMessage,
-} from './apis/remote-response/types';
 
 export type QueryParam = string | number | string[] | number[] | boolean;
 
@@ -97,21 +81,6 @@ export interface BaseApiResponseMessage<T = unknown> extends BaseMessage {
   payload: T;
 }
 
-export type ApiRequestMessage =
-  | IncidentsApiRequestMessage
-  | RemoteResponseApiRequestMessage;
-
-export type RequestMessage = ConnectRequestMessage | ApiRequestMessage;
-
-export type ApiResponseMessage =
-  | IncidentsApiResponseMessage
-  | RemoteResponseApiResponseMessage;
-
-export type ResponseMessage<DATA extends LocalData = LocalData> =
-  | ConnectResponseMessage<DATA>
-  | ApiResponseMessage
-  | DataUpdateMessage<DATA>;
-
 export interface MessageMetadata {
   messageId: string;
   version?: string;
@@ -122,22 +91,7 @@ export interface MessageEnvelope<M> {
   meta: MessageMetadata;
 }
 
-// @todo can we make this less explicit?
-export type ResponseFor<
-  REQ extends RequestMessage,
-  DATA extends LocalData
-> = REQ extends ConnectRequestMessage
-  ? ConnectResponseMessage<DATA>
-  : REQ extends GetQueriesIncidentsV1RequestMessage
-  ? GetQueriesIncidentsV1ResponseMessage
-  : REQ extends PostEntitiesIncidentsGetV1RequestMessage
-  ? PostEntitiesIncidentsGetV1ResponseMessage
-  : REQ extends GetQueriesScriptsV1RequestMessage
-  ? GetQueriesScriptsV1ResponseMessage
-  : REQ extends PostEntitiesScriptsGetV2RequestMessage
-  ? PostEntitiesScriptsGetV2ResponseMessage
-  : unknown;
-
-export type PayloadOf<RESPONSE extends ResponseMessage> = RESPONSE['payload'];
-
 export { ApiIdentifier };
+
+export { PayloadOf,  RequestMessage, ResponseMessage } from './apis/types'
+export { ResponseFor } from './apis/types-response-for'
