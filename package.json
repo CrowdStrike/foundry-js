@@ -1,12 +1,12 @@
 {
   "name": "@crowdstrike/foundry-js",
   "version": "0.2.2",
-  "description": "CrowdStrike Foundry.js SDK",
+  "description": "foundry.js is the JavaScript SDK for authoring UI Extensions for CrowdStrike's Foundry platform.",
   "repository": {
     "type": "git",
     "url": "https://github.com/CrowdStrike/foundry-js.git"
   },
-  "license": "UNLICENSED",
+  "license": "MIT",
   "author": "CrowdStrike UX Team",
   "exports": {
     ".": {
