@@ -12,11 +12,15 @@
     ".": {
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
+    },
+    "./apis/*": {
+      "types": "./dist/apis/*/index.d.ts"
     }
   },
   "typesVersions": {
     "*": {
       "*": [
+        "dist/*/index.d.ts",
         "dist/*"
       ]
     }
