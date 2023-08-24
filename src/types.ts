@@ -32,7 +32,8 @@ export interface ConnectRequestMessage extends BaseMessage {
   type: 'connect';
 }
 
-export interface ConnectResponseMessage<DATA extends LocalData = LocalData> extends BaseMessage {
+export interface ConnectResponseMessage<DATA extends LocalData = LocalData>
+  extends BaseMessage {
   type: 'connect';
   payload: {
     origin: string;
@@ -52,7 +53,8 @@ export interface LocalData {
   [key: string]: unknown;
 }
 
-export interface DataUpdateMessage<DATA extends LocalData = LocalData> extends BaseMessage {
+export interface DataUpdateMessage<DATA extends LocalData = LocalData>
+  extends BaseMessage {
   type: 'data';
   payload: DATA;
 }
@@ -81,7 +83,7 @@ export interface LogscaleRequestMessage extends BaseMessage {
 
 export interface LogscaleResponseMessage extends BaseMessage {
   type: 'loggingapi';
-  payload: {};
+  payload: unknown;
 }
 
 // Navigation
@@ -127,7 +129,7 @@ export interface CollectionRequestMessage extends BaseMessage {
 
 export interface CollectionResponseMessage extends BaseMessage {
   type: 'collection';
-  payload: {};
+  payload: unknown;
 }
 
 // UI / open modal
@@ -155,12 +157,14 @@ export interface OpenModalRequestMessage extends BaseMessage {
   };
 }
 
-export interface CloseModalRequestMessage<PAYLOAD = unknown> extends BaseMessage {
+export interface CloseModalRequestMessage<PAYLOAD = unknown>
+  extends BaseMessage {
   type: 'closeModal';
   payload: PAYLOAD;
 }
 
-export interface OpenModalResponseMessage<PAYLOAD = unknown> extends BaseMessage {
+export interface OpenModalResponseMessage<PAYLOAD = unknown>
+  extends BaseMessage {
   type: 'openModal';
   payload: PAYLOAD;
 }
@@ -188,36 +192,38 @@ export interface RtrFileUploadPayload {
 }
 export type RtrFileUploadResponse = PostEntitiesPutFilesGetV1ApiResponse;
 
-export type PayloadForFileUploadType<TYPE extends FileUploadType> = TYPE extends 'remote-response'
-  ? RtrFileUploadPayload
-  : never;
+export type PayloadForFileUploadType<TYPE extends FileUploadType> =
+  TYPE extends 'remote-response' ? RtrFileUploadPayload : never;
 
-export type ResponseForFileUploadType<TYPE extends FileUploadType> = TYPE extends 'remote-response'
-  ? RtrFileUploadResponse
-  : never;
+export type ResponseForFileUploadType<TYPE extends FileUploadType> =
+  TYPE extends 'remote-response' ? RtrFileUploadResponse : never;
 
-export interface FileUploadRequestMessage<T extends FileUploadType = FileUploadType>
-  extends BaseMessage {
+export interface FileUploadRequestMessage<
+  T extends FileUploadType = FileUploadType
+> extends BaseMessage {
   type: 'fileUpload';
   fileUploadType: T;
   payload?: PayloadForFileUploadType<T>;
 }
 
-export interface FileUploadResponseMessage<T extends FileUploadType = FileUploadType>
-  extends BaseMessage {
+export interface FileUploadResponseMessage<
+  T extends FileUploadType = FileUploadType
+> extends BaseMessage {
   type: 'fileUpload';
   fileUploadType: T;
   payload?: ResponseForFileUploadType<T>;
 }
 
 // Cloud APIs
-export interface ApiRequestGetPayload<PARAMS extends BaseUrlParams = BaseUrlParams> {
+export interface ApiRequestGetPayload<
+  PARAMS extends BaseUrlParams = BaseUrlParams
+> {
   params: PARAMS;
 }
 
 export interface ApiRequestPostPayload<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = unknown,
+  BODY = unknown
 > {
   body: BODY;
   params: PARAMS;
@@ -225,8 +231,10 @@ export interface ApiRequestPostPayload<
 
 type ApiRequestPayload<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = undefined,
-> = BODY extends undefined ? ApiRequestGetPayload<PARAMS> : ApiRequestPostPayload<PARAMS, BODY>;
+  BODY = undefined
+> = BODY extends undefined
+  ? ApiRequestGetPayload<PARAMS>
+  : ApiRequestPostPayload<PARAMS, BODY>;
 
 export interface ApiResponseError {
   code?: number;
@@ -241,7 +249,7 @@ export interface ApiResponsePayload<T = unknown> {
 
 export interface BaseApiRequestMessage<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = undefined,
+  BODY = undefined
 > extends BaseMessage {
   type: 'api';
   api: ApiIdentifier;
@@ -297,7 +305,7 @@ import type { ResponseFor as ApiResponseFor } from './apis/types-response-for';
 
 type ResponseFor<
   REQ extends RequestMessage,
-  DATA extends LocalData,
+  DATA extends LocalData
 > = REQ extends ConnectRequestMessage
   ? ConnectResponseMessage<DATA>
   : REQ extends NavigateToRequestMessage

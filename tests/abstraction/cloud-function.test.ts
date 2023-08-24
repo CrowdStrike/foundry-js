@@ -65,7 +65,7 @@ test('it can send request and wait for response', async () => {
     errors: [],
   });
 
-  let response = await cloudFunctionInstance.get();
+  const response = await cloudFunctionInstance.get();
 
   expect(response).toStrictEqual({ data: 'ok' });
   expect(executionSpy).toHaveBeenCalledOnce();
@@ -93,7 +93,7 @@ test('it can handle execution result failure', async () => {
     errors: [],
   });
 
-  let response = await cloudFunctionInstance.get();
+  const response = await cloudFunctionInstance.get();
 
   expect(response).toStrictEqual({ data: 'ok' });
   expect(executionSpy).toHaveBeenCalledOnce();
@@ -133,7 +133,7 @@ test('it clears interval on destroy', async () => {
 });
 
 test('it clears multiple intervals on destroy', async () => {
-  let cloudFunction2 = api.cloudFunction({ id: 'test-id', version: 1 });
+  const cloudFunction2 = api.cloudFunction({ id: 'test-id', version: 1 });
 
   cloudFunction2.intervalId = 222;
   cloudFunction.intervalId = 111;
