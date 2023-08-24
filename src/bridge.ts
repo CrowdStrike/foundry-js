@@ -32,7 +32,7 @@ function timeoutForMessage(message: RequestMessage): number | null {
         null;
 
   // In tests we have mocked responses which do not require long timeouts
-  return timeout !== null && process.env.VITEST ? 10 : timeout;
+  return timeout !== null && process.env.VITEST ? 40 : timeout;
 }
 
 interface BridgeOptions<DATA extends LocalData> {
