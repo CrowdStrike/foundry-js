@@ -1,11 +1,7 @@
-import { afterEach, beforeEach, expect, test } from 'vitest';
 import FalconApi from '../src';
+import { afterEach, beforeEach, expect, test } from 'vitest';
 
-import type {
-  ConnectRequestMessage,
-  ConnectResponseMessage,
-  MessageEnvelope,
-} from '../src/types';
+import type { ConnectRequestMessage, ConnectResponseMessage, MessageEnvelope } from '../src/types';
 
 let api: FalconApi;
 
@@ -33,8 +29,9 @@ test('it can connect to main thread', async () => {
           version: 'current',
         },
       };
+
       window.postMessage(response);
-    }
+    },
   );
 
   expect(api.isConnected).toEqual(false);

@@ -13,4 +13,17 @@
  *
  **/
 
-export type ApiIdentifier = 'incidents' | 'remoteResponse';
+export type ApiIdentifier =
+  | 'actors'
+  | 'alerts'
+  | 'detects'
+  | 'devices'
+  | 'fwmgr'
+  | 'incidents'
+  | 'mitre'
+  | 'plugins'
+  | 'remoteResponse'
+  | 'workflows'
+  | 'customobjects'
+  | 'faasGateway'
+  | 'loggingapi';

@@ -1,10 +1,10 @@
-import {
+import type FalconApi from '../src';
+import type {
   ConnectRequestMessage,
   ConnectResponseMessage,
   LocalData,
   MessageEnvelope,
-} from 'types';
-import FalconApi from '../src';
+} from '../src/types';
 
 export async function connectApi(api: FalconApi, data?: LocalData) {
   // simulate ready answer coming back from main thread
@@ -16,8 +16,10 @@ export async function connectApi(api: FalconApi, data?: LocalData) {
         message: { type: 'connect', payload: { origin: '', data } },
         meta,
       };
+
       window.postMessage(response);
-    }
+    },
+    { once: true },
   );
 
   return api.connect();

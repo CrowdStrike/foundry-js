@@ -1,5 +1,5 @@
-import { expect, vi, test, beforeEach, afterEach } from 'vitest';
 import FalconApi from '../../src';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { connectApi, uuidV4Regex } from '../helpers';
 
 let api: FalconApi;
@@ -15,6 +15,7 @@ afterEach(() => api.destroy());
 
 test('it can call getScriptIds', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
+
   api.remoteResponse.getScriptIds();
 
   expect(spy).toHaveBeenCalledOnce();
@@ -30,12 +31,13 @@ test('it can call getScriptIds', async () => {
         version: 'current',
         messageId: expect.stringMatching(uuidV4Regex),
       },
-    })
+    }),
   );
 });
 
 test('it can call getIncidentEntities', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
+
   api.remoteResponse.getScriptEntities({});
 
   expect(spy).toHaveBeenCalledOnce();
@@ -51,6 +53,6 @@ test('it can call getIncidentEntities', async () => {
         version: 'current',
         messageId: expect.stringMatching(uuidV4Regex),
       },
-    })
+    }),
   );
 });
