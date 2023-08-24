@@ -11,8 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-      - run: yarn build
-      - uses: kategengler/put-built-npm-package-contents-on-branch@v1.0.0
+      - name: Install Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: yarn
+      - name: Install Dependencies
+        run: yarn install --frozen-lockfile
+      - name: Build
+        run: yarn build
+      - name: Push to dist branch
+        uses: kategengler/put-built-npm-package-contents-on-branch@v1.0.0
         with:
           branch: dist
           token: ${{ secrets.GITHUB_TOKEN }}
