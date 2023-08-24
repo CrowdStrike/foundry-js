@@ -1,5 +1,5 @@
-import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { Bridge } from '../src/bridge';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { uuidV4Regex } from './helpers';
 
 import type { MessageEnvelope } from '../src/types';
@@ -22,6 +22,7 @@ test('it throws when receiving an unexpected message', () => {
     meta: { messageId: 'foo', version: 'current' },
     message: {},
   };
+
   expect(() => window.postMessage(invalidMessage)).toThrow();
 });
 
@@ -38,7 +39,7 @@ test('it can send a message', () => {
         version: 'current',
         messageId: expect.stringMatching(uuidV4Regex),
       },
-    })
+    }),
   );
 });
 
@@ -52,7 +53,7 @@ test('it resolves with the response payload', async () => {
         message: { ...message.data.message, payload: { status: 'ok' } },
         meta: { messageId: message.data.meta.messageId },
       });
-    }
+    },
   );
 
   const promise = expect(bridge.postMessage(request)).resolves.toEqual({

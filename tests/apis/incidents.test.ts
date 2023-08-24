@@ -1,5 +1,5 @@
-import { expect, vi, test, beforeEach, afterEach } from 'vitest';
 import FalconApi from '../../src/';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
 import { connectApi, uuidV4Regex } from '../helpers';
 
 let api: FalconApi;
@@ -15,7 +15,8 @@ afterEach(() => api.destroy());
 
 test('it can call getIncidentIds', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
-  api.incidents.getIncidentIds();
+
+  api.incidents.getQueriesIncidentsV1();
 
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
@@ -30,13 +31,14 @@ test('it can call getIncidentIds', async () => {
         version: 'current',
         messageId: expect.stringMatching(uuidV4Regex),
       },
-    })
+    }),
   );
 });
 
 test('it can call getIncidentEntities', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
-  api.incidents.getIncidentEntities({});
+
+  api.incidents.postEntitiesIncidentsGetV1({});
 
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
@@ -51,6 +53,6 @@ test('it can call getIncidentEntities', async () => {
         version: 'current',
         messageId: expect.stringMatching(uuidV4Regex),
       },
-    })
+    }),
   );
 });
