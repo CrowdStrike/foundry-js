@@ -1,12 +1,9 @@
+import FalconApi from '../src';
 import { afterEach, beforeEach, expect, test } from 'vitest';
-import FalconApi, {
-  DataUpdateMessage,
-  LocalData,
-  MessageEnvelope,
-} from '../src';
-import { v4 as uuidv4 } from 'uuid';
 import { connectApi } from './helpers';
 import { pEvent } from 'p-event';
+import { v4 as uuidv4 } from 'uuid';
+import type { DataUpdateMessage, LocalData, MessageEnvelope } from '../src';
 
 let api: FalconApi;
 
@@ -18,14 +15,16 @@ beforeEach(async () => {
 afterEach(() => api.destroy());
 
 test('it receives initial data', async () => {
-  const data = {
+  const data: LocalData = {
+    theme: 'theme-light',
+    cid: 'xxx',
+    locale: 'en-us',
     foo: 'bar',
   };
+
   await connectApi(api, data);
 
-  expect(api.data, 'initial data is exposed synchronously on .data').toEqual(
-    data
-  );
+  expect(api.data, 'initial data is exposed synchronously on .data').toEqual(data);
 });
 
 test('data can update', async () => {
@@ -37,6 +36,9 @@ test('data can update', async () => {
     message: {
       type: 'data',
       payload: {
+        theme: 'theme-light',
+        cid: 'xxx',
+        locale: 'en-us',
         some: 'stuff',
       },
     },
@@ -48,6 +50,9 @@ test('data can update', async () => {
   window.postMessage(dataUpdate);
 
   expect(api.data, 'new data is updated on .data').toEqual({
+    theme: 'theme-light',
+    cid: 'xxx',
+    locale: 'en-us',
     some: 'stuff',
   });
 });
@@ -65,6 +70,9 @@ test('it can subscribe to data updates', async () => {
     message: {
       type: 'data',
       payload: {
+        theme: 'theme-light',
+        cid: 'xxx',
+        locale: 'en-us',
         some: 'stuff',
       },
     },
@@ -75,13 +83,20 @@ test('it can subscribe to data updates', async () => {
 
   // await for the async data update event to have been triggered
   const promise = pEvent<'data', unknown>(api.events, 'data');
+
   window.postMessage(dataUpdate);
   await promise;
 
   expect(data, 'new data is provided with the data event').toEqual({
+    theme: 'theme-light',
+    cid: 'xxx',
+    locale: 'en-us',
     some: 'stuff',
   });
   expect(api.data, 'new data is updated on .data').toEqual({
+    theme: 'theme-light',
+    cid: 'xxx',
+    locale: 'en-us',
     some: 'stuff',
   });
 });

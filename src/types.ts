@@ -1,20 +1,6 @@
 import type { ApiIdentifier } from './apis/available-apis';
-import {
-  GetQueriesIncidentsV1RequestMessage,
-  GetQueriesIncidentsV1ResponseMessage,
-  IncidentsApiRequestMessage,
-  IncidentsApiResponseMessage,
-  PostEntitiesIncidentsGetV1RequestMessage,
-  PostEntitiesIncidentsGetV1ResponseMessage,
-} from './apis/incidents/types';
-import {
-  GetQueriesScriptsV1RequestMessage,
-  GetQueriesScriptsV1ResponseMessage,
-  PostEntitiesScriptsGetV2RequestMessage,
-  PostEntitiesScriptsGetV2ResponseMessage,
-  RemoteResponseApiRequestMessage,
-  RemoteResponseApiResponseMessage,
-} from './apis/remote-response/types';
+import type { ApiRequestMessage, ApiResponseMessage } from './apis/types';
+import type { PostEntitiesPutFilesGetV1ApiResponse } from './apis/remote-response';
 
 export type QueryParam = string | number | string[] | number[] | boolean;
 
@@ -22,21 +8,31 @@ export interface BaseUrlParams {
   [key: string]: QueryParam | undefined;
 }
 
-export type LocalData = unknown;
-
-export type MessageType = 'connect' | 'api' | 'data';
+export type MessageType =
+  | 'connect'
+  | 'navigateTo'
+  | 'loggingapi'
+  | 'api'
+  | 'data'
+  | 'broadcast'
+  | 'fileUpload'
+  | 'collection'
+  | 'livereload'
+  | 'resize'
+  | 'openModal'
+  | 'closeModal';
 
 export interface BaseMessage {
   type: MessageType;
   payload?: unknown;
 }
 
+// Connect
 export interface ConnectRequestMessage extends BaseMessage {
   type: 'connect';
 }
 
-export interface ConnectResponseMessage<DATA extends LocalData = LocalData>
-  extends BaseMessage {
+export interface ConnectResponseMessage<DATA extends LocalData = LocalData> extends BaseMessage {
   type: 'connect';
   payload: {
     origin: string;
@@ -44,21 +40,184 @@ export interface ConnectResponseMessage<DATA extends LocalData = LocalData>
   };
 }
 
-export interface DataUpdateMessage<DATA extends LocalData = LocalData>
-  extends BaseMessage {
+// Local data
+export type Theme = 'theme-light' | 'theme-dark';
+
+export interface LocalData {
+  theme: Theme;
+  cid: string;
+  locale: string;
+  timezone?: string;
+  dateFormat?: string;
+  [key: string]: unknown;
+}
+
+export interface DataUpdateMessage<DATA extends LocalData = LocalData> extends BaseMessage {
   type: 'data';
   payload: DATA;
 }
 
-export interface ApiRequestGetPayload<
-  PARAMS extends BaseUrlParams = BaseUrlParams
-> {
+// Resizing
+
+export interface ResizeMessage extends BaseMessage {
+  type: 'resize';
+  payload: {
+    height: number;
+  };
+}
+
+// Logscale
+
+export interface LogscaleRequestMessage extends BaseMessage {
+  type: 'loggingapi';
+  payload: {
+    type: 'ingest' | 'dynamic-execute' | 'saved-query-execute';
+    data: Record<string, unknown>;
+    tag?: string;
+    tagSource?: string;
+    testData?: boolean;
+  };
+}
+
+export interface LogscaleResponseMessage extends BaseMessage {
+  type: 'loggingapi';
+  payload: {};
+}
+
+// Navigation
+export interface NavigateToRequestMessage extends BaseMessage {
+  type: 'navigateTo';
+  payload: {
+    path: string;
+    type: 'internal' | 'falcon';
+    target: '_self' | '_blank';
+    metaKey: boolean;
+    ctrlKey: boolean;
+    shiftKey: boolean;
+  };
+}
+
+export interface NavigateToResponseMessage extends BaseMessage {
+  type: 'navigateTo';
+}
+
+// Custom objects
+export interface CollectionRequestMessage extends BaseMessage {
+  type: 'collection';
+  payload:
+    | {
+        type: 'write';
+        key: string;
+        collection: string;
+        data: Record<string, unknown>;
+      }
+    | {
+        type: 'search';
+        startKey: string;
+        endKey: string;
+        limit: string;
+        collection: string;
+      }
+    | {
+        type: 'read' | 'delete';
+        key: string;
+        collection: string;
+      };
+}
+
+export interface CollectionResponseMessage extends BaseMessage {
+  type: 'collection';
+  payload: {};
+}
+
+// UI / open modal
+
+export interface OpenModalOptions {
+  // Initial route path (hash part of the IFrame URL) passed to the extension
+  path?: string;
+
+  // additional local data to pass to the modal's extension
+  data?: Record<string, unknown>;
+
+  // Vertical alignment of the modal, "top" or undefined (Default is center)
+  align?: 'top';
+
+  // Width of the modal (Default is "md")
+  size?: 'sm' | 'md' | 'lg' | 'xl';
+}
+
+export interface OpenModalRequestMessage extends BaseMessage {
+  type: 'openModal';
+  payload: {
+    extension: ExtensionIdentifier;
+    title: string;
+    options: OpenModalOptions;
+  };
+}
+
+export interface CloseModalRequestMessage<PAYLOAD = unknown> extends BaseMessage {
+  type: 'closeModal';
+  payload: PAYLOAD;
+}
+
+export interface OpenModalResponseMessage<PAYLOAD = unknown> extends BaseMessage {
+  type: 'openModal';
+  payload: PAYLOAD;
+}
+
+// Broadcast (socket to socket communication)
+export interface BroadcastMessage<PAYLOAD = unknown> extends BaseMessage {
+  type: 'broadcast';
+  payload: PAYLOAD;
+}
+
+// Livereload
+
+export interface LivereloadMessage extends BaseMessage {
+  type: 'livereload';
+}
+
+// File uploads
+
+export type FileUploadType = 'remote-response'; // extend to add more file upload types
+
+export interface RtrFileUploadPayload {
+  name?: string;
+  description?: string;
+  comments_for_audit_log?: string;
+}
+export type RtrFileUploadResponse = PostEntitiesPutFilesGetV1ApiResponse;
+
+export type PayloadForFileUploadType<TYPE extends FileUploadType> = TYPE extends 'remote-response'
+  ? RtrFileUploadPayload
+  : never;
+
+export type ResponseForFileUploadType<TYPE extends FileUploadType> = TYPE extends 'remote-response'
+  ? RtrFileUploadResponse
+  : never;
+
+export interface FileUploadRequestMessage<T extends FileUploadType = FileUploadType>
+  extends BaseMessage {
+  type: 'fileUpload';
+  fileUploadType: T;
+  payload?: PayloadForFileUploadType<T>;
+}
+
+export interface FileUploadResponseMessage<T extends FileUploadType = FileUploadType>
+  extends BaseMessage {
+  type: 'fileUpload';
+  fileUploadType: T;
+  payload?: ResponseForFileUploadType<T>;
+}
+
+// Cloud APIs
+export interface ApiRequestGetPayload<PARAMS extends BaseUrlParams = BaseUrlParams> {
   params: PARAMS;
 }
 
 export interface ApiRequestPostPayload<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = unknown
+  BODY = unknown,
 > {
   body: BODY;
   params: PARAMS;
@@ -66,10 +225,8 @@ export interface ApiRequestPostPayload<
 
 type ApiRequestPayload<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = undefined
-> = BODY extends undefined
-  ? ApiRequestGetPayload<PARAMS>
-  : ApiRequestPostPayload<PARAMS, BODY>;
+  BODY = undefined,
+> = BODY extends undefined ? ApiRequestGetPayload<PARAMS> : ApiRequestPostPayload<PARAMS, BODY>;
 
 export interface ApiResponseError {
   code?: number;
@@ -84,7 +241,7 @@ export interface ApiResponsePayload<T = unknown> {
 
 export interface BaseApiRequestMessage<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = undefined
+  BODY = undefined,
 > extends BaseMessage {
   type: 'api';
   api: ApiIdentifier;
@@ -97,21 +254,7 @@ export interface BaseApiResponseMessage<T = unknown> extends BaseMessage {
   payload: T;
 }
 
-export type ApiRequestMessage =
-  | IncidentsApiRequestMessage
-  | RemoteResponseApiRequestMessage;
-
-export type RequestMessage = ConnectRequestMessage | ApiRequestMessage;
-
-export type ApiResponseMessage =
-  | IncidentsApiResponseMessage
-  | RemoteResponseApiResponseMessage;
-
-export type ResponseMessage<DATA extends LocalData = LocalData> =
-  | ConnectResponseMessage<DATA>
-  | ApiResponseMessage
-  | DataUpdateMessage<DATA>;
-
+// General message types
 export interface MessageMetadata {
   messageId: string;
   version?: string;
@@ -122,22 +265,60 @@ export interface MessageEnvelope<M> {
   meta: MessageMetadata;
 }
 
-// @todo can we make this less explicit?
-export type ResponseFor<
+export type UnidirectionalRequestMessage =
+  | BroadcastMessage
+  | ResizeMessage
+  | CloseModalRequestMessage;
+
+export type RequestMessage =
+  | ConnectRequestMessage
+  | NavigateToRequestMessage
+  | CollectionRequestMessage
+  | ApiRequestMessage
+  | FileUploadRequestMessage
+  | LogscaleRequestMessage
+  | OpenModalRequestMessage;
+
+export { ApiIdentifier };
+
+export type ResponseMessage<DATA extends LocalData = LocalData> =
+  | ConnectResponseMessage<DATA>
+  | NavigateToResponseMessage
+  | ApiResponseMessage
+  | DataUpdateMessage<DATA>
+  | BroadcastMessage
+  | FileUploadResponseMessage
+  | CollectionResponseMessage
+  | LivereloadMessage
+  | LogscaleResponseMessage
+  | OpenModalResponseMessage;
+
+import type { ResponseFor as ApiResponseFor } from './apis/types-response-for';
+
+type ResponseFor<
   REQ extends RequestMessage,
-  DATA extends LocalData
+  DATA extends LocalData,
 > = REQ extends ConnectRequestMessage
   ? ConnectResponseMessage<DATA>
-  : REQ extends GetQueriesIncidentsV1RequestMessage
-  ? GetQueriesIncidentsV1ResponseMessage
-  : REQ extends PostEntitiesIncidentsGetV1RequestMessage
-  ? PostEntitiesIncidentsGetV1ResponseMessage
-  : REQ extends GetQueriesScriptsV1RequestMessage
-  ? GetQueriesScriptsV1ResponseMessage
-  : REQ extends PostEntitiesScriptsGetV2RequestMessage
-  ? PostEntitiesScriptsGetV2ResponseMessage
-  : unknown;
+  : REQ extends NavigateToRequestMessage
+  ? NavigateToResponseMessage
+  : REQ extends CollectionRequestMessage
+  ? CollectionResponseMessage
+  : REQ extends LogscaleRequestMessage
+  ? LogscaleResponseMessage
+  : REQ extends FileUploadRequestMessage<infer FILEUPLOADTYPE>
+  ? FileUploadResponseMessage<FILEUPLOADTYPE>
+  : REQ extends OpenModalRequestMessage
+  ? OpenModalResponseMessage
+  : ApiResponseFor<REQ>;
+
+export { ResponseFor };
 
 export type PayloadOf<RESPONSE extends ResponseMessage> = RESPONSE['payload'];
 
-export { ApiIdentifier };
+export type ExtensionType = 'extension' | 'page';
+
+export interface ExtensionIdentifier {
+  type: ExtensionType;
+  id: string;
+}

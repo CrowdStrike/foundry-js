@@ -1,6 +1,6 @@
-import { afterEach, beforeEach, expect, test } from 'vitest';
 import FalconApi from '../src/';
 import { Bridge } from '../src/bridge';
+import { afterEach, beforeEach, expect, test } from 'vitest';
 
 let api: FalconApi;
 
