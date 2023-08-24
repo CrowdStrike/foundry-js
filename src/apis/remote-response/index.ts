@@ -22,7 +22,7 @@ export type CommonApiResponseMessage =
   BaseApiResponseMessage<ApiResponsePayload>;
 
 export interface CommonApiRequestMessage
-  extends BaseApiRequestMessage<BaseUrlParams, {}> {
+  extends BaseApiRequestMessage<BaseUrlParams, unknown> {
   api: RemoteResponseRequestApi;
 }
 

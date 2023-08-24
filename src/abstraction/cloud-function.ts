@@ -21,9 +21,9 @@ interface PostParameters {
   headers?: Record<string, unknown>;
 }
 
-interface PatchParameters extends PostParameters {}
+type PatchParameters = PostParameters;
 
-interface DeleteParameters extends PostParameters {}
+type DeleteParameters = PostParameters;
 
 interface GetParameters {
   path: string;
@@ -42,10 +42,16 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
 
   constructor(
     private readonly falcon: FalconApi<DATA>,
-    private readonly definition: FunctionDefinition,
+    private readonly definition: FunctionDefinition
   ) {}
 
-  private async execute({ path, method, queryParams, body, headers }: ExecuteParameters) {
+  private async execute({
+    path,
+    method,
+    queryParams,
+    body,
+    headers,
+  }: ExecuteParameters) {
     const result = await this.falcon.faasGateway.postEntitiesExecutionV1({
       function_id: this.definition.id,
       function_version: this.definition.version,
@@ -64,17 +70,23 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
       if (!execution?.execution_id) {
         reject(result?.errors);
       } else {
-        this.pollForResult({ resolve, reject, executionId: execution?.execution_id });
+        this.pollForResult({
+          resolve,
+          reject,
+          executionId: execution?.execution_id,
+        });
       }
     });
   }
 
   private async getExecutionResult(
-    executionId: string,
+    executionId: string
   ): Promise<Record<string, unknown> | undefined> {
-    const resultResponse = await this.falcon.faasGateway.getEntitiesExecutionV1({
-      id: executionId,
-    });
+    const resultResponse = await this.falcon.faasGateway.getEntitiesExecutionV1(
+      {
+        id: executionId,
+      }
+    );
 
     const executionResult = resultResponse?.resources?.[0] as any;
 
@@ -112,63 +124,104 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
   }
 
   public path(pathEntry: string) {
-    const main = this;
-
     const urlPath = new URL(pathEntry, 'http://localhost');
 
     const path = urlPath.pathname;
-    const searchParams = [...urlPath.searchParams.entries()].map(([key, value]) => ({
-      [key]: [value],
-    }));
+    const searchParams = [...urlPath.searchParams.entries()].map(
+      ([key, value]) => ({
+        [key]: [value],
+      })
+    );
 
     return {
       path,
       queryParams: searchParams,
 
-      async get(queryParams: GetParameters['queryParams'] = {}) {
-        return main.get({ path, queryParams: queryParams ?? searchParams ?? {} });
+      get: async (queryParams: GetParameters['queryParams'] = {}) => {
+        return this.get({
+          path,
+          queryParams: queryParams ?? searchParams ?? {},
+        });
       },
 
-      async post(
+      post: async (
         body: PostParameters['body'],
         queryParams: PostParameters['queryParams'] = {},
-        headers: PostParameters['headers'] = {},
-      ) {
-        return main.post({ path, queryParams: queryParams ?? searchParams ?? {}, body, headers });
+        headers: PostParameters['headers'] = {}
+      ) => {
+        return this.post({
+          path,
+          queryParams: queryParams ?? searchParams ?? {},
+          body,
+          headers,
+        });
       },
 
-      async patch(
+      patch: async (
         body: PatchParameters['body'],
         queryParams: PatchParameters['queryParams'] = {},
-        headers: PatchParameters['headers'] = {},
-      ) {
-        return main.post({ path, queryParams: queryParams ?? searchParams ?? {}, body, headers });
+        headers: PatchParameters['headers'] = {}
+      ) => {
+        return this.post({
+          path,
+          queryParams: queryParams ?? searchParams ?? {},
+          body,
+          headers,
+        });
       },
 
-      async delete(
+      delete: async (
         body: DeleteParameters['body'],
         queryParams: DeleteParameters['queryParams'] = {},
-        headers: DeleteParameters['headers'] = {},
-      ) {
-        return main.post({ path, queryParams: queryParams ?? searchParams ?? {}, body, headers });
+        headers: DeleteParameters['headers'] = {}
+      ) => {
+        return this.post({
+          path,
+          queryParams: queryParams ?? searchParams ?? {},
+          body,
+          headers,
+        });
       },
     };
   }
 
   public async get({ path, queryParams, headers }: GetParameters) {
-    return this.execute({ path, method: CloudFunction.GET, queryParams, headers });
+    return this.execute({
+      path,
+      method: CloudFunction.GET,
+      queryParams,
+      headers,
+    });
   }
 
   public async post({ path, queryParams, body, headers }: PostParameters) {
-    return this.execute({ path, method: CloudFunction.POST, body, queryParams, headers });
+    return this.execute({
+      path,
+      method: CloudFunction.POST,
+      body,
+      queryParams,
+      headers,
+    });
   }
 
   public async patch({ path, queryParams, body, headers }: PatchParameters) {
-    return this.execute({ path, method: CloudFunction.PATCH, body, queryParams, headers });
+    return this.execute({
+      path,
+      method: CloudFunction.PATCH,
+      body,
+      queryParams,
+      headers,
+    });
   }
 
   public async delete({ path, queryParams, body, headers }: DeleteParameters) {
-    return this.execute({ path, method: CloudFunction.DELETE, body, queryParams, headers });
+    return this.execute({
+      path,
+      method: CloudFunction.DELETE,
+      body,
+      queryParams,
+      headers,
+    });
   }
 
   public destroy() {

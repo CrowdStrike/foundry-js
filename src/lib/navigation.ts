@@ -38,7 +38,7 @@ export class Navigation<DATA extends LocalData = LocalData> {
   public async onClick(
     event: MouseEvent | KeyboardEvent,
     defaultTarget: (typeof ALLOWED_TARGETS)[number] = '_self',
-    defaultType: NavigateToRequestMessage['payload']['type'] = 'falcon',
+    defaultType: NavigateToRequestMessage['payload']['type'] = 'falcon'
   ) {
     if (!(event instanceof Event)) {
       throw Error('"event" property should be subclass of Event');
@@ -50,21 +50,22 @@ export class Navigation<DATA extends LocalData = LocalData> {
 
     event.preventDefault();
 
-    let path;
-    let type: NavigateToRequestMessage['payload']['type'];
-
     if (!(event.target instanceof HTMLAnchorElement)) {
       throw Error(`event target is not an anchor element, ${event.target}`);
     }
 
-    path = event.target.getAttribute('href');
-    defaultTarget = (event.target.getAttribute('target') as '_self' | '_blank') ?? defaultTarget;
-    type = (event.target.dataset?.type ??
+    const path = event.target.getAttribute('href');
+    defaultTarget =
+      (event.target.getAttribute('target') as '_self' | '_blank') ??
+      defaultTarget;
+    const type = (event.target.dataset?.type ??
       defaultType) as NavigateToRequestMessage['payload']['type'];
 
     if (
       defaultTarget === null ||
-      !ALLOWED_TARGETS.includes(defaultTarget as (typeof ALLOWED_TARGETS)[number])
+      !ALLOWED_TARGETS.includes(
+        defaultTarget as (typeof ALLOWED_TARGETS)[number]
+      )
     ) {
       throw new Error('Target should be _self or _blank');
     }
@@ -73,11 +74,11 @@ export class Navigation<DATA extends LocalData = LocalData> {
 
     if (path === undefined || path === null) {
       throw new Error(
-        'Navigation path is missing. Make sure you have added navigation.onClick on the `a` tag and `href` is present.',
+        'Navigation path is missing. Make sure you have added navigation.onClick on the `a` tag and `href` is present.'
       );
     }
 
-    let { metaKey, ctrlKey, shiftKey } = event;
+    const { metaKey, ctrlKey, shiftKey } = event;
 
     await this.navigateTo({ path, type, target, metaKey, ctrlKey, shiftKey });
   }
