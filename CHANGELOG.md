@@ -1,5 +1,15 @@
 # @crowdstrike/foundry-js
 
+## 0.6.0
+
+### Minor Changes
+
+- [#20](https://github.com/CrowdStrike/foundry-js/pull/20) [`3e7d79e`](https://github.com/CrowdStrike/foundry-js/commit/3e7d79e67d1b3ec9169be918b8c110f2001d9d88) Thanks [@PaulRosset](https://github.com/PaulRosset)! - Add the ability to perform PUT request for Cloud functions
+
+### Patch Changes
+
+- [#22](https://github.com/CrowdStrike/foundry-js/pull/22) [`4344a0e`](https://github.com/CrowdStrike/foundry-js/commit/4344a0efa818d5c4cc41dac28987856b57c85637) Thanks [@PaulRosset](https://github.com/PaulRosset)! - Fix path chained method with the correct dedicated function call
+
 ## 0.5.1
 
 ### Patch Changes
