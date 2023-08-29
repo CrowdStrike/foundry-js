@@ -165,7 +165,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         queryParams: PatchParameters["queryParams"] = {},
         headers: PatchParameters["headers"] = {}
       ) => {
-        return this.post({
+        return this.patch({
           path,
           queryParams: queryParams ?? searchParams ?? {},
           body,
@@ -191,7 +191,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         queryParams: DeleteParameters["queryParams"] = {},
         headers: DeleteParameters["headers"] = {}
       ) => {
-        return this.post({
+        return this.delete({
           path,
           queryParams: queryParams ?? searchParams ?? {},
           body,
