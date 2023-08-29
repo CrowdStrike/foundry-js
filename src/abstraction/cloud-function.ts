@@ -1,5 +1,5 @@
-import type FalconApi from '../api';
-import type { LocalData } from '../types';
+import type FalconApi from "../api";
+import type { LocalData } from "../types";
 
 interface FunctionDefinition {
   id: string;
@@ -8,7 +8,7 @@ interface FunctionDefinition {
 
 interface ExecuteParameters {
   path: string;
-  method: 'GET' | 'POST' | 'PATCH' | 'DELETE';
+  method: "GET" | "POST" | "PATCH" | "PUT" | "DELETE";
   body?: Record<string, unknown>;
   queryParams?: Record<string, unknown>;
   headers?: Record<string, unknown>;
@@ -23,6 +23,8 @@ interface PostParameters {
 
 type PatchParameters = PostParameters;
 
+type PutParameters = PostParameters;
+
 type DeleteParameters = PostParameters;
 
 interface GetParameters {
@@ -32,10 +34,11 @@ interface GetParameters {
 }
 
 export class CloudFunction<DATA extends LocalData = LocalData> {
-  static GET = 'GET' as const;
-  static POST = 'POST' as const;
-  static PATCH = 'PATCH' as const;
-  static DELETE = 'DELETE' as const;
+  static GET = "GET" as const;
+  static POST = "POST" as const;
+  static PATCH = "PATCH" as const;
+  static PUT = "PUT" as const;
+  static DELETE = "DELETE" as const;
 
   pollTimeout = 500;
   intervalId?: number;
@@ -124,7 +127,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
   }
 
   public path(pathEntry: string) {
-    const urlPath = new URL(pathEntry, 'http://localhost');
+    const urlPath = new URL(pathEntry, "http://localhost");
 
     const path = urlPath.pathname;
     const searchParams = [...urlPath.searchParams.entries()].map(
@@ -137,7 +140,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
       path,
       queryParams: searchParams,
 
-      get: async (queryParams: GetParameters['queryParams'] = {}) => {
+      get: async (queryParams: GetParameters["queryParams"] = {}) => {
         return this.get({
           path,
           queryParams: queryParams ?? searchParams ?? {},
@@ -145,9 +148,9 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
       },
 
       post: async (
-        body: PostParameters['body'],
-        queryParams: PostParameters['queryParams'] = {},
-        headers: PostParameters['headers'] = {}
+        body: PostParameters["body"],
+        queryParams: PostParameters["queryParams"] = {},
+        headers: PostParameters["headers"] = {}
       ) => {
         return this.post({
           path,
@@ -158,9 +161,9 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
       },
 
       patch: async (
-        body: PatchParameters['body'],
-        queryParams: PatchParameters['queryParams'] = {},
-        headers: PatchParameters['headers'] = {}
+        body: PatchParameters["body"],
+        queryParams: PatchParameters["queryParams"] = {},
+        headers: PatchParameters["headers"] = {}
       ) => {
         return this.post({
           path,
@@ -170,10 +173,23 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         });
       },
 
+      put: async (
+        body: PutParameters["body"],
+        queryParams: PutParameters["queryParams"] = {},
+        headers: PutParameters["headers"] = {}
+      ) => {
+        return this.put({
+          path,
+          queryParams: queryParams ?? searchParams ?? {},
+          body,
+          headers,
+        });
+      },
+
       delete: async (
-        body: DeleteParameters['body'],
-        queryParams: DeleteParameters['queryParams'] = {},
-        headers: DeleteParameters['headers'] = {}
+        body: DeleteParameters["body"],
+        queryParams: DeleteParameters["queryParams"] = {},
+        headers: DeleteParameters["headers"] = {}
       ) => {
         return this.post({
           path,
@@ -208,6 +224,16 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     return this.execute({
       path,
       method: CloudFunction.PATCH,
+      body,
+      queryParams,
+      headers,
+    });
+  }
+
+  public async put({ path, queryParams, body, headers }: PutParameters) {
+    return this.execute({
+      path,
+      method: CloudFunction.PUT,
       body,
       queryParams,
       headers,
