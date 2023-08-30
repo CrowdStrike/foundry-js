@@ -1,7 +1,11 @@
 import FalconApi from '../src';
 import { afterEach, beforeEach, expect, test } from 'vitest';
 
-import type { ConnectRequestMessage, ConnectResponseMessage, MessageEnvelope } from '../src/types';
+import type {
+  ConnectRequestMessage,
+  ConnectResponseMessage,
+  MessageEnvelope,
+} from '../src/types';
 
 let api: FalconApi;
 

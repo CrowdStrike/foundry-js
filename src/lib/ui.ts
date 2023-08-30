@@ -1,5 +1,9 @@
 import type { Bridge } from '../bridge';
-import type { ExtensionIdentifier, LocalData, OpenModalOptions } from '../types';
+import type {
+  ExtensionIdentifier,
+  LocalData,
+  OpenModalOptions,
+} from '../types';
 
 export class UI<DATA extends LocalData = LocalData> {
   constructor(private bridge: Bridge<DATA>) {}

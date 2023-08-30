@@ -154,7 +154,7 @@ export class ActorsApiBridge {
   }
 
   async getEntitiesActorsGetV2(
-    urlParams: GetEntitiesActorsGetV2QueryParams = {}
+    urlParams: GetEntitiesActorsGetV2QueryParams = {},
   ): Promise<GetEntitiesActorsGetV2ApiResponse> {
     const message: GetEntitiesActorsGetV2RequestMessage = {
       type: 'api',
@@ -169,7 +169,7 @@ export class ActorsApiBridge {
   }
 
   async getQueriesActorsV2(
-    urlParams: GetQueriesActorsV2QueryParams = {}
+    urlParams: GetQueriesActorsV2QueryParams = {},
   ): Promise<GetQueriesActorsV2ApiResponse> {
     const message: GetQueriesActorsV2RequestMessage = {
       type: 'api',
@@ -185,7 +185,7 @@ export class ActorsApiBridge {
 
   async postAggregatesActorsGetV2(
     postBody: PostAggregatesActorsGetV2PostData,
-    urlParams: PostAggregatesActorsGetV2QueryParams = {}
+    urlParams: PostAggregatesActorsGetV2QueryParams = {},
   ): Promise<PostAggregatesActorsGetV2ApiResponse> {
     const message: PostAggregatesActorsGetV2RequestMessage = {
       type: 'api',
@@ -202,7 +202,7 @@ export class ActorsApiBridge {
 
   async postEntitiesActorsGetV2(
     postBody: PostEntitiesActorsGetV2PostData,
-    urlParams: PostEntitiesActorsGetV2QueryParams = {}
+    urlParams: PostEntitiesActorsGetV2QueryParams = {},
   ): Promise<PostEntitiesActorsGetV2ApiResponse> {
     const message: PostEntitiesActorsGetV2RequestMessage = {
       type: 'api',
@@ -219,7 +219,7 @@ export class ActorsApiBridge {
 
   async postEntitiesMitreV1(
     postBody: PostEntitiesMitreV1PostData,
-    urlParams: PostEntitiesMitreV1QueryParams = {}
+    urlParams: PostEntitiesMitreV1QueryParams = {},
   ): Promise<PostEntitiesMitreV1ApiResponse> {
     const message: PostEntitiesMitreV1RequestMessage = {
       type: 'api',

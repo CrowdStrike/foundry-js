@@ -138,7 +138,7 @@ export class LoggingapiApiBridge {
   }
 
   async getEntitiesSavedSearchesExecuteV1(
-    urlParams: GetEntitiesSavedSearchesExecuteV1QueryParams
+    urlParams: GetEntitiesSavedSearchesExecuteV1QueryParams,
   ): Promise<GetEntitiesSavedSearchesExecuteV1ApiResponse> {
     const message: GetEntitiesSavedSearchesExecuteV1RequestMessage = {
       type: 'api',
@@ -154,7 +154,7 @@ export class LoggingapiApiBridge {
 
   async postEntitiesSavedSearchesExecuteV1(
     postBody: PostEntitiesSavedSearchesExecuteV1PostData,
-    urlParams: PostEntitiesSavedSearchesExecuteV1QueryParams = {}
+    urlParams: PostEntitiesSavedSearchesExecuteV1QueryParams = {},
   ): Promise<PostEntitiesSavedSearchesExecuteV1ApiResponse> {
     const message: PostEntitiesSavedSearchesExecuteV1RequestMessage = {
       type: 'api',

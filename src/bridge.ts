@@ -98,8 +98,8 @@ export class Bridge<DATA extends LocalData = LocalData> {
         timeoutTimer = setTimeout(() => {
           reject(
             new Error(
-              `Waiting for response from foundry host for "${message.type}" message (ID: ${messageId}) timed out after ${timeoutValue}ms`
-            )
+              `Waiting for response from foundry host for "${message.type}" message (ID: ${messageId}) timed out after ${timeoutValue}ms`,
+            ),
           );
         }, timeoutValue);
       }
@@ -125,7 +125,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
   }
 
   private handleMessage = (
-    event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | unknown>
+    event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | unknown>,
   ) => {
     if (!isValidResponse<DATA>(event)) {
       return;

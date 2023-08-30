@@ -116,7 +116,7 @@ export class WorkflowsApiBridge {
   }
 
   async getEntitiesExecutionResultsV1(
-    urlParams: GetEntitiesExecutionResultsV1QueryParams
+    urlParams: GetEntitiesExecutionResultsV1QueryParams,
   ): Promise<GetEntitiesExecutionResultsV1ApiResponse> {
     const message: GetEntitiesExecutionResultsV1RequestMessage = {
       type: 'api',
@@ -132,7 +132,7 @@ export class WorkflowsApiBridge {
 
   async postEntitiesExecuteV1(
     postBody: PostEntitiesExecuteV1PostData,
-    urlParams: PostEntitiesExecuteV1QueryParams = {}
+    urlParams: PostEntitiesExecuteV1QueryParams = {},
   ): Promise<PostEntitiesExecuteV1ApiResponse> {
     const message: PostEntitiesExecuteV1RequestMessage = {
       type: 'api',
@@ -149,7 +149,7 @@ export class WorkflowsApiBridge {
 
   async postEntitiesExecutionActionsV1(
     postBody: PostEntitiesExecutionActionsV1PostData,
-    urlParams: PostEntitiesExecutionActionsV1QueryParams
+    urlParams: PostEntitiesExecutionActionsV1QueryParams,
   ): Promise<PostEntitiesExecutionActionsV1ApiResponse> {
     const message: PostEntitiesExecutionActionsV1RequestMessage = {
       type: 'api',

@@ -1,7 +1,11 @@
 import FalconApi from '../src';
 import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest';
 import { uuidV4Regex } from './helpers';
-import type { MessageEnvelope, OpenModalRequestMessage, OpenModalResponseMessage } from '../src';
+import type {
+  MessageEnvelope,
+  OpenModalRequestMessage,
+  OpenModalResponseMessage,
+} from '../src';
 
 let api: FalconApi;
 
@@ -72,7 +76,10 @@ describe('openModal', () => {
       },
     );
 
-    const result = await api.ui.openModal({ id: '123', type: 'extension' }, 'Modal title');
+    const result = await api.ui.openModal(
+      { id: '123', type: 'extension' },
+      'Modal title',
+    );
 
     expect(result).toStrictEqual({ foo: 'bar' });
   });

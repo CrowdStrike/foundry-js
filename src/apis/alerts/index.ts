@@ -241,7 +241,7 @@ export class AlertsApiBridge {
   }
 
   async deleteEntitiesSuppressedDevicesV1(
-    urlParams: DeleteEntitiesSuppressedDevicesV1QueryParams = {}
+    urlParams: DeleteEntitiesSuppressedDevicesV1QueryParams = {},
   ): Promise<DeleteEntitiesSuppressedDevicesV1ApiResponse> {
     const message: DeleteEntitiesSuppressedDevicesV1RequestMessage = {
       type: 'api',
@@ -256,7 +256,7 @@ export class AlertsApiBridge {
   }
 
   async getQueriesAlertsV1(
-    urlParams: GetQueriesAlertsV1QueryParams = {}
+    urlParams: GetQueriesAlertsV1QueryParams = {},
   ): Promise<GetQueriesAlertsV1ApiResponse> {
     const message: GetQueriesAlertsV1RequestMessage = {
       type: 'api',
@@ -272,7 +272,7 @@ export class AlertsApiBridge {
 
   async patchCombinedAlertsV2(
     postBody: PatchCombinedAlertsV2PostData,
-    urlParams: PatchCombinedAlertsV2QueryParams = {}
+    urlParams: PatchCombinedAlertsV2QueryParams = {},
   ): Promise<PatchCombinedAlertsV2ApiResponse> {
     const message: PatchCombinedAlertsV2RequestMessage = {
       type: 'api',
@@ -289,7 +289,7 @@ export class AlertsApiBridge {
 
   async patchEntitiesAlertsV2(
     postBody: PatchEntitiesAlertsV2PostData,
-    urlParams: PatchEntitiesAlertsV2QueryParams = {}
+    urlParams: PatchEntitiesAlertsV2QueryParams = {},
   ): Promise<PatchEntitiesAlertsV2ApiResponse> {
     const message: PatchEntitiesAlertsV2RequestMessage = {
       type: 'api',
@@ -306,7 +306,7 @@ export class AlertsApiBridge {
 
   async patchEntitiesSuppressedDevicesV1(
     postBody: PatchEntitiesSuppressedDevicesV1PostData,
-    urlParams: PatchEntitiesSuppressedDevicesV1QueryParams = {}
+    urlParams: PatchEntitiesSuppressedDevicesV1QueryParams = {},
   ): Promise<PatchEntitiesSuppressedDevicesV1ApiResponse> {
     const message: PatchEntitiesSuppressedDevicesV1RequestMessage = {
       type: 'api',
@@ -323,7 +323,7 @@ export class AlertsApiBridge {
 
   async postAggregatesAlertsV1(
     postBody: PostAggregatesAlertsV1PostData,
-    urlParams: PostAggregatesAlertsV1QueryParams = {}
+    urlParams: PostAggregatesAlertsV1QueryParams = {},
   ): Promise<PostAggregatesAlertsV1ApiResponse> {
     const message: PostAggregatesAlertsV1RequestMessage = {
       type: 'api',
@@ -340,7 +340,7 @@ export class AlertsApiBridge {
 
   async postEntitiesAlertsV1(
     postBody: PostEntitiesAlertsV1PostData,
-    urlParams: PostEntitiesAlertsV1QueryParams = {}
+    urlParams: PostEntitiesAlertsV1QueryParams = {},
   ): Promise<PostEntitiesAlertsV1ApiResponse> {
     const message: PostEntitiesAlertsV1RequestMessage = {
       type: 'api',
@@ -357,7 +357,7 @@ export class AlertsApiBridge {
 
   async postEntitiesSuppressedDevicesV1(
     postBody: PostEntitiesSuppressedDevicesV1PostData,
-    urlParams: PostEntitiesSuppressedDevicesV1QueryParams = {}
+    urlParams: PostEntitiesSuppressedDevicesV1QueryParams = {},
   ): Promise<PostEntitiesSuppressedDevicesV1ApiResponse> {
     const message: PostEntitiesSuppressedDevicesV1RequestMessage = {
       type: 'api',

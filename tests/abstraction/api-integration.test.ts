@@ -25,7 +25,11 @@ afterEach(() => api.destroy());
 test('it can send request without passed parameters', async () => {
   window.parent.addEventListener(
     'message',
-    (message: MessageEvent<MessageEnvelope<PostEntitiesExecuteV1RequestMessage>>) => {
+    (
+      message: MessageEvent<
+        MessageEnvelope<PostEntitiesExecuteV1RequestMessage>
+      >,
+    ) => {
       const { meta } = message.data;
       const response: MessageEnvelope<unknown> = {
         message: { type: 'api', payload: { testPayload: 123 } },
@@ -55,7 +59,11 @@ test('it can send request without passed parameters', async () => {
 test('it can send request with passed json parameters', async () => {
   window.parent.addEventListener(
     'message',
-    (message: MessageEvent<MessageEnvelope<PostEntitiesExecuteV1RequestMessage>>) => {
+    (
+      message: MessageEvent<
+        MessageEnvelope<PostEntitiesExecuteV1RequestMessage>
+      >,
+    ) => {
       const { meta } = message.data;
       const response: MessageEnvelope<unknown> = {
         message: { type: 'api', payload: { testPayload: 123 } },
@@ -94,7 +102,11 @@ test('it can send request with passed json parameters', async () => {
 test('it can send request with passed params', async () => {
   window.parent.addEventListener(
     'message',
-    (message: MessageEvent<MessageEnvelope<PostEntitiesExecuteV1RequestMessage>>) => {
+    (
+      message: MessageEvent<
+        MessageEnvelope<PostEntitiesExecuteV1RequestMessage>
+      >,
+    ) => {
       const { meta } = message.data;
       const response: MessageEnvelope<unknown> = {
         message: { type: 'api', payload: { testPayload: 123 } },

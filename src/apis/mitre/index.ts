@@ -61,7 +61,7 @@ export class MitreApiBridge {
   }
 
   async getEntitiesMatrixV1(
-    urlParams: GetEntitiesMatrixV1QueryParams = {}
+    urlParams: GetEntitiesMatrixV1QueryParams = {},
   ): Promise<GetEntitiesMatrixV1ApiResponse> {
     const message: GetEntitiesMatrixV1RequestMessage = {
       type: 'api',

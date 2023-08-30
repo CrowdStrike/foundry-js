@@ -108,7 +108,7 @@ export class PluginsApiBridge {
   }
 
   async getEntitiesConfigsV1(
-    urlParams: GetEntitiesConfigsV1QueryParams = {}
+    urlParams: GetEntitiesConfigsV1QueryParams = {},
   ): Promise<GetEntitiesConfigsV1ApiResponse> {
     const message: GetEntitiesConfigsV1RequestMessage = {
       type: 'api',
@@ -124,7 +124,7 @@ export class PluginsApiBridge {
 
   async postEntitiesExecuteDraftV1(
     postBody: PostEntitiesExecuteDraftV1PostData,
-    urlParams: PostEntitiesExecuteDraftV1QueryParams = {}
+    urlParams: PostEntitiesExecuteDraftV1QueryParams = {},
   ): Promise<PostEntitiesExecuteDraftV1ApiResponse> {
     const message: PostEntitiesExecuteDraftV1RequestMessage = {
       type: 'api',
@@ -141,7 +141,7 @@ export class PluginsApiBridge {
 
   async postEntitiesExecuteV1(
     postBody: PostEntitiesExecuteV1PostData,
-    urlParams: PostEntitiesExecuteV1QueryParams = {}
+    urlParams: PostEntitiesExecuteV1QueryParams = {},
   ): Promise<PostEntitiesExecuteV1ApiResponse> {
     const message: PostEntitiesExecuteV1RequestMessage = {
       type: 'api',
