@@ -517,7 +517,7 @@ export class DevicesApiBridge {
   }
 
   async deleteEntitiesGroupsV1(
-    urlParams: DeleteEntitiesGroupsV1QueryParams
+    urlParams: DeleteEntitiesGroupsV1QueryParams,
   ): Promise<DeleteEntitiesGroupsV1ApiResponse> {
     const message: DeleteEntitiesGroupsV1RequestMessage = {
       type: 'api',
@@ -532,7 +532,7 @@ export class DevicesApiBridge {
   }
 
   async getAggregatesBucketsV1(
-    urlParams: GetAggregatesBucketsV1QueryParams
+    urlParams: GetAggregatesBucketsV1QueryParams,
   ): Promise<GetAggregatesBucketsV1ApiResponse> {
     const message: GetAggregatesBucketsV1RequestMessage = {
       type: 'api',
@@ -547,7 +547,7 @@ export class DevicesApiBridge {
   }
 
   async getAggregatesTagPrefixCountsV1(
-    urlParams: GetAggregatesTagPrefixCountsV1QueryParams
+    urlParams: GetAggregatesTagPrefixCountsV1QueryParams,
   ): Promise<GetAggregatesTagPrefixCountsV1ApiResponse> {
     const message: GetAggregatesTagPrefixCountsV1RequestMessage = {
       type: 'api',
@@ -562,7 +562,7 @@ export class DevicesApiBridge {
   }
 
   async getEntitiesGroupsV1(
-    urlParams: GetEntitiesGroupsV1QueryParams
+    urlParams: GetEntitiesGroupsV1QueryParams,
   ): Promise<GetEntitiesGroupsV1ApiResponse> {
     const message: GetEntitiesGroupsV1RequestMessage = {
       type: 'api',
@@ -577,7 +577,7 @@ export class DevicesApiBridge {
   }
 
   async getEntitiesReleasesV1(
-    urlParams: GetEntitiesReleasesV1QueryParams
+    urlParams: GetEntitiesReleasesV1QueryParams,
   ): Promise<GetEntitiesReleasesV1ApiResponse> {
     const message: GetEntitiesReleasesV1RequestMessage = {
       type: 'api',
@@ -592,7 +592,7 @@ export class DevicesApiBridge {
   }
 
   async getEntitiesRespondV1(
-    urlParams: GetEntitiesRespondV1QueryParams = {}
+    urlParams: GetEntitiesRespondV1QueryParams = {},
   ): Promise<GetEntitiesRespondV1ApiResponse> {
     const message: GetEntitiesRespondV1RequestMessage = {
       type: 'api',
@@ -607,7 +607,7 @@ export class DevicesApiBridge {
   }
 
   async getQueriesAvailableGroupsV1(
-    urlParams: GetQueriesAvailableGroupsV1QueryParams = {}
+    urlParams: GetQueriesAvailableGroupsV1QueryParams = {},
   ): Promise<GetQueriesAvailableGroupsV1ApiResponse> {
     const message: GetQueriesAvailableGroupsV1RequestMessage = {
       type: 'api',
@@ -622,7 +622,7 @@ export class DevicesApiBridge {
   }
 
   async getQueriesDevicesHiddenV2(
-    urlParams: GetQueriesDevicesHiddenV2QueryParams = {}
+    urlParams: GetQueriesDevicesHiddenV2QueryParams = {},
   ): Promise<GetQueriesDevicesHiddenV2ApiResponse> {
     const message: GetQueriesDevicesHiddenV2RequestMessage = {
       type: 'api',
@@ -637,7 +637,7 @@ export class DevicesApiBridge {
   }
 
   async getQueriesDevicesV2(
-    urlParams: GetQueriesDevicesV2QueryParams = {}
+    urlParams: GetQueriesDevicesV2QueryParams = {},
   ): Promise<GetQueriesDevicesV2ApiResponse> {
     const message: GetQueriesDevicesV2RequestMessage = {
       type: 'api',
@@ -652,7 +652,7 @@ export class DevicesApiBridge {
   }
 
   async getQueriesGroupsV1(
-    urlParams: GetQueriesGroupsV1QueryParams = {}
+    urlParams: GetQueriesGroupsV1QueryParams = {},
   ): Promise<GetQueriesGroupsV1ApiResponse> {
     const message: GetQueriesGroupsV1RequestMessage = {
       type: 'api',
@@ -668,7 +668,7 @@ export class DevicesApiBridge {
 
   async patchEntitiesDevicesTagsV2(
     postBody: PatchEntitiesDevicesTagsV2PostData,
-    urlParams: PatchEntitiesDevicesTagsV2QueryParams = {}
+    urlParams: PatchEntitiesDevicesTagsV2QueryParams = {},
   ): Promise<PatchEntitiesDevicesTagsV2ApiResponse> {
     const message: PatchEntitiesDevicesTagsV2RequestMessage = {
       type: 'api',
@@ -685,7 +685,7 @@ export class DevicesApiBridge {
 
   async patchEntitiesGroupsV1(
     postBody: PatchEntitiesGroupsV1PostData,
-    urlParams: PatchEntitiesGroupsV1QueryParams = {}
+    urlParams: PatchEntitiesGroupsV1QueryParams = {},
   ): Promise<PatchEntitiesGroupsV1ApiResponse> {
     const message: PatchEntitiesGroupsV1RequestMessage = {
       type: 'api',
@@ -702,7 +702,7 @@ export class DevicesApiBridge {
 
   async postAggregatesDevicesGetV1(
     postBody: PostAggregatesDevicesGetV1PostData,
-    urlParams: PostAggregatesDevicesGetV1QueryParams = {}
+    urlParams: PostAggregatesDevicesGetV1QueryParams = {},
   ): Promise<PostAggregatesDevicesGetV1ApiResponse> {
     const message: PostAggregatesDevicesGetV1RequestMessage = {
       type: 'api',
@@ -719,7 +719,7 @@ export class DevicesApiBridge {
 
   async postCombinedDevicesLoginHistoryV1(
     postBody: PostCombinedDevicesLoginHistoryV1PostData,
-    urlParams: PostCombinedDevicesLoginHistoryV1QueryParams = {}
+    urlParams: PostCombinedDevicesLoginHistoryV1QueryParams = {},
   ): Promise<PostCombinedDevicesLoginHistoryV1ApiResponse> {
     const message: PostCombinedDevicesLoginHistoryV1RequestMessage = {
       type: 'api',
@@ -736,7 +736,7 @@ export class DevicesApiBridge {
 
   async postEntitiesDevicesActionsV4(
     postBody: PostEntitiesDevicesActionsV4PostData,
-    urlParams: PostEntitiesDevicesActionsV4QueryParams = {}
+    urlParams: PostEntitiesDevicesActionsV4QueryParams = {},
   ): Promise<PostEntitiesDevicesActionsV4ApiResponse> {
     const message: PostEntitiesDevicesActionsV4RequestMessage = {
       type: 'api',
@@ -753,7 +753,7 @@ export class DevicesApiBridge {
 
   async postEntitiesDevicesHiddenActionsV4(
     postBody: PostEntitiesDevicesHiddenActionsV4PostData,
-    urlParams: PostEntitiesDevicesHiddenActionsV4QueryParams = {}
+    urlParams: PostEntitiesDevicesHiddenActionsV4QueryParams = {},
   ): Promise<PostEntitiesDevicesHiddenActionsV4ApiResponse> {
     const message: PostEntitiesDevicesHiddenActionsV4RequestMessage = {
       type: 'api',
@@ -770,7 +770,7 @@ export class DevicesApiBridge {
 
   async postEntitiesDevicesReportsV1(
     postBody: PostEntitiesDevicesReportsV1PostData,
-    urlParams: PostEntitiesDevicesReportsV1QueryParams = {}
+    urlParams: PostEntitiesDevicesReportsV1QueryParams = {},
   ): Promise<PostEntitiesDevicesReportsV1ApiResponse> {
     const message: PostEntitiesDevicesReportsV1RequestMessage = {
       type: 'api',
@@ -787,7 +787,7 @@ export class DevicesApiBridge {
 
   async postEntitiesDevicesV2(
     postBody: PostEntitiesDevicesV2PostData,
-    urlParams: PostEntitiesDevicesV2QueryParams = {}
+    urlParams: PostEntitiesDevicesV2QueryParams = {},
   ): Promise<PostEntitiesDevicesV2ApiResponse> {
     const message: PostEntitiesDevicesV2RequestMessage = {
       type: 'api',
@@ -804,7 +804,7 @@ export class DevicesApiBridge {
 
   async postEntitiesGroupActionsV1(
     postBody: PostEntitiesGroupActionsV1PostData,
-    urlParams: PostEntitiesGroupActionsV1QueryParams
+    urlParams: PostEntitiesGroupActionsV1QueryParams,
   ): Promise<PostEntitiesGroupActionsV1ApiResponse> {
     const message: PostEntitiesGroupActionsV1RequestMessage = {
       type: 'api',
@@ -821,7 +821,7 @@ export class DevicesApiBridge {
 
   async postEntitiesGroupsV1(
     postBody: PostEntitiesGroupsV1PostData,
-    urlParams: PostEntitiesGroupsV1QueryParams = {}
+    urlParams: PostEntitiesGroupsV1QueryParams = {},
   ): Promise<PostEntitiesGroupsV1ApiResponse> {
     const message: PostEntitiesGroupsV1RequestMessage = {
       type: 'api',
@@ -838,7 +838,7 @@ export class DevicesApiBridge {
 
   async postEntitiesReleasesV1(
     postBody: PostEntitiesReleasesV1PostData,
-    urlParams: PostEntitiesReleasesV1QueryParams
+    urlParams: PostEntitiesReleasesV1QueryParams,
   ): Promise<PostEntitiesReleasesV1ApiResponse> {
     const message: PostEntitiesReleasesV1RequestMessage = {
       type: 'api',

@@ -63,9 +63,9 @@ test('onClick fails target element was not an anchor element', async () => {
   const mouseEventClass = new MouseEvent('click');
 
   // resetting the types to see what happens when types are ignored and wrong event is passed
-  await expect(async () => navigation.onClick(mouseEventClass)).rejects.toThrowError(
-    /event target is not an anchor element/,
-  );
+  await expect(async () =>
+    navigation.onClick(mouseEventClass),
+  ).rejects.toThrowError(/event target is not an anchor element/);
 });
 
 test('onClick fails with anchor element missing href attribute', async () => {
@@ -78,7 +78,9 @@ test('onClick fails with anchor element missing href attribute', async () => {
   const mouseEventClass = new SyntheticMouseEvent('click');
 
   // resetting the types to see what happens when types are ignored and wrong event is passed
-  await expect(async () => navigation.onClick(mouseEventClass)).rejects.toThrowError(
+  await expect(async () =>
+    navigation.onClick(mouseEventClass),
+  ).rejects.toThrowError(
     /Navigation path is missing. Make sure you have added navigation.onClick on the `a` tag and `href` is present./,
   );
 });

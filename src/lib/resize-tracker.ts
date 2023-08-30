@@ -5,7 +5,9 @@ export class ResizeTracker<DATA extends LocalData = LocalData> {
   private observer: ResizeObserver;
 
   constructor(private bridge: Bridge<DATA>) {
-    this.observer = new ResizeObserver((entries) => this.handleResizeEvent(entries));
+    this.observer = new ResizeObserver((entries) =>
+      this.handleResizeEvent(entries),
+    );
     this.observer.observe(document.body);
   }
 

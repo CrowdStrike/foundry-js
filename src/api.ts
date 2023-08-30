@@ -26,7 +26,9 @@ interface EventMap<DATA extends LocalData> {
   broadcast: unknown;
 }
 
-export default class FalconApi<DATA extends LocalData = LocalData> extends FalconPublicApis {
+export default class FalconApi<
+  DATA extends LocalData = LocalData,
+> extends FalconPublicApis {
   public events = new Emittery<EventMap<DATA>>();
   public data?: DATA;
   public bridge: Bridge<DATA> = new Bridge<DATA>({
@@ -89,7 +91,8 @@ export default class FalconApi<DATA extends LocalData = LocalData> extends Falco
       return;
     }
 
-    const inactiveTheme = activeTheme === 'theme-dark' ? 'theme-light' : 'theme-dark';
+    const inactiveTheme =
+      activeTheme === 'theme-dark' ? 'theme-light' : 'theme-dark';
 
     document.documentElement.classList.add(activeTheme);
     document.documentElement.classList.remove(inactiveTheme);
@@ -105,7 +108,13 @@ export default class FalconApi<DATA extends LocalData = LocalData> extends Falco
     return cf;
   }
 
-  apiIntegration({ definitionId, operationId }: { operationId: string; definitionId: string }) {
+  apiIntegration({
+    definitionId,
+    operationId,
+  }: {
+    operationId: string;
+    definitionId: string;
+  }) {
     assertConnection(this);
 
     const cf = new ApiIntegration(this, { operationId, definitionId });

@@ -192,7 +192,7 @@ export class CustomobjectsApiBridge {
   }
 
   async deleteV1CollectionsCollectionNameObjectsObjectKey(
-    urlParams: DeleteV1CollectionsCollectionNameObjectsObjectKeyQueryParams = {}
+    urlParams: DeleteV1CollectionsCollectionNameObjectsObjectKeyQueryParams = {},
   ): Promise<DeleteV1CollectionsCollectionNameObjectsObjectKeyApiResponse> {
     const message: DeleteV1CollectionsCollectionNameObjectsObjectKeyRequestMessage =
       {
@@ -208,7 +208,7 @@ export class CustomobjectsApiBridge {
   }
 
   async getV1Collections(
-    urlParams: GetV1CollectionsQueryParams = {}
+    urlParams: GetV1CollectionsQueryParams = {},
   ): Promise<GetV1CollectionsApiResponse> {
     const message: GetV1CollectionsRequestMessage = {
       type: 'api',
@@ -223,7 +223,7 @@ export class CustomobjectsApiBridge {
   }
 
   async getV1CollectionsCollectionNameObjects(
-    urlParams: GetV1CollectionsCollectionNameObjectsQueryParams = {}
+    urlParams: GetV1CollectionsCollectionNameObjectsQueryParams = {},
   ): Promise<GetV1CollectionsCollectionNameObjectsApiResponse> {
     const message: GetV1CollectionsCollectionNameObjectsRequestMessage = {
       type: 'api',
@@ -238,7 +238,7 @@ export class CustomobjectsApiBridge {
   }
 
   async getV1CollectionsCollectionNameObjectsObjectKey(
-    urlParams: GetV1CollectionsCollectionNameObjectsObjectKeyQueryParams = {}
+    urlParams: GetV1CollectionsCollectionNameObjectsObjectKeyQueryParams = {},
   ): Promise<GetV1CollectionsCollectionNameObjectsObjectKeyApiResponse> {
     const message: GetV1CollectionsCollectionNameObjectsObjectKeyRequestMessage =
       {
@@ -254,7 +254,7 @@ export class CustomobjectsApiBridge {
   }
 
   async getV1CollectionsCollectionNameObjectsObjectKeyMetadata(
-    urlParams: GetV1CollectionsCollectionNameObjectsObjectKeyMetadataQueryParams = {}
+    urlParams: GetV1CollectionsCollectionNameObjectsObjectKeyMetadataQueryParams = {},
   ): Promise<GetV1CollectionsCollectionNameObjectsObjectKeyMetadataApiResponse> {
     const message: GetV1CollectionsCollectionNameObjectsObjectKeyMetadataRequestMessage =
       {
@@ -271,7 +271,7 @@ export class CustomobjectsApiBridge {
 
   async postV1CollectionsCollectionNameObjects(
     postBody: PostV1CollectionsCollectionNameObjectsPostData,
-    urlParams: PostV1CollectionsCollectionNameObjectsQueryParams = {}
+    urlParams: PostV1CollectionsCollectionNameObjectsQueryParams = {},
   ): Promise<PostV1CollectionsCollectionNameObjectsApiResponse> {
     const message: PostV1CollectionsCollectionNameObjectsRequestMessage = {
       type: 'api',
@@ -288,7 +288,7 @@ export class CustomobjectsApiBridge {
 
   async putV1CollectionsCollectionNameObjectsObjectKey(
     postBody: PutV1CollectionsCollectionNameObjectsObjectKeyPostData,
-    urlParams: PutV1CollectionsCollectionNameObjectsObjectKeyQueryParams = {}
+    urlParams: PutV1CollectionsCollectionNameObjectsObjectKeyQueryParams = {},
   ): Promise<PutV1CollectionsCollectionNameObjectsObjectKeyApiResponse> {
     const message: PutV1CollectionsCollectionNameObjectsObjectKeyRequestMessage =
       {
