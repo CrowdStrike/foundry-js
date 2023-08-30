@@ -64,5 +64,7 @@ test('it can receive broadcast events', async () => {
   window.postMessage(dataUpdate);
   await promise;
 
-  expect(receivedData, 'new data is provided with the data event').toEqual(sentData);
+  expect(receivedData, 'new data is provided with the data event').toEqual(
+    sentData,
+  );
 });

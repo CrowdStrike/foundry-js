@@ -148,7 +148,7 @@ export class RemoteResponseApiBridge {
   }
 
   async getScriptIds(
-    urlParams: GetQueriesScriptsV1QueryParams = {}
+    urlParams: GetQueriesScriptsV1QueryParams = {},
   ): Promise<GetQueriesScriptsV1ApiResponse> {
     const message: GetQueriesScriptsV1RequestMessage = {
       type: 'api',
@@ -164,7 +164,7 @@ export class RemoteResponseApiBridge {
 
   async getScriptEntities(
     postBody: PostEntitiesScriptsGetV2PostData,
-    urlParams: PostEntitiesScriptsGetV2QueryParams = {}
+    urlParams: PostEntitiesScriptsGetV2QueryParams = {},
   ): Promise<PostEntitiesScriptsGetV2ApiResponse> {
     const message: PostEntitiesScriptsGetV2RequestMessage = {
       type: 'api',

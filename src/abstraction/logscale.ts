@@ -10,7 +10,10 @@ interface WriteProperties {
 export class Logscale<DATA extends LocalData = LocalData> {
   constructor(private readonly falcon: FalconApi<DATA>) {}
 
-  public async write(data: LogscaleRequestMessage['payload']['data'], properties: WriteProperties) {
+  public async write(
+    data: LogscaleRequestMessage['payload']['data'],
+    properties: WriteProperties,
+  ) {
     return this.falcon.bridge.postMessage<LogscaleRequestMessage>({
       type: 'loggingapi',
       payload: {

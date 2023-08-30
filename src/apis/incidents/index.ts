@@ -223,7 +223,7 @@ export class IncidentsApiBridge {
   }
 
   async getCombinedCrowdscoresV1(
-    urlParams: GetCombinedCrowdscoresV1QueryParams = {}
+    urlParams: GetCombinedCrowdscoresV1QueryParams = {},
   ): Promise<GetCombinedCrowdscoresV1ApiResponse> {
     const message: GetCombinedCrowdscoresV1RequestMessage = {
       type: 'api',
@@ -238,7 +238,7 @@ export class IncidentsApiBridge {
   }
 
   async getQueriesBehaviorsV1(
-    urlParams: GetQueriesBehaviorsV1QueryParams = {}
+    urlParams: GetQueriesBehaviorsV1QueryParams = {},
   ): Promise<GetQueriesBehaviorsV1ApiResponse> {
     const message: GetQueriesBehaviorsV1RequestMessage = {
       type: 'api',
@@ -253,7 +253,7 @@ export class IncidentsApiBridge {
   }
 
   async getQueriesIncidentsV1(
-    urlParams: GetQueriesIncidentsV1QueryParams = {}
+    urlParams: GetQueriesIncidentsV1QueryParams = {},
   ): Promise<GetQueriesIncidentsV1ApiResponse> {
     const message: GetQueriesIncidentsV1RequestMessage = {
       type: 'api',
@@ -269,7 +269,7 @@ export class IncidentsApiBridge {
 
   async postAggregatesBehaviorsGetV1(
     postBody: PostAggregatesBehaviorsGetV1PostData,
-    urlParams: PostAggregatesBehaviorsGetV1QueryParams = {}
+    urlParams: PostAggregatesBehaviorsGetV1QueryParams = {},
   ): Promise<PostAggregatesBehaviorsGetV1ApiResponse> {
     const message: PostAggregatesBehaviorsGetV1RequestMessage = {
       type: 'api',
@@ -286,7 +286,7 @@ export class IncidentsApiBridge {
 
   async postAggregatesIncidentsGetV1(
     postBody: PostAggregatesIncidentsGetV1PostData,
-    urlParams: PostAggregatesIncidentsGetV1QueryParams = {}
+    urlParams: PostAggregatesIncidentsGetV1QueryParams = {},
   ): Promise<PostAggregatesIncidentsGetV1ApiResponse> {
     const message: PostAggregatesIncidentsGetV1RequestMessage = {
       type: 'api',
@@ -303,7 +303,7 @@ export class IncidentsApiBridge {
 
   async postEntitiesBehaviorsGetV1(
     postBody: PostEntitiesBehaviorsGetV1PostData,
-    urlParams: PostEntitiesBehaviorsGetV1QueryParams = {}
+    urlParams: PostEntitiesBehaviorsGetV1QueryParams = {},
   ): Promise<PostEntitiesBehaviorsGetV1ApiResponse> {
     const message: PostEntitiesBehaviorsGetV1RequestMessage = {
       type: 'api',
@@ -320,7 +320,7 @@ export class IncidentsApiBridge {
 
   async postEntitiesIncidentActionsV1(
     postBody: PostEntitiesIncidentActionsV1PostData,
-    urlParams: PostEntitiesIncidentActionsV1QueryParams = {}
+    urlParams: PostEntitiesIncidentActionsV1QueryParams = {},
   ): Promise<PostEntitiesIncidentActionsV1ApiResponse> {
     const message: PostEntitiesIncidentActionsV1RequestMessage = {
       type: 'api',
@@ -337,7 +337,7 @@ export class IncidentsApiBridge {
 
   async postEntitiesIncidentsGetV1(
     postBody: PostEntitiesIncidentsGetV1PostData,
-    urlParams: PostEntitiesIncidentsGetV1QueryParams = {}
+    urlParams: PostEntitiesIncidentsGetV1QueryParams = {},
   ): Promise<PostEntitiesIncidentsGetV1ApiResponse> {
     const message: PostEntitiesIncidentsGetV1RequestMessage = {
       type: 'api',

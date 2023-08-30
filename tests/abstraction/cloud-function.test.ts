@@ -31,7 +31,9 @@ test('it can accept path without /', async () => {
 });
 
 test('it can accept path with query params', async () => {
-  const cloudFunctionInstance = cloudFunction.path('/testing?param1=value1&param2=value2');
+  const cloudFunctionInstance = cloudFunction.path(
+    '/testing?param1=value1&param2=value2',
+  );
 
   expect(cloudFunctionInstance.path).toBe('/testing');
   expect(cloudFunctionInstance.queryParams).toStrictEqual([
@@ -48,7 +50,10 @@ test('it can send request and wait for response', async () => {
   const cloudFunctionInstance = cloudFunction.path('testing');
 
   const executionSpy = vi.spyOn(api.faasGateway, 'postEntitiesExecutionV1');
-  const executionResultSpy = vi.spyOn(api.faasGateway, 'getEntitiesExecutionV1');
+  const executionResultSpy = vi.spyOn(
+    api.faasGateway,
+    'getEntitiesExecutionV1',
+  );
 
   executionSpy.mockResolvedValueOnce({
     resources: [{ execution_id: 'test-1' }],
@@ -76,7 +81,10 @@ test('it can handle execution result failure', async () => {
   const cloudFunctionInstance = cloudFunction.path('testing');
 
   const executionSpy = vi.spyOn(api.faasGateway, 'postEntitiesExecutionV1');
-  const executionResultSpy = vi.spyOn(api.faasGateway, 'getEntitiesExecutionV1');
+  const executionResultSpy = vi.spyOn(
+    api.faasGateway,
+    'getEntitiesExecutionV1',
+  );
 
   executionSpy.mockResolvedValueOnce({
     resources: [{ execution_id: 'test-1' }],
@@ -104,7 +112,10 @@ test('it stops after 3 failed retries for execution result', async () => {
   const cloudFunctionInstance = cloudFunction.path('testing');
 
   const executionSpy = vi.spyOn(api.faasGateway, 'postEntitiesExecutionV1');
-  const executionResultSpy = vi.spyOn(api.faasGateway, 'getEntitiesExecutionV1');
+  const executionResultSpy = vi.spyOn(
+    api.faasGateway,
+    'getEntitiesExecutionV1',
+  );
 
   executionSpy.mockResolvedValueOnce({
     resources: [{ execution_id: 'test-1' }],

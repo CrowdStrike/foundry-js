@@ -1,6 +1,10 @@
 import FalconApi from '../src';
 import { afterEach, beforeEach, expect, test } from 'vitest';
-import type { FileUploadRequestMessage, FileUploadResponseMessage, MessageEnvelope } from '../src';
+import type {
+  FileUploadRequestMessage,
+  FileUploadResponseMessage,
+  MessageEnvelope,
+} from '../src';
 
 let api: FalconApi;
 
@@ -15,8 +19,14 @@ test('it can send a RTR file-upload request and wait for response', async () => 
   // simulate ready answer coming back from main thread
   window.parent.addEventListener(
     'message',
-    (message: MessageEvent<MessageEnvelope<FileUploadRequestMessage<'remote-response'>>>) => {
-      const response: MessageEnvelope<FileUploadResponseMessage<'remote-response'>> = {
+    (
+      message: MessageEvent<
+        MessageEnvelope<FileUploadRequestMessage<'remote-response'>>
+      >,
+    ) => {
+      const response: MessageEnvelope<
+        FileUploadResponseMessage<'remote-response'>
+      > = {
         message: {
           type: 'fileUpload',
           fileUploadType: 'remote-response',
