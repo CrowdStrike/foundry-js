@@ -199,7 +199,7 @@ export type ResponseForFileUploadType<TYPE extends FileUploadType> =
   TYPE extends 'remote-response' ? RtrFileUploadResponse : never;
 
 export interface FileUploadRequestMessage<
-  T extends FileUploadType = FileUploadType
+  T extends FileUploadType = FileUploadType,
 > extends BaseMessage {
   type: 'fileUpload';
   fileUploadType: T;
@@ -207,7 +207,7 @@ export interface FileUploadRequestMessage<
 }
 
 export interface FileUploadResponseMessage<
-  T extends FileUploadType = FileUploadType
+  T extends FileUploadType = FileUploadType,
 > extends BaseMessage {
   type: 'fileUpload';
   fileUploadType: T;
@@ -216,14 +216,14 @@ export interface FileUploadResponseMessage<
 
 // Cloud APIs
 export interface ApiRequestGetPayload<
-  PARAMS extends BaseUrlParams = BaseUrlParams
+  PARAMS extends BaseUrlParams = BaseUrlParams,
 > {
   params: PARAMS;
 }
 
 export interface ApiRequestPostPayload<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = unknown
+  BODY = unknown,
 > {
   body: BODY;
   params: PARAMS;
@@ -231,7 +231,7 @@ export interface ApiRequestPostPayload<
 
 type ApiRequestPayload<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = undefined
+  BODY = undefined,
 > = BODY extends undefined
   ? ApiRequestGetPayload<PARAMS>
   : ApiRequestPostPayload<PARAMS, BODY>;
@@ -249,7 +249,7 @@ export interface ApiResponsePayload<T = unknown> {
 
 export interface BaseApiRequestMessage<
   PARAMS extends BaseUrlParams = BaseUrlParams,
-  BODY = undefined
+  BODY = undefined,
 > extends BaseMessage {
   type: 'api';
   api: ApiIdentifier;
@@ -305,7 +305,7 @@ import type { ResponseFor as ApiResponseFor } from './apis/types-response-for';
 
 type ResponseFor<
   REQ extends RequestMessage,
-  DATA extends LocalData
+  DATA extends LocalData,
 > = REQ extends ConnectRequestMessage
   ? ConnectResponseMessage<DATA>
   : REQ extends NavigateToRequestMessage

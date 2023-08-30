@@ -24,7 +24,9 @@ test('it receives initial data', async () => {
 
   await connectApi(api, data);
 
-  expect(api.data, 'initial data is exposed synchronously on .data').toEqual(data);
+  expect(api.data, 'initial data is exposed synchronously on .data').toEqual(
+    data,
+  );
 });
 
 test('data can update', async () => {

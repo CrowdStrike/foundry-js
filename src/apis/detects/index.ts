@@ -199,7 +199,7 @@ export class DetectsApiBridge {
   }
 
   async getEntitiesSuppressedDevicesV1(
-    urlParams: GetEntitiesSuppressedDevicesV1QueryParams = {}
+    urlParams: GetEntitiesSuppressedDevicesV1QueryParams = {},
   ): Promise<GetEntitiesSuppressedDevicesV1ApiResponse> {
     const message: GetEntitiesSuppressedDevicesV1RequestMessage = {
       type: 'api',
@@ -215,7 +215,7 @@ export class DetectsApiBridge {
 
   async patchEntitiesDetectsV2(
     postBody: PatchEntitiesDetectsV2PostData,
-    urlParams: PatchEntitiesDetectsV2QueryParams = {}
+    urlParams: PatchEntitiesDetectsV2QueryParams = {},
   ): Promise<PatchEntitiesDetectsV2ApiResponse> {
     const message: PatchEntitiesDetectsV2RequestMessage = {
       type: 'api',
@@ -232,7 +232,7 @@ export class DetectsApiBridge {
 
   async patchQueriesDetectsV1(
     postBody: PatchQueriesDetectsV1PostData,
-    urlParams: PatchQueriesDetectsV1QueryParams = {}
+    urlParams: PatchQueriesDetectsV1QueryParams = {},
   ): Promise<PatchQueriesDetectsV1ApiResponse> {
     const message: PatchQueriesDetectsV1RequestMessage = {
       type: 'api',
@@ -249,7 +249,7 @@ export class DetectsApiBridge {
 
   async patchQueriesDetectsV2(
     postBody: PatchQueriesDetectsV2PostData,
-    urlParams: PatchQueriesDetectsV2QueryParams = {}
+    urlParams: PatchQueriesDetectsV2QueryParams = {},
   ): Promise<PatchQueriesDetectsV2ApiResponse> {
     const message: PatchQueriesDetectsV2RequestMessage = {
       type: 'api',
@@ -266,7 +266,7 @@ export class DetectsApiBridge {
 
   async postAggregatesDetectsGetV1(
     postBody: PostAggregatesDetectsGetV1PostData,
-    urlParams: PostAggregatesDetectsGetV1QueryParams = {}
+    urlParams: PostAggregatesDetectsGetV1QueryParams = {},
   ): Promise<PostAggregatesDetectsGetV1ApiResponse> {
     const message: PostAggregatesDetectsGetV1RequestMessage = {
       type: 'api',
@@ -283,7 +283,7 @@ export class DetectsApiBridge {
 
   async postEntitiesSummariesGetV1(
     postBody: PostEntitiesSummariesGetV1PostData,
-    urlParams: PostEntitiesSummariesGetV1QueryParams = {}
+    urlParams: PostEntitiesSummariesGetV1QueryParams = {},
   ): Promise<PostEntitiesSummariesGetV1ApiResponse> {
     const message: PostEntitiesSummariesGetV1RequestMessage = {
       type: 'api',
@@ -300,7 +300,7 @@ export class DetectsApiBridge {
 
   async postEntitiesSuppressedDevicesV1(
     postBody: PostEntitiesSuppressedDevicesV1PostData,
-    urlParams: PostEntitiesSuppressedDevicesV1QueryParams = {}
+    urlParams: PostEntitiesSuppressedDevicesV1QueryParams = {},
   ): Promise<PostEntitiesSuppressedDevicesV1ApiResponse> {
     const message: PostEntitiesSuppressedDevicesV1RequestMessage = {
       type: 'api',

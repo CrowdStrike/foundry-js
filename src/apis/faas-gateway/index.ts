@@ -85,7 +85,7 @@ export class FaasGatewayApiBridge {
   }
 
   async getEntitiesExecutionV1(
-    urlParams: GetEntitiesExecutionV1QueryParams
+    urlParams: GetEntitiesExecutionV1QueryParams,
   ): Promise<GetEntitiesExecutionV1ApiResponse> {
     const message: GetEntitiesExecutionV1RequestMessage = {
       type: 'api',
@@ -101,7 +101,7 @@ export class FaasGatewayApiBridge {
 
   async postEntitiesExecutionV1(
     postBody: PostEntitiesExecutionV1PostData,
-    urlParams: PostEntitiesExecutionV1QueryParams = {}
+    urlParams: PostEntitiesExecutionV1QueryParams = {},
   ): Promise<PostEntitiesExecutionV1ApiResponse> {
     const message: PostEntitiesExecutionV1RequestMessage = {
       type: 'api',

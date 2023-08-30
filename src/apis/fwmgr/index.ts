@@ -789,7 +789,7 @@ export class FwmgrApiBridge {
   }
 
   async deleteEntitiesNetworkLocationsV1(
-    urlParams: DeleteEntitiesNetworkLocationsV1QueryParams
+    urlParams: DeleteEntitiesNetworkLocationsV1QueryParams,
   ): Promise<DeleteEntitiesNetworkLocationsV1ApiResponse> {
     const message: DeleteEntitiesNetworkLocationsV1RequestMessage = {
       type: 'api',
@@ -804,7 +804,7 @@ export class FwmgrApiBridge {
   }
 
   async deleteEntitiesPoliciesV1(
-    urlParams: DeleteEntitiesPoliciesV1QueryParams
+    urlParams: DeleteEntitiesPoliciesV1QueryParams,
   ): Promise<DeleteEntitiesPoliciesV1ApiResponse> {
     const message: DeleteEntitiesPoliciesV1RequestMessage = {
       type: 'api',
@@ -819,7 +819,7 @@ export class FwmgrApiBridge {
   }
 
   async deleteEntitiesRuleGroupsV1(
-    urlParams: DeleteEntitiesRuleGroupsV1QueryParams
+    urlParams: DeleteEntitiesRuleGroupsV1QueryParams,
   ): Promise<DeleteEntitiesRuleGroupsV1ApiResponse> {
     const message: DeleteEntitiesRuleGroupsV1RequestMessage = {
       type: 'api',
@@ -834,7 +834,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesEventsV1(
-    urlParams: GetEntitiesEventsV1QueryParams
+    urlParams: GetEntitiesEventsV1QueryParams,
   ): Promise<GetEntitiesEventsV1ApiResponse> {
     const message: GetEntitiesEventsV1RequestMessage = {
       type: 'api',
@@ -849,7 +849,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesFirewallFieldsV1(
-    urlParams: GetEntitiesFirewallFieldsV1QueryParams
+    urlParams: GetEntitiesFirewallFieldsV1QueryParams,
   ): Promise<GetEntitiesFirewallFieldsV1ApiResponse> {
     const message: GetEntitiesFirewallFieldsV1RequestMessage = {
       type: 'api',
@@ -864,7 +864,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesNetworkLocationsDetailsV1(
-    urlParams: GetEntitiesNetworkLocationsDetailsV1QueryParams
+    urlParams: GetEntitiesNetworkLocationsDetailsV1QueryParams,
   ): Promise<GetEntitiesNetworkLocationsDetailsV1ApiResponse> {
     const message: GetEntitiesNetworkLocationsDetailsV1RequestMessage = {
       type: 'api',
@@ -879,7 +879,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesNetworkLocationsV1(
-    urlParams: GetEntitiesNetworkLocationsV1QueryParams
+    urlParams: GetEntitiesNetworkLocationsV1QueryParams,
   ): Promise<GetEntitiesNetworkLocationsV1ApiResponse> {
     const message: GetEntitiesNetworkLocationsV1RequestMessage = {
       type: 'api',
@@ -894,7 +894,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesPlatformsV1(
-    urlParams: GetEntitiesPlatformsV1QueryParams
+    urlParams: GetEntitiesPlatformsV1QueryParams,
   ): Promise<GetEntitiesPlatformsV1ApiResponse> {
     const message: GetEntitiesPlatformsV1RequestMessage = {
       type: 'api',
@@ -909,7 +909,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesPoliciesV1(
-    urlParams: GetEntitiesPoliciesV1QueryParams
+    urlParams: GetEntitiesPoliciesV1QueryParams,
   ): Promise<GetEntitiesPoliciesV1ApiResponse> {
     const message: GetEntitiesPoliciesV1RequestMessage = {
       type: 'api',
@@ -924,7 +924,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesRuleGroupsV1(
-    urlParams: GetEntitiesRuleGroupsV1QueryParams
+    urlParams: GetEntitiesRuleGroupsV1QueryParams,
   ): Promise<GetEntitiesRuleGroupsV1ApiResponse> {
     const message: GetEntitiesRuleGroupsV1RequestMessage = {
       type: 'api',
@@ -939,7 +939,7 @@ export class FwmgrApiBridge {
   }
 
   async getEntitiesRulesV1(
-    urlParams: GetEntitiesRulesV1QueryParams
+    urlParams: GetEntitiesRulesV1QueryParams,
   ): Promise<GetEntitiesRulesV1ApiResponse> {
     const message: GetEntitiesRulesV1RequestMessage = {
       type: 'api',
@@ -954,7 +954,7 @@ export class FwmgrApiBridge {
   }
 
   async getLibraryEntitiesRuleGroupsV1(
-    urlParams: GetLibraryEntitiesRuleGroupsV1QueryParams
+    urlParams: GetLibraryEntitiesRuleGroupsV1QueryParams,
   ): Promise<GetLibraryEntitiesRuleGroupsV1ApiResponse> {
     const message: GetLibraryEntitiesRuleGroupsV1RequestMessage = {
       type: 'api',
@@ -969,7 +969,7 @@ export class FwmgrApiBridge {
   }
 
   async getLibraryQueriesRuleGroupsV1(
-    urlParams: GetLibraryQueriesRuleGroupsV1QueryParams = {}
+    urlParams: GetLibraryQueriesRuleGroupsV1QueryParams = {},
   ): Promise<GetLibraryQueriesRuleGroupsV1ApiResponse> {
     const message: GetLibraryQueriesRuleGroupsV1RequestMessage = {
       type: 'api',
@@ -984,7 +984,7 @@ export class FwmgrApiBridge {
   }
 
   async getQueriesEventsV1(
-    urlParams: GetQueriesEventsV1QueryParams = {}
+    urlParams: GetQueriesEventsV1QueryParams = {},
   ): Promise<GetQueriesEventsV1ApiResponse> {
     const message: GetQueriesEventsV1RequestMessage = {
       type: 'api',
@@ -999,7 +999,7 @@ export class FwmgrApiBridge {
   }
 
   async getQueriesFirewallFieldsV1(
-    urlParams: GetQueriesFirewallFieldsV1QueryParams = {}
+    urlParams: GetQueriesFirewallFieldsV1QueryParams = {},
   ): Promise<GetQueriesFirewallFieldsV1ApiResponse> {
     const message: GetQueriesFirewallFieldsV1RequestMessage = {
       type: 'api',
@@ -1014,7 +1014,7 @@ export class FwmgrApiBridge {
   }
 
   async getQueriesNetworkLocationsV1(
-    urlParams: GetQueriesNetworkLocationsV1QueryParams = {}
+    urlParams: GetQueriesNetworkLocationsV1QueryParams = {},
   ): Promise<GetQueriesNetworkLocationsV1ApiResponse> {
     const message: GetQueriesNetworkLocationsV1RequestMessage = {
       type: 'api',
@@ -1029,7 +1029,7 @@ export class FwmgrApiBridge {
   }
 
   async getQueriesPlatformsV1(
-    urlParams: GetQueriesPlatformsV1QueryParams = {}
+    urlParams: GetQueriesPlatformsV1QueryParams = {},
   ): Promise<GetQueriesPlatformsV1ApiResponse> {
     const message: GetQueriesPlatformsV1RequestMessage = {
       type: 'api',
@@ -1044,7 +1044,7 @@ export class FwmgrApiBridge {
   }
 
   async getQueriesPolicyRulesV1(
-    urlParams: GetQueriesPolicyRulesV1QueryParams = {}
+    urlParams: GetQueriesPolicyRulesV1QueryParams = {},
   ): Promise<GetQueriesPolicyRulesV1ApiResponse> {
     const message: GetQueriesPolicyRulesV1RequestMessage = {
       type: 'api',
@@ -1059,7 +1059,7 @@ export class FwmgrApiBridge {
   }
 
   async getQueriesRuleGroupsV1(
-    urlParams: GetQueriesRuleGroupsV1QueryParams = {}
+    urlParams: GetQueriesRuleGroupsV1QueryParams = {},
   ): Promise<GetQueriesRuleGroupsV1ApiResponse> {
     const message: GetQueriesRuleGroupsV1RequestMessage = {
       type: 'api',
@@ -1074,7 +1074,7 @@ export class FwmgrApiBridge {
   }
 
   async getQueriesRulesV1(
-    urlParams: GetQueriesRulesV1QueryParams = {}
+    urlParams: GetQueriesRulesV1QueryParams = {},
   ): Promise<GetQueriesRulesV1ApiResponse> {
     const message: GetQueriesRulesV1RequestMessage = {
       type: 'api',
@@ -1090,7 +1090,7 @@ export class FwmgrApiBridge {
 
   async patchEntitiesNetworkLocationsV1(
     postBody: PatchEntitiesNetworkLocationsV1PostData,
-    urlParams: PatchEntitiesNetworkLocationsV1QueryParams = {}
+    urlParams: PatchEntitiesNetworkLocationsV1QueryParams = {},
   ): Promise<PatchEntitiesNetworkLocationsV1ApiResponse> {
     const message: PatchEntitiesNetworkLocationsV1RequestMessage = {
       type: 'api',
@@ -1107,7 +1107,7 @@ export class FwmgrApiBridge {
 
   async patchEntitiesRuleGroupsV1(
     postBody: PatchEntitiesRuleGroupsV1PostData,
-    urlParams: PatchEntitiesRuleGroupsV1QueryParams = {}
+    urlParams: PatchEntitiesRuleGroupsV1QueryParams = {},
   ): Promise<PatchEntitiesRuleGroupsV1ApiResponse> {
     const message: PatchEntitiesRuleGroupsV1RequestMessage = {
       type: 'api',
@@ -1124,7 +1124,7 @@ export class FwmgrApiBridge {
 
   async postAggregatesEventsGetV1(
     postBody: PostAggregatesEventsGetV1PostData,
-    urlParams: PostAggregatesEventsGetV1QueryParams = {}
+    urlParams: PostAggregatesEventsGetV1QueryParams = {},
   ): Promise<PostAggregatesEventsGetV1ApiResponse> {
     const message: PostAggregatesEventsGetV1RequestMessage = {
       type: 'api',
@@ -1141,7 +1141,7 @@ export class FwmgrApiBridge {
 
   async postAggregatesPolicyRulesGetV1(
     postBody: PostAggregatesPolicyRulesGetV1PostData,
-    urlParams: PostAggregatesPolicyRulesGetV1QueryParams = {}
+    urlParams: PostAggregatesPolicyRulesGetV1QueryParams = {},
   ): Promise<PostAggregatesPolicyRulesGetV1ApiResponse> {
     const message: PostAggregatesPolicyRulesGetV1RequestMessage = {
       type: 'api',
@@ -1158,7 +1158,7 @@ export class FwmgrApiBridge {
 
   async postAggregatesRuleGroupsGetV1(
     postBody: PostAggregatesRuleGroupsGetV1PostData,
-    urlParams: PostAggregatesRuleGroupsGetV1QueryParams = {}
+    urlParams: PostAggregatesRuleGroupsGetV1QueryParams = {},
   ): Promise<PostAggregatesRuleGroupsGetV1ApiResponse> {
     const message: PostAggregatesRuleGroupsGetV1RequestMessage = {
       type: 'api',
@@ -1175,7 +1175,7 @@ export class FwmgrApiBridge {
 
   async postAggregatesRulesGetV1(
     postBody: PostAggregatesRulesGetV1PostData,
-    urlParams: PostAggregatesRulesGetV1QueryParams = {}
+    urlParams: PostAggregatesRulesGetV1QueryParams = {},
   ): Promise<PostAggregatesRulesGetV1ApiResponse> {
     const message: PostAggregatesRulesGetV1RequestMessage = {
       type: 'api',
@@ -1192,7 +1192,7 @@ export class FwmgrApiBridge {
 
   async postEntitiesNetworkLocationsMetadataV1(
     postBody: PostEntitiesNetworkLocationsMetadataV1PostData,
-    urlParams: PostEntitiesNetworkLocationsMetadataV1QueryParams = {}
+    urlParams: PostEntitiesNetworkLocationsMetadataV1QueryParams = {},
   ): Promise<PostEntitiesNetworkLocationsMetadataV1ApiResponse> {
     const message: PostEntitiesNetworkLocationsMetadataV1RequestMessage = {
       type: 'api',
@@ -1209,7 +1209,7 @@ export class FwmgrApiBridge {
 
   async postEntitiesNetworkLocationsPrecedenceV1(
     postBody: PostEntitiesNetworkLocationsPrecedenceV1PostData,
-    urlParams: PostEntitiesNetworkLocationsPrecedenceV1QueryParams = {}
+    urlParams: PostEntitiesNetworkLocationsPrecedenceV1QueryParams = {},
   ): Promise<PostEntitiesNetworkLocationsPrecedenceV1ApiResponse> {
     const message: PostEntitiesNetworkLocationsPrecedenceV1RequestMessage = {
       type: 'api',
@@ -1226,7 +1226,7 @@ export class FwmgrApiBridge {
 
   async postEntitiesNetworkLocationsV1(
     postBody: PostEntitiesNetworkLocationsV1PostData,
-    urlParams: PostEntitiesNetworkLocationsV1QueryParams = {}
+    urlParams: PostEntitiesNetworkLocationsV1QueryParams = {},
   ): Promise<PostEntitiesNetworkLocationsV1ApiResponse> {
     const message: PostEntitiesNetworkLocationsV1RequestMessage = {
       type: 'api',
@@ -1243,7 +1243,7 @@ export class FwmgrApiBridge {
 
   async postEntitiesOntologyV1(
     postBody: PostEntitiesOntologyV1PostData,
-    urlParams: PostEntitiesOntologyV1QueryParams = {}
+    urlParams: PostEntitiesOntologyV1QueryParams = {},
   ): Promise<PostEntitiesOntologyV1ApiResponse> {
     const message: PostEntitiesOntologyV1RequestMessage = {
       type: 'api',
@@ -1260,7 +1260,7 @@ export class FwmgrApiBridge {
 
   async postEntitiesRuleGroupsV1(
     postBody: PostEntitiesRuleGroupsV1PostData,
-    urlParams: PostEntitiesRuleGroupsV1QueryParams = {}
+    urlParams: PostEntitiesRuleGroupsV1QueryParams = {},
   ): Promise<PostEntitiesRuleGroupsV1ApiResponse> {
     const message: PostEntitiesRuleGroupsV1RequestMessage = {
       type: 'api',
@@ -1277,7 +1277,7 @@ export class FwmgrApiBridge {
 
   async postEntitiesRulesValidateFilepathV1(
     postBody: PostEntitiesRulesValidateFilepathV1PostData,
-    urlParams: PostEntitiesRulesValidateFilepathV1QueryParams = {}
+    urlParams: PostEntitiesRulesValidateFilepathV1QueryParams = {},
   ): Promise<PostEntitiesRulesValidateFilepathV1ApiResponse> {
     const message: PostEntitiesRulesValidateFilepathV1RequestMessage = {
       type: 'api',
@@ -1294,7 +1294,7 @@ export class FwmgrApiBridge {
 
   async putEntitiesNetworkLocationsV1(
     postBody: PutEntitiesNetworkLocationsV1PostData,
-    urlParams: PutEntitiesNetworkLocationsV1QueryParams = {}
+    urlParams: PutEntitiesNetworkLocationsV1QueryParams = {},
   ): Promise<PutEntitiesNetworkLocationsV1ApiResponse> {
     const message: PutEntitiesNetworkLocationsV1RequestMessage = {
       type: 'api',
@@ -1311,7 +1311,7 @@ export class FwmgrApiBridge {
 
   async putEntitiesPoliciesV2(
     postBody: PutEntitiesPoliciesV2PostData,
-    urlParams: PutEntitiesPoliciesV2QueryParams = {}
+    urlParams: PutEntitiesPoliciesV2QueryParams = {},
   ): Promise<PutEntitiesPoliciesV2ApiResponse> {
     const message: PutEntitiesPoliciesV2RequestMessage = {
       type: 'api',
