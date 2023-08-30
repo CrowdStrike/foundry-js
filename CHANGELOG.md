@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.6.1
+
+### Patch Changes
+
+- [#24](https://github.com/CrowdStrike/foundry-js/pull/24) [`d05b45e`](https://github.com/CrowdStrike/foundry-js/commit/d05b45e31e016edf09d80d25f5aa7b4fda808cc5) Thanks [@simonihmig](https://github.com/simonihmig)! - Add RTR app API endpoints
+
 ## 0.6.0
 
 ### Minor Changes
