@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.7.1
+
+### Patch Changes
+
+- [#30](https://github.com/CrowdStrike/foundry-js/pull/30) [`412d2e5`](https://github.com/CrowdStrike/foundry-js/commit/412d2e5e3f7fa294551029f7dc52ccaab699a90d) Thanks [@simonihmig](https://github.com/simonihmig)! - Fix RTR put-files endpoint
+
 ## 0.7.0
 
 ### Minor Changes
