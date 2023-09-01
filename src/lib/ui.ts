@@ -26,7 +26,7 @@ export class UI<DATA extends LocalData = LocalData> {
       throw result;
     }
 
-    return result;
+    return result as PAYLOAD;
   }
 
   public closeModal<PAYLOAD = unknown>(payload?: PAYLOAD) {
