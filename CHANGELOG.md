@@ -1,5 +1,15 @@
 # @crowdstrike/foundry-js
 
+## 0.7.0
+
+### Minor Changes
+
+- [#28](https://github.com/CrowdStrike/foundry-js/pull/28) [`6363ec2`](https://github.com/CrowdStrike/foundry-js/commit/6363ec2c5a2eb02b4b132d4313a6ea16c351853a) Thanks [@simonihmig](https://github.com/simonihmig)! - Update put-files endpoints
+
+### Patch Changes
+
+- [#26](https://github.com/CrowdStrike/foundry-js/pull/26) [`946c3a1`](https://github.com/CrowdStrike/foundry-js/commit/946c3a1e7dc8898fa76dac6535841f87af45286c) Thanks [@simonihmig](https://github.com/simonihmig)! - Fix return type of `bridge.postMessage()` using proper `ResponseFor` type
+
 ## 0.6.1
 
 ### Patch Changes
