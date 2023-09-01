@@ -1,6 +1,6 @@
 import type { ApiIdentifier } from './apis/available-apis';
 import type { ApiRequestMessage, ApiResponseMessage } from './apis/types';
-import type { PostEntitiesPutFilesGetV1ApiResponse } from './apis/remote-response';
+import type { PostEntitiesPutFilesV2ApiResponse } from './apis/remote-response';
 
 export type QueryParam = string | number | string[] | number[] | boolean;
 
@@ -190,7 +190,7 @@ export interface RtrFileUploadPayload {
   description?: string;
   comments_for_audit_log?: string;
 }
-export type RtrFileUploadResponse = PostEntitiesPutFilesGetV1ApiResponse;
+export type RtrFileUploadResponse = PostEntitiesPutFilesV2ApiResponse;
 
 export type PayloadForFileUploadType<TYPE extends FileUploadType> =
   TYPE extends 'remote-response' ? RtrFileUploadPayload : never;
