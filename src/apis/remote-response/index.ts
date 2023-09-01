@@ -44,6 +44,23 @@ export interface GetEntitiesAppCommandV1RequestMessage
   method: 'getEntitiesAppCommandV1';
 }
 
+// types for getEntitiesPutFilesV2
+
+export interface GetEntitiesPutFilesV2QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type GetEntitiesPutFilesV2ApiResponse = ApiResponsePayload;
+
+export type GetEntitiesPutFilesV2ResponseMessage =
+  BaseApiResponseMessage<GetEntitiesPutFilesV2ApiResponse>;
+
+export interface GetEntitiesPutFilesV2RequestMessage
+  extends BaseApiRequestMessage<GetEntitiesPutFilesV2QueryParams> {
+  api: RemoteResponseRequestApi;
+  method: 'getEntitiesPutFilesV2';
+}
+
 // types for getQueriesPutFilesV1
 
 export interface GetQueriesPutFilesV1QueryParams extends BaseUrlParams {
@@ -149,44 +166,24 @@ export interface PostEntitiesAppSessionsV1RequestMessage
   method: 'postEntitiesAppSessionsV1';
 }
 
-// types for postEntitiesPutFilesGetV1
+// types for postEntitiesPutFilesV2
 
-export type PostEntitiesPutFilesGetV1QueryParams = BaseUrlParams;
+export type PostEntitiesPutFilesV2QueryParams = BaseUrlParams;
 
-export type PostEntitiesPutFilesGetV1ApiResponse = ApiResponsePayload;
+export type PostEntitiesPutFilesV2ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesPutFilesGetV1PostData {}
+export interface PostEntitiesPutFilesV2PostData {}
 
-export type PostEntitiesPutFilesGetV1ResponseMessage =
-  BaseApiResponseMessage<PostEntitiesPutFilesGetV1ApiResponse>;
+export type PostEntitiesPutFilesV2ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesPutFilesV2ApiResponse>;
 
-export interface PostEntitiesPutFilesGetV1RequestMessage
+export interface PostEntitiesPutFilesV2RequestMessage
   extends BaseApiRequestMessage<
-    PostEntitiesPutFilesGetV1QueryParams,
-    PostEntitiesPutFilesGetV1PostData
+    PostEntitiesPutFilesV2QueryParams,
+    PostEntitiesPutFilesV2PostData
   > {
   api: RemoteResponseRequestApi;
-  method: 'postEntitiesPutFilesGetV1';
-}
-
-// types for postEntitiesPutFilesV1
-
-export type PostEntitiesPutFilesV1QueryParams = BaseUrlParams;
-
-export type PostEntitiesPutFilesV1ApiResponse = ApiResponsePayload;
-
-export interface PostEntitiesPutFilesV1PostData {}
-
-export type PostEntitiesPutFilesV1ResponseMessage =
-  BaseApiResponseMessage<PostEntitiesPutFilesV1ApiResponse>;
-
-export interface PostEntitiesPutFilesV1RequestMessage
-  extends BaseApiRequestMessage<
-    PostEntitiesPutFilesV1QueryParams,
-    PostEntitiesPutFilesV1PostData
-  > {
-  api: RemoteResponseRequestApi;
-  method: 'postEntitiesPutFilesV1';
+  method: 'postEntitiesPutFilesV2';
 }
 
 // types for postEntitiesScriptsGetV2
