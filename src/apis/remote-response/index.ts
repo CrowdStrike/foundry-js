@@ -166,24 +166,24 @@ export interface PostEntitiesAppSessionsV1RequestMessage
   method: 'postEntitiesAppSessionsV1';
 }
 
-// types for postEntitiesPutFilesV2
+// types for postEntitiesPutFilesV1
 
-export type PostEntitiesPutFilesV2QueryParams = BaseUrlParams;
+export type PostEntitiesPutFilesV1QueryParams = BaseUrlParams;
 
-export type PostEntitiesPutFilesV2ApiResponse = ApiResponsePayload;
+export type PostEntitiesPutFilesV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesPutFilesV2PostData {}
+export interface PostEntitiesPutFilesV1PostData {}
 
-export type PostEntitiesPutFilesV2ResponseMessage =
-  BaseApiResponseMessage<PostEntitiesPutFilesV2ApiResponse>;
+export type PostEntitiesPutFilesV1ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesPutFilesV1ApiResponse>;
 
-export interface PostEntitiesPutFilesV2RequestMessage
+export interface PostEntitiesPutFilesV1RequestMessage
   extends BaseApiRequestMessage<
-    PostEntitiesPutFilesV2QueryParams,
-    PostEntitiesPutFilesV2PostData
+    PostEntitiesPutFilesV1QueryParams,
+    PostEntitiesPutFilesV1PostData
   > {
   api: RemoteResponseRequestApi;
-  method: 'postEntitiesPutFilesV2';
+  method: 'postEntitiesPutFilesV1';
 }
 
 // types for postEntitiesScriptsGetV2
