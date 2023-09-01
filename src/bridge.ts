@@ -85,9 +85,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
     window.parent.postMessage(eventData, this.targetOrigin);
   }
 
-  // TODO: For some reason with adding more APIs, return type is not working
-  // Promise<PayloadOf<ResponseFor<REQ, DATA>>>
-  async postMessage<REQ extends RequestMessage>(message: REQ): Promise<any> {
+  async postMessage<REQ extends RequestMessage>(message: REQ) {
     return new Promise((resolve, reject) => {
       const messageId = uuidv4();
 
@@ -109,7 +107,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
           clearTimeout(timeoutTimer);
         }
 
-        resolve(result as PayloadOf<ResponseFor<REQ, DATA>>);
+        resolve(result);
       });
 
       const eventData: MessageEnvelope<REQ> = {
@@ -121,7 +119,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
       };
 
       window.parent.postMessage(eventData, this.targetOrigin);
-    });
+    }) satisfies Promise<PayloadOf<ResponseFor<REQ, DATA>>>;
   }
 
   private handleMessage = (
