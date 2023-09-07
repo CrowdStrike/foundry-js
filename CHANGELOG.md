@@ -1,5 +1,13 @@
 # @crowdstrike/foundry-js
 
+## 0.7.2
+
+### Patch Changes
+
+- [#32](https://github.com/CrowdStrike/foundry-js/pull/32) [`fd4c415`](https://github.com/CrowdStrike/foundry-js/commit/fd4c4152bf253d77644e8ca96efba4d578aa95c4) Thanks [@simonihmig](https://github.com/simonihmig)! - Add user data to local data
+
+  We now pass the user's uuid and username as local data to extensions
+
 ## 0.7.1
 
 ### Patch Changes
