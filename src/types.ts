@@ -44,7 +44,13 @@ export interface ConnectResponseMessage<DATA extends LocalData = LocalData>
 // Local data
 export type Theme = 'theme-light' | 'theme-dark';
 
+export interface UserData {
+  uuid: string;
+  username: string;
+}
+
 export interface LocalData {
+  user: UserData;
   theme: Theme;
   cid: string;
   locale: string;

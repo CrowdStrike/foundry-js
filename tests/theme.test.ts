@@ -15,6 +15,10 @@ afterEach(() => api.destroy());
 
 test('it receives initial theme', async () => {
   const data: LocalData = {
+    user: {
+      uuid: '123',
+      username: 'johndoe',
+    },
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
@@ -37,6 +41,10 @@ test('theme can update', async () => {
     message: {
       type: 'data',
       payload: {
+        user: {
+          uuid: '123',
+          username: 'johndoe',
+        },
         theme: 'theme-dark',
         cid: 'xxx',
         locale: 'en-us',
