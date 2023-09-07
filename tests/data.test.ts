@@ -16,6 +16,10 @@ afterEach(() => api.destroy());
 
 test('it receives initial data', async () => {
   const data: LocalData = {
+    user: {
+      uuid: '123',
+      username: 'johndoe',
+    },
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
@@ -38,6 +42,10 @@ test('data can update', async () => {
     message: {
       type: 'data',
       payload: {
+        user: {
+          uuid: '123',
+          username: 'johndoe',
+        },
         theme: 'theme-light',
         cid: 'xxx',
         locale: 'en-us',
@@ -52,6 +60,10 @@ test('data can update', async () => {
   window.postMessage(dataUpdate);
 
   expect(api.data, 'new data is updated on .data').toEqual({
+    user: {
+      uuid: '123',
+      username: 'johndoe',
+    },
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
@@ -72,6 +84,10 @@ test('it can subscribe to data updates', async () => {
     message: {
       type: 'data',
       payload: {
+        user: {
+          uuid: '123',
+          username: 'johndoe',
+        },
         theme: 'theme-light',
         cid: 'xxx',
         locale: 'en-us',
@@ -90,12 +106,20 @@ test('it can subscribe to data updates', async () => {
   await promise;
 
   expect(data, 'new data is provided with the data event').toEqual({
+    user: {
+      uuid: '123',
+      username: 'johndoe',
+    },
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
     some: 'stuff',
   });
   expect(api.data, 'new data is updated on .data').toEqual({
+    user: {
+      uuid: '123',
+      username: 'johndoe',
+    },
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
