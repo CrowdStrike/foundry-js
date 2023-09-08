@@ -119,7 +119,13 @@ export interface GetV1CollectionsCollectionNameObjectsObjectKeyMetadataRequestMe
 
 // types for postV1CollectionsCollectionNameObjects
 
-export type PostV1CollectionsCollectionNameObjectsQueryParams = BaseUrlParams;
+export interface PostV1CollectionsCollectionNameObjectsQueryParams
+  extends BaseUrlParams {
+  filter?: string;
+  limit?: QueryParam;
+  offset?: QueryParam;
+  sort?: QueryParam;
+}
 
 export type PostV1CollectionsCollectionNameObjectsApiResponse =
   ApiResponsePayload;
