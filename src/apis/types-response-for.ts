@@ -222,8 +222,10 @@ import type {
 } from './remote-response';
 
 import type {
-  PostEntitiesUsersGetV1RequestMessage as Request90,
-  PostEntitiesUsersGetV1ResponseMessage as Response90,
+  GetQueriesUsersV1RequestMessage as Request90,
+  PostEntitiesUsersGetV1RequestMessage as Request91,
+  GetQueriesUsersV1ResponseMessage as Response90,
+  PostEntitiesUsersGetV1ResponseMessage as Response91,
 } from './user-management';
 
 import type {
@@ -454,6 +456,8 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
   ? Response85
   : REQ extends Request90
   ? Response90
+  : REQ extends Request91
+  ? Response91
   : REQ extends Request100
   ? Response100
   : REQ extends Request101

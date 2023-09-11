@@ -13,6 +13,7 @@ import type {
   BaseApiRequestMessage,
   BaseApiResponseMessage,
   BaseUrlParams,
+  QueryParam,
 } from '../../types';
 
 export type UserManagementRequestApi = 'userManagement';
@@ -23,6 +24,26 @@ export type CommonApiResponseMessage =
 export interface CommonApiRequestMessage
   extends BaseApiRequestMessage<BaseUrlParams, unknown> {
   api: UserManagementRequestApi;
+}
+
+// types for getQueriesUsersV1
+
+export interface GetQueriesUsersV1QueryParams extends BaseUrlParams {
+  filter?: string;
+  offset?: QueryParam;
+  limit?: QueryParam;
+  sort?: QueryParam;
+}
+
+export type GetQueriesUsersV1ApiResponse = ApiResponsePayload;
+
+export type GetQueriesUsersV1ResponseMessage =
+  BaseApiResponseMessage<GetQueriesUsersV1ApiResponse>;
+
+export interface GetQueriesUsersV1RequestMessage
+  extends BaseApiRequestMessage<GetQueriesUsersV1QueryParams> {
+  api: UserManagementRequestApi;
+  method: 'getQueriesUsersV1';
 }
 
 // types for postEntitiesUsersGetV1
@@ -48,10 +69,12 @@ export interface PostEntitiesUsersGetV1RequestMessage
 // general types
 
 export type UserManagementApiRequestMessage =
-  PostEntitiesUsersGetV1RequestMessage;
+  | GetQueriesUsersV1RequestMessage
+  | PostEntitiesUsersGetV1RequestMessage;
 
 export type UserManagementApiResponseMessage =
-  PostEntitiesUsersGetV1ResponseMessage;
+  | GetQueriesUsersV1ResponseMessage
+  | PostEntitiesUsersGetV1ResponseMessage;
 
 export class UserManagementApiBridge {
   private bridge;
@@ -62,6 +85,21 @@ export class UserManagementApiBridge {
 
   getBridge() {
     return this.bridge;
+  }
+
+  async getQueriesUsersV1(
+    urlParams: GetQueriesUsersV1QueryParams = {},
+  ): Promise<GetQueriesUsersV1ApiResponse> {
+    const message: GetQueriesUsersV1RequestMessage = {
+      type: 'api',
+      api: 'userManagement',
+      method: 'getQueriesUsersV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
   }
 
   async postEntitiesUsersGetV1(
