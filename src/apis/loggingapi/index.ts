@@ -33,7 +33,9 @@ export interface GetEntitiesSavedSearchesExecuteV1QueryParams
   version?: QueryParam;
   jobId: QueryParam;
   detailed?: QueryParam;
+  metadata?: QueryParam;
   offset?: QueryParam;
+  limit?: QueryParam;
 }
 
 export type GetEntitiesSavedSearchesExecuteV1ApiResponse = ApiResponsePayload;
@@ -49,8 +51,10 @@ export interface GetEntitiesSavedSearchesExecuteV1RequestMessage
 
 // types for postEntitiesSavedSearchesDynamicExecuteV1
 
-export type PostEntitiesSavedSearchesDynamicExecuteV1QueryParams =
-  BaseUrlParams;
+export interface PostEntitiesSavedSearchesDynamicExecuteV1QueryParams
+  extends BaseUrlParams {
+  includeTestData?: QueryParam;
+}
 
 export type PostEntitiesSavedSearchesDynamicExecuteV1ApiResponse =
   ApiResponsePayload;
