@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.7.3
+
+### Patch Changes
+
+- [#34](https://github.com/CrowdStrike/foundry-js/pull/34) [`be06ec3`](https://github.com/CrowdStrike/foundry-js/commit/be06ec3400dc335b92249f741f72c6b40d467aba) Thanks [@ysvahn](https://github.com/ysvahn)! - Exposing User Management API (GET)
+
 ## 0.7.2
 
 ### Patch Changes
