@@ -34,6 +34,10 @@ import {
   RemoteResponseApiResponseMessage,
 } from './remote-response';
 import {
+  UserManagementApiRequestMessage,
+  UserManagementApiResponseMessage,
+} from './user-management';
+import {
   WorkflowsApiRequestMessage,
   WorkflowsApiResponseMessage,
 } from './workflows';
@@ -57,6 +61,8 @@ export {
   PluginsApiResponseMessage,
   RemoteResponseApiRequestMessage,
   RemoteResponseApiResponseMessage,
+  UserManagementApiRequestMessage,
+  UserManagementApiResponseMessage,
   WorkflowsApiRequestMessage,
   WorkflowsApiResponseMessage,
   CustomobjectsApiRequestMessage,
@@ -77,6 +83,7 @@ export type ApiRequestMessage =
   | MitreApiRequestMessage
   | PluginsApiRequestMessage
   | RemoteResponseApiRequestMessage
+  | UserManagementApiRequestMessage
   | WorkflowsApiRequestMessage
   | CustomobjectsApiRequestMessage
   | FaasGatewayApiRequestMessage
@@ -92,6 +99,7 @@ export type ApiResponseMessage =
   | MitreApiResponseMessage
   | PluginsApiResponseMessage
   | RemoteResponseApiResponseMessage
+  | UserManagementApiResponseMessage
   | WorkflowsApiResponseMessage
   | CustomobjectsApiResponseMessage
   | FaasGatewayApiResponseMessage

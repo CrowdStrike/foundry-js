@@ -222,43 +222,50 @@ import type {
 } from './remote-response';
 
 import type {
-  GetEntitiesExecutionResultsV1RequestMessage as Request90,
-  PostEntitiesExecuteV1RequestMessage as Request91,
-  PostEntitiesExecutionActionsV1RequestMessage as Request92,
-  GetEntitiesExecutionResultsV1ResponseMessage as Response90,
-  PostEntitiesExecuteV1ResponseMessage as Response91,
-  PostEntitiesExecutionActionsV1ResponseMessage as Response92,
+  GetQueriesUsersV1RequestMessage as Request90,
+  PostEntitiesUsersGetV1RequestMessage as Request91,
+  GetQueriesUsersV1ResponseMessage as Response90,
+  PostEntitiesUsersGetV1ResponseMessage as Response91,
+} from './user-management';
+
+import type {
+  GetEntitiesExecutionResultsV1RequestMessage as Request100,
+  PostEntitiesExecuteV1RequestMessage as Request101,
+  PostEntitiesExecutionActionsV1RequestMessage as Request102,
+  GetEntitiesExecutionResultsV1ResponseMessage as Response100,
+  PostEntitiesExecuteV1ResponseMessage as Response101,
+  PostEntitiesExecutionActionsV1ResponseMessage as Response102,
 } from './workflows';
 
 import type {
-  DeleteV1CollectionsCollectionNameObjectsObjectKeyRequestMessage as Request100,
-  GetV1CollectionsRequestMessage as Request101,
-  GetV1CollectionsCollectionNameObjectsRequestMessage as Request102,
-  GetV1CollectionsCollectionNameObjectsObjectKeyRequestMessage as Request103,
-  GetV1CollectionsCollectionNameObjectsObjectKeyMetadataRequestMessage as Request104,
-  PostV1CollectionsCollectionNameObjectsRequestMessage as Request105,
-  PutV1CollectionsCollectionNameObjectsObjectKeyRequestMessage as Request106,
-  DeleteV1CollectionsCollectionNameObjectsObjectKeyResponseMessage as Response100,
-  GetV1CollectionsResponseMessage as Response101,
-  GetV1CollectionsCollectionNameObjectsResponseMessage as Response102,
-  GetV1CollectionsCollectionNameObjectsObjectKeyResponseMessage as Response103,
-  GetV1CollectionsCollectionNameObjectsObjectKeyMetadataResponseMessage as Response104,
-  PostV1CollectionsCollectionNameObjectsResponseMessage as Response105,
-  PutV1CollectionsCollectionNameObjectsObjectKeyResponseMessage as Response106,
+  DeleteV1CollectionsCollectionNameObjectsObjectKeyRequestMessage as Request110,
+  GetV1CollectionsRequestMessage as Request111,
+  GetV1CollectionsCollectionNameObjectsRequestMessage as Request112,
+  GetV1CollectionsCollectionNameObjectsObjectKeyRequestMessage as Request113,
+  GetV1CollectionsCollectionNameObjectsObjectKeyMetadataRequestMessage as Request114,
+  PostV1CollectionsCollectionNameObjectsRequestMessage as Request115,
+  PutV1CollectionsCollectionNameObjectsObjectKeyRequestMessage as Request116,
+  DeleteV1CollectionsCollectionNameObjectsObjectKeyResponseMessage as Response110,
+  GetV1CollectionsResponseMessage as Response111,
+  GetV1CollectionsCollectionNameObjectsResponseMessage as Response112,
+  GetV1CollectionsCollectionNameObjectsObjectKeyResponseMessage as Response113,
+  GetV1CollectionsCollectionNameObjectsObjectKeyMetadataResponseMessage as Response114,
+  PostV1CollectionsCollectionNameObjectsResponseMessage as Response115,
+  PutV1CollectionsCollectionNameObjectsObjectKeyResponseMessage as Response116,
 } from './customobjects';
 
 import type {
-  GetEntitiesExecutionV1RequestMessage as Request110,
-  PostEntitiesExecutionV1RequestMessage as Request111,
-  GetEntitiesExecutionV1ResponseMessage as Response110,
-  PostEntitiesExecutionV1ResponseMessage as Response111,
+  GetEntitiesExecutionV1RequestMessage as Request120,
+  PostEntitiesExecutionV1RequestMessage as Request121,
+  GetEntitiesExecutionV1ResponseMessage as Response120,
+  PostEntitiesExecutionV1ResponseMessage as Response121,
 } from './faas-gateway';
 
 import type {
-  GetEntitiesSavedSearchesExecuteV1RequestMessage as Request120,
-  PostEntitiesSavedSearchesExecuteV1RequestMessage as Request121,
-  GetEntitiesSavedSearchesExecuteV1ResponseMessage as Response120,
-  PostEntitiesSavedSearchesExecuteV1ResponseMessage as Response121,
+  GetEntitiesSavedSearchesExecuteV1RequestMessage as Request130,
+  PostEntitiesSavedSearchesExecuteV1RequestMessage as Request131,
+  GetEntitiesSavedSearchesExecuteV1ResponseMessage as Response130,
+  PostEntitiesSavedSearchesExecuteV1ResponseMessage as Response131,
 } from './loggingapi';
 
 export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
@@ -451,28 +458,32 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
   ? Response90
   : REQ extends Request91
   ? Response91
-  : REQ extends Request92
-  ? Response92
   : REQ extends Request100
   ? Response100
   : REQ extends Request101
   ? Response101
   : REQ extends Request102
   ? Response102
-  : REQ extends Request103
-  ? Response103
-  : REQ extends Request104
-  ? Response104
-  : REQ extends Request105
-  ? Response105
-  : REQ extends Request106
-  ? Response106
   : REQ extends Request110
   ? Response110
   : REQ extends Request111
   ? Response111
+  : REQ extends Request112
+  ? Response112
+  : REQ extends Request113
+  ? Response113
+  : REQ extends Request114
+  ? Response114
+  : REQ extends Request115
+  ? Response115
+  : REQ extends Request116
+  ? Response116
   : REQ extends Request120
   ? Response120
   : REQ extends Request121
   ? Response121
+  : REQ extends Request130
+  ? Response130
+  : REQ extends Request131
+  ? Response131
   : unknown;

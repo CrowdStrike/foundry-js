@@ -20,6 +20,7 @@ import { LoggingapiApiBridge } from './loggingapi';
 import { MitreApiBridge } from './mitre';
 import { PluginsApiBridge } from './plugins';
 import { RemoteResponseApiBridge } from './remote-response';
+import { UserManagementApiBridge } from './user-management';
 import { WorkflowsApiBridge } from './workflows';
 
 import { assertConnection } from '../utils';
@@ -90,6 +91,13 @@ export default abstract class FalconPublicApis {
     assertConnection(this);
 
     return new RemoteResponseApiBridge(this.bridge);
+  }
+
+  @Memoize()
+  get userManagement(): UserManagementApiBridge {
+    assertConnection(this);
+
+    return new UserManagementApiBridge(this.bridge);
   }
 
   @Memoize()

@@ -16,6 +16,7 @@ export type ApiIdentifier =
   | 'mitre'
   | 'plugins'
   | 'remoteResponse'
+  | 'userManagement'
   | 'workflows'
   | 'customobjects'
   | 'faasGateway'
