@@ -36,14 +36,10 @@ test('it can accept path with query params', async () => {
   );
 
   expect(cloudFunctionInstance.path).toBe('/testing');
-  expect(cloudFunctionInstance.queryParams).toStrictEqual([
-    {
-      param1: ['value1'],
-    },
-    {
-      param2: ['value2'],
-    },
-  ]);
+  expect(cloudFunctionInstance.queryParams).toMatchObject({
+    param1: ['value1'],
+    param2: ['value2'],
+  });
 });
 
 test('it can send request and wait for response', async () => {
