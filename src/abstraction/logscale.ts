@@ -35,4 +35,13 @@ export class Logscale<DATA extends LocalData = LocalData> {
       },
     });
   }
+  public async savedQuery(data: LogscaleRequestMessage['payload']['data']) {
+    return this.falcon.bridge.postMessage<LogscaleRequestMessage>({
+      type: 'loggingapi',
+      payload: {
+        type: 'saved-query-execute',
+        data,
+      },
+    });
+  }
 }
