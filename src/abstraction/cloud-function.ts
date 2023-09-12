@@ -1,10 +1,5 @@
 import type FalconApi from '../api';
-import type { LocalData } from '../types';
-
-interface FunctionDefinition {
-  id: string;
-  version: number;
-}
+import type { CloudFunctionDefinition, LocalData } from '../types';
 
 interface ExecuteParameters {
   path: string;
@@ -45,7 +40,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
 
   constructor(
     private readonly falcon: FalconApi<DATA>,
-    private readonly definition: FunctionDefinition,
+    private readonly definition: CloudFunctionDefinition,
   ) {}
 
   private async execute({
@@ -55,9 +50,16 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     body,
     headers,
   }: ExecuteParameters) {
-    const result = await this.falcon.faasGateway.postEntitiesExecutionV1({
+    let functionDefinition = 'id' in this.definition ? {
       function_id: this.definition.id,
       function_version: this.definition.version,
+    } : {
+      function_name: this.definition.name,
+      function_version: this.definition.version,
+    };
+
+    const result = await this.falcon.faasGateway.postEntitiesExecutionV1({
+      ...functionDefinition,
       payload: {
         path,
         method,
