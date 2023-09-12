@@ -16,7 +16,10 @@ afterEach(() => api.destroy());
 test('it can call getScriptIds', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
 
-  api.remoteResponse.getEntitiesAppCommandV1({ cloudRequestId: '123', sequenceId: '456' });
+  api.remoteResponse.getEntitiesAppCommandV1({
+    cloudRequestId: '123',
+    sequenceId: '456',
+  });
 
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
@@ -28,8 +31,8 @@ test('it can call getScriptIds', async () => {
         payload: {
           params: {
             cloudRequestId: '123',
-            sequenceId: '456'
-          }
+            sequenceId: '456',
+          },
         },
       },
       meta: {

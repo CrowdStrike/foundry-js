@@ -14,11 +14,11 @@ beforeEach(async () => {
 
   const consoleTestData = {
     app: {
-      id: 'testid'
+      id: 'testid',
     },
     user: {
       username: 'test-username',
-      uuid: '1c67a96ea9f147fb87abb7712d45602f'
+      uuid: '1c67a96ea9f147fb87abb7712d45602f',
     },
     theme: 'theme-dark',
     locale: 'en-us',

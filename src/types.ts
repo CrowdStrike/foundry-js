@@ -79,47 +79,55 @@ export interface ResizeMessage extends BaseMessage {
 
 // Cloud function
 
-export type CloudFunctionDefinition = {
-  id: string;
-  version?: number;
-} | {
-  name: string;
-  version?: number;
-}
+export type CloudFunctionDefinition =
+  | {
+      id: string;
+      version?: number;
+    }
+  | {
+      name: string;
+      version?: number;
+    };
 
 // Logscale
 
 export interface LogscaleRequestMessage extends BaseMessage {
   type: 'loggingapi';
-  payload: {
-    type: 'ingest' | 'dynamic-execute';
-    data: {
-      id: string;
-      version?: string;
-      [key: string]: unknown;
-    } | {
-      name: string;
-      version?: string;
-      [key: string]: unknown;
-    };
-    tag?: string;
-    tagSource?: string;
-    testData?: boolean;
-  } | {
-    type: 'saved-query-execute';
-    data: {
-      id: string;
-      version?: string;
-      [key: string]: unknown;
-    } | {
-      name: string;
-      version?: string;
-      [key: string]: unknown;
-    };
-    tag?: string;
-    tagSource?: string;
-    testData?: boolean;
-  };
+  payload:
+    | {
+        type: 'ingest' | 'dynamic-execute';
+        data:
+          | {
+              id: string;
+              version?: string;
+              [key: string]: unknown;
+            }
+          | {
+              name: string;
+              version?: string;
+              [key: string]: unknown;
+            };
+        tag?: string;
+        tagSource?: string;
+        testData?: boolean;
+      }
+    | {
+        type: 'saved-query-execute';
+        data:
+          | {
+              id: string;
+              version?: string;
+              [key: string]: unknown;
+            }
+          | {
+              name: string;
+              version?: string;
+              [key: string]: unknown;
+            };
+        tag?: string;
+        tagSource?: string;
+        testData?: boolean;
+      };
 }
 
 export interface LogscaleResponseMessage extends BaseMessage {

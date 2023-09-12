@@ -45,19 +45,17 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     private readonly definition: CloudFunctionDefinition,
   ) {}
 
-  private async execute({
-    path,
-    method,
-    body,
-    params,
-  }: ExecuteParameters) {
-    let functionDefinition = 'id' in this.definition ? {
-      function_id: this.definition.id,
-      function_version: this.definition.version,
-    } : {
-      function_name: this.definition.name,
-      function_version: this.definition.version,
-    };
+  private async execute({ path, method, body, params }: ExecuteParameters) {
+    const functionDefinition =
+      'id' in this.definition
+        ? {
+            function_id: this.definition.id,
+            function_version: this.definition.version,
+          }
+        : {
+            function_name: this.definition.name,
+            function_version: this.definition.version,
+          };
 
     const result = await this.falcon.faasGateway.postEntitiesExecutionV1({
       ...functionDefinition,
@@ -136,8 +134,9 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
       (acc, [key, value]) => ({
         ...acc,
         [key]: [value],
-      })
-    , {} as Params['query']);
+      }),
+      {} as Params['query'],
+    );
 
     return {
       path,
