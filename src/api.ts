@@ -99,7 +99,7 @@ export default class FalconApi<
     document.documentElement.classList.remove(inactiveTheme);
   }
 
-  cloudFunction(definition: CloudFunctionDefinition ) {
+  cloudFunction(definition: CloudFunctionDefinition) {
     assertConnection(this);
 
     const cf = new CloudFunction(this, definition);

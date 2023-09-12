@@ -52,7 +52,12 @@ export class Collection<DATA extends LocalData = LocalData> {
     });
   }
 
-  public async search({ filter, offset, sort, limit }: CollectionSearchDefinition) {
+  public async search({
+    filter,
+    offset,
+    sort,
+    limit,
+  }: CollectionSearchDefinition) {
     return this.falcon.bridge.postMessage<CollectionRequestMessage>({
       type: 'collection',
       payload: {
