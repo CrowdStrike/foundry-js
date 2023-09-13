@@ -12,6 +12,7 @@ import { UI } from './lib/ui';
 import { assertConnection } from './utils';
 import type {
   BroadcastMessage,
+  CloudFunctionDefinition,
   DataUpdateMessage,
   FileUploadType,
   LocalData,
@@ -56,6 +57,10 @@ export default class FalconApi<
     this.isConnected = true;
   }
 
+  public get appId() {
+    return this.data?.app.id;
+  }
+
   public sendBroadcast(payload: unknown) {
     this.bridge.sendUnidirectionalMessage({ type: 'broadcast', payload });
   }
@@ -98,10 +103,10 @@ export default class FalconApi<
     document.documentElement.classList.remove(inactiveTheme);
   }
 
-  cloudFunction({ id, version }: { id: string; version: number }) {
+  cloudFunction(definition: CloudFunctionDefinition) {
     assertConnection(this);
 
-    const cf = new CloudFunction(this, { id, version });
+    const cf = new CloudFunction(this, definition);
 
     this.cloudFunctions.push(cf);
 
@@ -113,11 +118,18 @@ export default class FalconApi<
     operationId,
   }: {
     operationId: string;
-    definitionId: string;
+    definitionId?: string;
   }) {
     assertConnection(this);
 
-    const cf = new ApiIntegration(this, { operationId, definitionId });
+    if (!this.data) {
+      throw Error('Data from console is missing');
+    }
+
+    const cf = new ApiIntegration(this, {
+      operationId,
+      definitionId: definitionId ?? this.data?.app.id,
+    });
 
     this.apiIntegrations.push(cf);
 

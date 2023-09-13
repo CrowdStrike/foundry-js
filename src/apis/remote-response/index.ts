@@ -81,26 +81,6 @@ export interface GetQueriesPutFilesV1RequestMessage
   method: 'getQueriesPutFilesV1';
 }
 
-// types for getQueriesScriptsV1
-
-export interface GetQueriesScriptsV1QueryParams extends BaseUrlParams {
-  filter?: string;
-  limit?: QueryParam;
-  offset?: QueryParam;
-  sort?: QueryParam;
-}
-
-export type GetQueriesScriptsV1ApiResponse = ApiResponsePayload;
-
-export type GetQueriesScriptsV1ResponseMessage =
-  BaseApiResponseMessage<GetQueriesScriptsV1ApiResponse>;
-
-export interface GetQueriesScriptsV1RequestMessage
-  extends BaseApiRequestMessage<GetQueriesScriptsV1QueryParams> {
-  api: RemoteResponseRequestApi;
-  method: 'getQueriesScriptsV1';
-}
-
 // types for postEntitiesAppCommandV1
 
 export interface PostEntitiesAppCommandV1QueryParams extends BaseUrlParams {
@@ -186,43 +166,19 @@ export interface PostEntitiesPutFilesV1RequestMessage
   method: 'postEntitiesPutFilesV1';
 }
 
-// types for postEntitiesScriptsGetV2
-
-export type PostEntitiesScriptsGetV2QueryParams = BaseUrlParams;
-
-export type PostEntitiesScriptsGetV2ApiResponse = ApiResponsePayload;
-
-export interface PostEntitiesScriptsGetV2PostData {}
-
-export type PostEntitiesScriptsGetV2ResponseMessage =
-  BaseApiResponseMessage<PostEntitiesScriptsGetV2ApiResponse>;
-
-export interface PostEntitiesScriptsGetV2RequestMessage
-  extends BaseApiRequestMessage<
-    PostEntitiesScriptsGetV2QueryParams,
-    PostEntitiesScriptsGetV2PostData
-  > {
-  api: RemoteResponseRequestApi;
-  method: 'postEntitiesScriptsGetV2';
-}
-
 // general types
 
 export type RemoteResponseApiRequestMessage =
   | GetEntitiesAppCommandV1RequestMessage
-  | GetQueriesScriptsV1RequestMessage
   | PostEntitiesAppCommandV1RequestMessage
   | PostEntitiesAppRefreshSessionsV1RequestMessage
-  | PostEntitiesAppSessionsV1RequestMessage
-  | PostEntitiesScriptsGetV2RequestMessage;
+  | PostEntitiesAppSessionsV1RequestMessage;
 
 export type RemoteResponseApiResponseMessage =
   | GetEntitiesAppCommandV1ResponseMessage
-  | GetQueriesScriptsV1ResponseMessage
   | PostEntitiesAppCommandV1ResponseMessage
   | PostEntitiesAppRefreshSessionsV1ResponseMessage
-  | PostEntitiesAppSessionsV1ResponseMessage
-  | PostEntitiesScriptsGetV2ResponseMessage;
+  | PostEntitiesAppSessionsV1ResponseMessage;
 
 export class RemoteResponseApiBridge {
   private bridge;
@@ -242,21 +198,6 @@ export class RemoteResponseApiBridge {
       type: 'api',
       api: 'remoteResponse',
       method: 'getEntitiesAppCommandV1',
-      payload: {
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async getScriptIds(
-    urlParams: GetQueriesScriptsV1QueryParams = {},
-  ): Promise<GetQueriesScriptsV1ApiResponse> {
-    const message: GetQueriesScriptsV1RequestMessage = {
-      type: 'api',
-      api: 'remoteResponse',
-      method: 'getQueriesScriptsV1',
       payload: {
         params: urlParams,
       },
@@ -307,23 +248,6 @@ export class RemoteResponseApiBridge {
       type: 'api',
       api: 'remoteResponse',
       method: 'postEntitiesAppSessionsV1',
-      payload: {
-        body: postBody,
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async getScriptEntities(
-    postBody: PostEntitiesScriptsGetV2PostData,
-    urlParams: PostEntitiesScriptsGetV2QueryParams = {},
-  ): Promise<PostEntitiesScriptsGetV2ApiResponse> {
-    const message: PostEntitiesScriptsGetV2RequestMessage = {
-      type: 'api',
-      api: 'remoteResponse',
-      method: 'postEntitiesScriptsGetV2',
       payload: {
         body: postBody,
         params: urlParams,

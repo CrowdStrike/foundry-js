@@ -12,7 +12,20 @@ beforeEach(async () => {
   api = new FalconApi();
   window.parent = new Window();
 
-  await connectApi(api);
+  const consoleTestData = {
+    app: {
+      id: 'testid',
+    },
+    user: {
+      username: 'test-username',
+      uuid: '1c67a96ea9f147fb87abb7712d45602f',
+    },
+    theme: 'theme-dark',
+    locale: 'en-us',
+    cid: 'test-id',
+  } as const;
+
+  await connectApi(api, consoleTestData);
 
   apiIntegration = api.apiIntegration({
     definitionId: 'DefinitionId',

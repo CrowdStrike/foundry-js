@@ -6,9 +6,10 @@ interface CollectionDefinition {
 }
 
 interface CollectionSearchDefinition {
-  startKey: string;
-  endKey: string;
-  limit: string;
+  filter: string;
+  offset: string;
+  sort: string;
+  limit: number;
 }
 
 export class Collection<DATA extends LocalData = LocalData> {
@@ -51,14 +52,20 @@ export class Collection<DATA extends LocalData = LocalData> {
     });
   }
 
-  public async search({ startKey, endKey, limit }: CollectionSearchDefinition) {
+  public async search({
+    filter,
+    offset,
+    sort,
+    limit,
+  }: CollectionSearchDefinition) {
     return this.falcon.bridge.postMessage<CollectionRequestMessage>({
       type: 'collection',
       payload: {
         type: 'search',
-        startKey,
-        endKey,
+        filter,
         limit,
+        offset,
+        sort,
         collection: this.definition.collection,
       },
     });

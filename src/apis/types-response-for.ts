@@ -208,17 +208,13 @@ import type {
 
 import type {
   GetEntitiesAppCommandV1RequestMessage as Request80,
-  GetQueriesScriptsV1RequestMessage as Request81,
-  PostEntitiesAppCommandV1RequestMessage as Request82,
-  PostEntitiesAppRefreshSessionsV1RequestMessage as Request83,
-  PostEntitiesAppSessionsV1RequestMessage as Request84,
-  PostEntitiesScriptsGetV2RequestMessage as Request85,
+  PostEntitiesAppCommandV1RequestMessage as Request81,
+  PostEntitiesAppRefreshSessionsV1RequestMessage as Request82,
+  PostEntitiesAppSessionsV1RequestMessage as Request83,
   GetEntitiesAppCommandV1ResponseMessage as Response80,
-  GetQueriesScriptsV1ResponseMessage as Response81,
-  PostEntitiesAppCommandV1ResponseMessage as Response82,
-  PostEntitiesAppRefreshSessionsV1ResponseMessage as Response83,
-  PostEntitiesAppSessionsV1ResponseMessage as Response84,
-  PostEntitiesScriptsGetV2ResponseMessage as Response85,
+  PostEntitiesAppCommandV1ResponseMessage as Response81,
+  PostEntitiesAppRefreshSessionsV1ResponseMessage as Response82,
+  PostEntitiesAppSessionsV1ResponseMessage as Response83,
 } from './remote-response';
 
 import type {
@@ -450,10 +446,6 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
   ? Response82
   : REQ extends Request83
   ? Response83
-  : REQ extends Request84
-  ? Response84
-  : REQ extends Request85
-  ? Response85
   : REQ extends Request90
   ? Response90
   : REQ extends Request91
