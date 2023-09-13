@@ -8,25 +8,13 @@
 
 import { ActorsApiRequestMessage, ActorsApiResponseMessage } from './actors';
 import { AlertsApiRequestMessage, AlertsApiResponseMessage } from './alerts';
-import {
-  CustomobjectsApiRequestMessage,
-  CustomobjectsApiResponseMessage,
-} from './customobjects';
 import { DetectsApiRequestMessage, DetectsApiResponseMessage } from './detects';
 import { DevicesApiRequestMessage, DevicesApiResponseMessage } from './devices';
-import {
-  FaasGatewayApiRequestMessage,
-  FaasGatewayApiResponseMessage,
-} from './faas-gateway';
 import { FwmgrApiRequestMessage, FwmgrApiResponseMessage } from './fwmgr';
 import {
   IncidentsApiRequestMessage,
   IncidentsApiResponseMessage,
 } from './incidents';
-import {
-  LoggingapiApiRequestMessage,
-  LoggingapiApiResponseMessage,
-} from './loggingapi';
 import { MitreApiRequestMessage, MitreApiResponseMessage } from './mitre';
 import { PluginsApiRequestMessage, PluginsApiResponseMessage } from './plugins';
 import {
@@ -41,6 +29,18 @@ import {
   WorkflowsApiRequestMessage,
   WorkflowsApiResponseMessage,
 } from './workflows';
+import {
+  CustomobjectsApiRequestMessage,
+  CustomobjectsApiResponseMessage,
+} from './customobjects';
+import {
+  FaasGatewayApiRequestMessage,
+  FaasGatewayApiResponseMessage,
+} from './faas-gateway';
+import {
+  LoggingapiApiRequestMessage,
+  LoggingapiApiResponseMessage,
+} from './loggingapi';
 
 export {
   ActorsApiRequestMessage,

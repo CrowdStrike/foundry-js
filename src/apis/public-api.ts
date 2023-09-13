@@ -10,18 +10,18 @@ import { Memoize } from 'typescript-memoize';
 
 import { ActorsApiBridge } from './actors';
 import { AlertsApiBridge } from './alerts';
-import { CustomobjectsApiBridge } from './customobjects';
 import { DetectsApiBridge } from './detects';
 import { DevicesApiBridge } from './devices';
-import { FaasGatewayApiBridge } from './faas-gateway';
 import { FwmgrApiBridge } from './fwmgr';
 import { IncidentsApiBridge } from './incidents';
-import { LoggingapiApiBridge } from './loggingapi';
 import { MitreApiBridge } from './mitre';
 import { PluginsApiBridge } from './plugins';
 import { RemoteResponseApiBridge } from './remote-response';
 import { UserManagementApiBridge } from './user-management';
 import { WorkflowsApiBridge } from './workflows';
+import { CustomobjectsApiBridge } from './customobjects';
+import { FaasGatewayApiBridge } from './faas-gateway';
+import { LoggingapiApiBridge } from './loggingapi';
 
 import { assertConnection } from '../utils';
 import type { Bridge } from '../bridge';
