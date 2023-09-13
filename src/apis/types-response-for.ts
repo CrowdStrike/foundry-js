@@ -60,46 +60,48 @@ import type {
 import type {
   DeleteEntitiesGroupsV1RequestMessage as Request30,
   GetAggregatesBucketsV1RequestMessage as Request31,
-  PatchEntitiesDevicesTagsV2RequestMessage as Request310,
-  PatchEntitiesGroupsV1RequestMessage as Request311,
-  PostAggregatesDevicesGetV1RequestMessage as Request312,
-  PostCombinedDevicesLoginHistoryV1RequestMessage as Request313,
-  PostEntitiesDevicesActionsV4RequestMessage as Request314,
-  PostEntitiesDevicesHiddenActionsV4RequestMessage as Request315,
-  PostEntitiesDevicesReportsV1RequestMessage as Request316,
-  PostEntitiesDevicesV2RequestMessage as Request317,
-  PostEntitiesGroupActionsV1RequestMessage as Request318,
-  PostEntitiesGroupsV1RequestMessage as Request319,
+  GetQueriesGroupsV1RequestMessage as Request310,
+  PatchEntitiesDevicesTagsV2RequestMessage as Request311,
+  PatchEntitiesGroupsV1RequestMessage as Request312,
+  PostAggregatesDevicesGetV1RequestMessage as Request313,
+  PostCombinedDevicesLoginHistoryV1RequestMessage as Request314,
+  PostEntitiesDevicesActionsV4RequestMessage as Request315,
+  PostEntitiesDevicesHiddenActionsV4RequestMessage as Request316,
+  PostEntitiesDevicesReportsV1RequestMessage as Request317,
+  PostEntitiesDevicesV2RequestMessage as Request318,
+  PostEntitiesGroupActionsV1RequestMessage as Request319,
   GetAggregatesTagPrefixCountsV1RequestMessage as Request32,
-  PostEntitiesReleasesV1RequestMessage as Request320,
+  PostEntitiesGroupsV1RequestMessage as Request320,
+  PostEntitiesReleasesV1RequestMessage as Request321,
   GetEntitiesGroupsV1RequestMessage as Request33,
   GetEntitiesReleasesV1RequestMessage as Request34,
   GetEntitiesRespondV1RequestMessage as Request35,
   GetQueriesAvailableGroupsV1RequestMessage as Request36,
   GetQueriesDevicesHiddenV2RequestMessage as Request37,
-  GetQueriesDevicesV2RequestMessage as Request38,
-  GetQueriesGroupsV1RequestMessage as Request39,
+  GetQueriesDevicesV1RequestMessage as Request38,
+  GetQueriesDevicesV2RequestMessage as Request39,
   DeleteEntitiesGroupsV1ResponseMessage as Response30,
   GetAggregatesBucketsV1ResponseMessage as Response31,
-  PatchEntitiesDevicesTagsV2ResponseMessage as Response310,
-  PatchEntitiesGroupsV1ResponseMessage as Response311,
-  PostAggregatesDevicesGetV1ResponseMessage as Response312,
-  PostCombinedDevicesLoginHistoryV1ResponseMessage as Response313,
-  PostEntitiesDevicesActionsV4ResponseMessage as Response314,
-  PostEntitiesDevicesHiddenActionsV4ResponseMessage as Response315,
-  PostEntitiesDevicesReportsV1ResponseMessage as Response316,
-  PostEntitiesDevicesV2ResponseMessage as Response317,
-  PostEntitiesGroupActionsV1ResponseMessage as Response318,
-  PostEntitiesGroupsV1ResponseMessage as Response319,
+  GetQueriesGroupsV1ResponseMessage as Response310,
+  PatchEntitiesDevicesTagsV2ResponseMessage as Response311,
+  PatchEntitiesGroupsV1ResponseMessage as Response312,
+  PostAggregatesDevicesGetV1ResponseMessage as Response313,
+  PostCombinedDevicesLoginHistoryV1ResponseMessage as Response314,
+  PostEntitiesDevicesActionsV4ResponseMessage as Response315,
+  PostEntitiesDevicesHiddenActionsV4ResponseMessage as Response316,
+  PostEntitiesDevicesReportsV1ResponseMessage as Response317,
+  PostEntitiesDevicesV2ResponseMessage as Response318,
+  PostEntitiesGroupActionsV1ResponseMessage as Response319,
   GetAggregatesTagPrefixCountsV1ResponseMessage as Response32,
-  PostEntitiesReleasesV1ResponseMessage as Response320,
+  PostEntitiesGroupsV1ResponseMessage as Response320,
+  PostEntitiesReleasesV1ResponseMessage as Response321,
   GetEntitiesGroupsV1ResponseMessage as Response33,
   GetEntitiesReleasesV1ResponseMessage as Response34,
   GetEntitiesRespondV1ResponseMessage as Response35,
   GetQueriesAvailableGroupsV1ResponseMessage as Response36,
   GetQueriesDevicesHiddenV2ResponseMessage as Response37,
-  GetQueriesDevicesV2ResponseMessage as Response38,
-  GetQueriesGroupsV1ResponseMessage as Response39,
+  GetQueriesDevicesV1ResponseMessage as Response38,
+  GetQueriesDevicesV2ResponseMessage as Response39,
 } from './devices';
 
 import type {
@@ -208,13 +210,17 @@ import type {
 
 import type {
   GetEntitiesAppCommandV1RequestMessage as Request80,
-  PostEntitiesAppCommandV1RequestMessage as Request81,
-  PostEntitiesAppRefreshSessionsV1RequestMessage as Request82,
-  PostEntitiesAppSessionsV1RequestMessage as Request83,
+  GetQueriesScriptsV1RequestMessage as Request81,
+  PostEntitiesAppCommandV1RequestMessage as Request82,
+  PostEntitiesAppRefreshSessionsV1RequestMessage as Request83,
+  PostEntitiesAppSessionsV1RequestMessage as Request84,
+  PostEntitiesScriptsGetV2RequestMessage as Request85,
   GetEntitiesAppCommandV1ResponseMessage as Response80,
-  PostEntitiesAppCommandV1ResponseMessage as Response81,
-  PostEntitiesAppRefreshSessionsV1ResponseMessage as Response82,
-  PostEntitiesAppSessionsV1ResponseMessage as Response83,
+  GetQueriesScriptsV1ResponseMessage as Response81,
+  PostEntitiesAppCommandV1ResponseMessage as Response82,
+  PostEntitiesAppRefreshSessionsV1ResponseMessage as Response83,
+  PostEntitiesAppSessionsV1ResponseMessage as Response84,
+  PostEntitiesScriptsGetV2ResponseMessage as Response85,
 } from './remote-response';
 
 import type {
@@ -346,6 +352,8 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
   ? Response319
   : REQ extends Request320
   ? Response320
+  : REQ extends Request321
+  ? Response321
   : REQ extends Request40
   ? Response40
   : REQ extends Request41
@@ -446,6 +454,10 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
   ? Response82
   : REQ extends Request83
   ? Response83
+  : REQ extends Request84
+  ? Response84
+  : REQ extends Request85
+  ? Response85
   : REQ extends Request90
   ? Response90
   : REQ extends Request91
