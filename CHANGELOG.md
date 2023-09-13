@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.8.1
+
+### Patch Changes
+
+- [#40](https://github.com/CrowdStrike/foundry-js/pull/40) [`14f4a85`](https://github.com/CrowdStrike/foundry-js/commit/14f4a850fe5f4fe9916901b2ad1d2cacfce13c8d) Thanks [@nelstrom](https://github.com/nelstrom)! - Expose the getQueriesDevicesV1 endpoint from the devices API
+
 ## 0.8.0
 
 ### Minor Changes
