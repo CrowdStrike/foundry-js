@@ -15,6 +15,9 @@ afterEach(() => api.destroy());
 
 test('it receives initial theme', async () => {
   const data: LocalData = {
+    app: {
+      id: 'testid',
+    },
     user: {
       uuid: '123',
       username: 'johndoe',
@@ -41,6 +44,9 @@ test('theme can update', async () => {
     message: {
       type: 'data',
       payload: {
+        app: {
+          id: 'testid',
+        },
         user: {
           uuid: '123',
           username: 'johndoe',

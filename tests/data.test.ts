@@ -16,6 +16,9 @@ afterEach(() => api.destroy());
 
 test('it receives initial data', async () => {
   const data: LocalData = {
+    app: {
+      id: 'testid',
+    },
     user: {
       uuid: '123',
       username: 'johndoe',
@@ -42,6 +45,9 @@ test('data can update', async () => {
     message: {
       type: 'data',
       payload: {
+        app: {
+          id: 'testid',
+        },
         user: {
           uuid: '123',
           username: 'johndoe',
@@ -60,6 +66,9 @@ test('data can update', async () => {
   window.postMessage(dataUpdate);
 
   expect(api.data, 'new data is updated on .data').toEqual({
+    app: {
+      id: 'testid',
+    },
     user: {
       uuid: '123',
       username: 'johndoe',
@@ -84,6 +93,9 @@ test('it can subscribe to data updates', async () => {
     message: {
       type: 'data',
       payload: {
+        app: {
+          id: 'testid',
+        },
         user: {
           uuid: '123',
           username: 'johndoe',
@@ -106,6 +118,9 @@ test('it can subscribe to data updates', async () => {
   await promise;
 
   expect(data, 'new data is provided with the data event').toEqual({
+    app: {
+      id: 'testid',
+    },
     user: {
       uuid: '123',
       username: 'johndoe',
@@ -116,6 +131,9 @@ test('it can subscribe to data updates', async () => {
     some: 'stuff',
   });
   expect(api.data, 'new data is updated on .data').toEqual({
+    app: {
+      id: 'testid',
+    },
     user: {
       uuid: '123',
       username: 'johndoe',
