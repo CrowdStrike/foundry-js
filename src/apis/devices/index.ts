@@ -180,6 +180,30 @@ export interface GetQueriesDevicesHiddenV2RequestMessage
   method: 'getQueriesDevicesHiddenV2';
 }
 
+// types for getQueriesDevicesV1
+
+export interface GetQueriesDevicesV1QueryParams extends BaseUrlParams {
+  filter?: string;
+  limit?: QueryParam;
+  offset?: QueryParam;
+  sort?: QueryParam;
+  groupId?: QueryParam;
+  policyId?: QueryParam;
+  policyType?: QueryParam;
+  additionalHostsOnly?: QueryParam;
+}
+
+export type GetQueriesDevicesV1ApiResponse = ApiResponsePayload;
+
+export type GetQueriesDevicesV1ResponseMessage =
+  BaseApiResponseMessage<GetQueriesDevicesV1ApiResponse>;
+
+export interface GetQueriesDevicesV1RequestMessage
+  extends BaseApiRequestMessage<GetQueriesDevicesV1QueryParams> {
+  api: DevicesRequestApi;
+  method: 'getQueriesDevicesV1';
+}
+
 // types for getQueriesDevicesV2
 
 export interface GetQueriesDevicesV2QueryParams extends BaseUrlParams {
@@ -468,6 +492,7 @@ export type DevicesApiRequestMessage =
   | GetEntitiesRespondV1RequestMessage
   | GetQueriesAvailableGroupsV1RequestMessage
   | GetQueriesDevicesHiddenV2RequestMessage
+  | GetQueriesDevicesV1RequestMessage
   | GetQueriesDevicesV2RequestMessage
   | GetQueriesGroupsV1RequestMessage
   | PatchEntitiesDevicesTagsV2RequestMessage
@@ -491,6 +516,7 @@ export type DevicesApiResponseMessage =
   | GetEntitiesRespondV1ResponseMessage
   | GetQueriesAvailableGroupsV1ResponseMessage
   | GetQueriesDevicesHiddenV2ResponseMessage
+  | GetQueriesDevicesV1ResponseMessage
   | GetQueriesDevicesV2ResponseMessage
   | GetQueriesGroupsV1ResponseMessage
   | PatchEntitiesDevicesTagsV2ResponseMessage
@@ -628,6 +654,21 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'getQueriesDevicesHiddenV2',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async getQueriesDevicesV1(
+    urlParams: GetQueriesDevicesV1QueryParams = {},
+  ): Promise<GetQueriesDevicesV1ApiResponse> {
+    const message: GetQueriesDevicesV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'getQueriesDevicesV1',
       payload: {
         params: urlParams,
       },
