@@ -57,6 +57,10 @@ export default class FalconApi<
     this.isConnected = true;
   }
 
+  public get appId() {
+    return this.data?.app.id;
+  }
+
   public sendBroadcast(payload: unknown) {
     this.bridge.sendUnidirectionalMessage({ type: 'broadcast', payload });
   }
