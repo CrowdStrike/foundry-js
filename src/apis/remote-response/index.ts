@@ -26,6 +26,23 @@ export interface CommonApiRequestMessage
   api: RemoteResponseRequestApi;
 }
 
+// types for deleteEntitiesPutFilesV1
+
+export interface DeleteEntitiesPutFilesV1QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type DeleteEntitiesPutFilesV1ApiResponse = ApiResponsePayload;
+
+export type DeleteEntitiesPutFilesV1ResponseMessage =
+  BaseApiResponseMessage<DeleteEntitiesPutFilesV1ApiResponse>;
+
+export interface DeleteEntitiesPutFilesV1RequestMessage
+  extends BaseApiRequestMessage<DeleteEntitiesPutFilesV1QueryParams> {
+  api: RemoteResponseRequestApi;
+  method: 'deleteEntitiesPutFilesV1';
+}
+
 // types for getEntitiesAppCommandV1
 
 export interface GetEntitiesAppCommandV1QueryParams extends BaseUrlParams {
@@ -169,13 +186,19 @@ export interface PostEntitiesPutFilesV1RequestMessage
 // general types
 
 export type RemoteResponseApiRequestMessage =
+  | DeleteEntitiesPutFilesV1RequestMessage
   | GetEntitiesAppCommandV1RequestMessage
+  | GetEntitiesPutFilesV2RequestMessage
+  | GetQueriesPutFilesV1RequestMessage
   | PostEntitiesAppCommandV1RequestMessage
   | PostEntitiesAppRefreshSessionsV1RequestMessage
   | PostEntitiesAppSessionsV1RequestMessage;
 
 export type RemoteResponseApiResponseMessage =
+  | DeleteEntitiesPutFilesV1ResponseMessage
   | GetEntitiesAppCommandV1ResponseMessage
+  | GetEntitiesPutFilesV2ResponseMessage
+  | GetQueriesPutFilesV1ResponseMessage
   | PostEntitiesAppCommandV1ResponseMessage
   | PostEntitiesAppRefreshSessionsV1ResponseMessage
   | PostEntitiesAppSessionsV1ResponseMessage;
@@ -191,6 +214,21 @@ export class RemoteResponseApiBridge {
     return this.bridge;
   }
 
+  async deleteEntitiesPutFilesV1(
+    urlParams: DeleteEntitiesPutFilesV1QueryParams,
+  ): Promise<DeleteEntitiesPutFilesV1ApiResponse> {
+    const message: DeleteEntitiesPutFilesV1RequestMessage = {
+      type: 'api',
+      api: 'remoteResponse',
+      method: 'deleteEntitiesPutFilesV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
   async getEntitiesAppCommandV1(
     urlParams: GetEntitiesAppCommandV1QueryParams,
   ): Promise<GetEntitiesAppCommandV1ApiResponse> {
@@ -198,6 +236,36 @@ export class RemoteResponseApiBridge {
       type: 'api',
       api: 'remoteResponse',
       method: 'getEntitiesAppCommandV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async getEntitiesPutFilesV2(
+    urlParams: GetEntitiesPutFilesV2QueryParams,
+  ): Promise<GetEntitiesPutFilesV2ApiResponse> {
+    const message: GetEntitiesPutFilesV2RequestMessage = {
+      type: 'api',
+      api: 'remoteResponse',
+      method: 'getEntitiesPutFilesV2',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async getQueriesPutFilesV1(
+    urlParams: GetQueriesPutFilesV1QueryParams = {},
+  ): Promise<GetQueriesPutFilesV1ApiResponse> {
+    const message: GetQueriesPutFilesV1RequestMessage = {
+      type: 'api',
+      api: 'remoteResponse',
+      method: 'getQueriesPutFilesV1',
       payload: {
         params: urlParams,
       },
