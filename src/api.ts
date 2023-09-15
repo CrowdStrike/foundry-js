@@ -27,9 +27,9 @@ interface EventMap<DATA extends LocalData> {
   broadcast: unknown;
 }
 
-export default class FalconApi<
-  DATA extends LocalData = LocalData,
-> extends FalconPublicApis {
+export default class FalconApi<DATA extends LocalData = LocalData> {
+  public isConnected = false;
+
   public events = new Emittery<EventMap<DATA>>();
   public data?: DATA;
   public bridge: Bridge<DATA> = new Bridge<DATA>({
@@ -37,6 +37,7 @@ export default class FalconApi<
     onBroadcast: (msg) => this.handleBroadcastMessage(msg),
     onLivereload: () => this.handleLivereloadMessage(),
   });
+  public apis = new FalconPublicApis(this);
 
   public ui = new UI(this.bridge);
 
