@@ -14,10 +14,7 @@ import type {
   BroadcastMessage,
   CloudFunctionDefinition,
   DataUpdateMessage,
-  FileUploadType,
   LocalData,
-  PayloadForFileUploadType,
-  ResponseForFileUploadType,
   Theme,
 } from './types';
 
@@ -64,17 +61,6 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
 
   public sendBroadcast(payload: unknown) {
     this.bridge.sendUnidirectionalMessage({ type: 'broadcast', payload });
-  }
-
-  public async uploadFile<TYPE extends FileUploadType>(
-    fileUploadType: TYPE,
-    initialData?: PayloadForFileUploadType<TYPE>,
-  ): Promise<ResponseForFileUploadType<TYPE> | undefined> {
-    return this.bridge.postMessage({
-      type: 'fileUpload',
-      fileUploadType,
-      payload: initialData,
-    });
   }
 
   private handleDataUpdate(dataMessage: DataUpdateMessage<DATA>): void {
