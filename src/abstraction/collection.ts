@@ -6,6 +6,7 @@ interface CollectionDefinition {
 }
 
 interface CollectionSearchDefinition {
+  // @todo what is this? How can we document this?
   filter: string;
   offset: string;
   sort: string;
@@ -18,6 +19,13 @@ export class Collection<DATA extends LocalData = LocalData> {
     private readonly definition: CollectionDefinition,
   ) {}
 
+  /**
+   * Write data to the collection
+   *
+   * @param key
+   * @param data
+   * @returns
+   */
   public async write(key: string, data: Record<string, unknown>) {
     return this.falcon.bridge.postMessage<CollectionRequestMessage>({
       type: 'collection',
@@ -30,6 +38,12 @@ export class Collection<DATA extends LocalData = LocalData> {
     });
   }
 
+  /**
+   * Read the data for the given `key`
+   *
+   * @param key
+   * @returns
+   */
   public async read(key: string) {
     return this.falcon.bridge.postMessage<CollectionRequestMessage>({
       type: 'collection',
@@ -41,6 +55,12 @@ export class Collection<DATA extends LocalData = LocalData> {
     });
   }
 
+  /**
+   * Delete the data for the given `key`
+   *
+   * @param key
+   * @returns
+   */
   public async delete(key: string) {
     return this.falcon.bridge.postMessage<CollectionRequestMessage>({
       type: 'collection',
@@ -52,6 +72,12 @@ export class Collection<DATA extends LocalData = LocalData> {
     });
   }
 
+  /**
+   * Search for data
+   *
+   * @param searchDefinition
+   * @returns
+   */
   public async search({
     filter,
     offset,

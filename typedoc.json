@@ -4,6 +4,7 @@
   "theme": "default",
   "entryPoints": ["src/api.ts"],
   "includeVersion": true,
+  "excludeInternal": true,
   "excludePrivate": true,
   "excludeProtected": true,
   "plugin": ["typedoc-plugin-missing-exports", "typedoc-plugin-rename-defaults"]

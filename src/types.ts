@@ -49,15 +49,42 @@ export interface UserData {
   username: string;
 }
 
+/**
+ * The minimum {@link FalconApi.data} every UI extension receives from the Falcon Console.
+ */
 export interface LocalData {
   app: {
     id: string;
   };
+
+  /**
+   * Details of the currently signed in user
+   */
   user: UserData;
+
+  /**
+   * The current light or dark mode in the Falcon Console
+   */
   theme: Theme;
+
+  /**
+   * Current customer ID
+   */
   cid: string;
+
+  /**
+   * The locale of the current user, e.g. 'en-us'
+   */
   locale: string;
+
+  /**
+   * Timezone of the current user, e.g. 'America/New_York'
+   */
   timezone?: string;
+
+  /**
+   * The date format preferred by the current user, in a [`moment.js` format](https://momentjs.com/docs/#/displaying/format/)
+   */
   dateFormat?: string;
   [key: string]: unknown;
 }
@@ -185,16 +212,24 @@ export interface CollectionResponseMessage extends BaseMessage {
 // UI / open modal
 
 export interface OpenModalOptions {
-  // Initial route path (hash part of the IFrame URL) passed to the extension
+  /*
+   ** Initial route path (hash part of the IFrame URL) passed to the extension
+   */
   path?: string;
 
-  // additional local data to pass to the modal's extension
+  /**
+   * additional local data to pass to the modal's extension
+   */
   data?: Record<string, unknown>;
 
-  // Vertical alignment of the modal, "top" or undefined (Default is center)
+  /**
+   * Vertical alignment of the modal, "top" or undefined (Default is center)
+   */
   align?: 'top';
 
-  // Width of the modal (Default is "md")
+  /**
+   * Width of the modal (Default is "md")
+   */
   size?: 'sm' | 'md' | 'lg' | 'xl';
 }
 

@@ -78,6 +78,9 @@ export default class FalconPublicApis {
     return new MitreApiBridge(this.api.bridge);
   }
 
+  /**
+   * @internal
+   */
   @Memoize()
   get plugins(): PluginsApiBridge {
     assertConnection(this.api);
@@ -106,6 +109,9 @@ export default class FalconPublicApis {
     return new WorkflowsApiBridge(this.api.bridge);
   }
 
+  /**
+   * @internal
+   */
   @Memoize()
   get customobjects(): CustomobjectsApiBridge {
     assertConnection(this.api);
@@ -113,6 +119,9 @@ export default class FalconPublicApis {
     return new CustomobjectsApiBridge(this.api.bridge);
   }
 
+  /**
+   * @internal
+   */
   @Memoize()
   get faasGateway(): FaasGatewayApiBridge {
     assertConnection(this.api);
@@ -120,6 +129,9 @@ export default class FalconPublicApis {
     return new FaasGatewayApiBridge(this.api.bridge);
   }
 
+  /**
+   * @internal
+   */
   @Memoize()
   get loggingapi(): LoggingapiApiBridge {
     assertConnection(this.api);
