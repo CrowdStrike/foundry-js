@@ -209,14 +209,20 @@ import type {
 } from './plugins';
 
 import type {
-  GetEntitiesAppCommandV1RequestMessage as Request80,
-  PostEntitiesAppCommandV1RequestMessage as Request81,
-  PostEntitiesAppRefreshSessionsV1RequestMessage as Request82,
-  PostEntitiesAppSessionsV1RequestMessage as Request83,
-  GetEntitiesAppCommandV1ResponseMessage as Response80,
-  PostEntitiesAppCommandV1ResponseMessage as Response81,
-  PostEntitiesAppRefreshSessionsV1ResponseMessage as Response82,
-  PostEntitiesAppSessionsV1ResponseMessage as Response83,
+  DeleteEntitiesPutFilesV1RequestMessage as Request80,
+  GetEntitiesAppCommandV1RequestMessage as Request81,
+  GetEntitiesPutFilesV2RequestMessage as Request82,
+  GetQueriesPutFilesV1RequestMessage as Request83,
+  PostEntitiesAppCommandV1RequestMessage as Request84,
+  PostEntitiesAppRefreshSessionsV1RequestMessage as Request85,
+  PostEntitiesAppSessionsV1RequestMessage as Request86,
+  DeleteEntitiesPutFilesV1ResponseMessage as Response80,
+  GetEntitiesAppCommandV1ResponseMessage as Response81,
+  GetEntitiesPutFilesV2ResponseMessage as Response82,
+  GetQueriesPutFilesV1ResponseMessage as Response83,
+  PostEntitiesAppCommandV1ResponseMessage as Response84,
+  PostEntitiesAppRefreshSessionsV1ResponseMessage as Response85,
+  PostEntitiesAppSessionsV1ResponseMessage as Response86,
 } from './remote-response';
 
 import type {
@@ -450,6 +456,12 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
   ? Response82
   : REQ extends Request83
   ? Response83
+  : REQ extends Request84
+  ? Response84
+  : REQ extends Request85
+  ? Response85
+  : REQ extends Request86
+  ? Response86
   : REQ extends Request90
   ? Response90
   : REQ extends Request91
