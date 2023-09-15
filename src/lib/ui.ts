@@ -1,8 +1,11 @@
 import type { Bridge } from '../bridge';
 import type {
   ExtensionIdentifier,
+  FileUploadType,
   LocalData,
   OpenModalOptions,
+  PayloadForFileUploadType,
+  ResponseForFileUploadType,
 } from '../types';
 
 export class UI<DATA extends LocalData = LocalData> {
@@ -33,6 +36,17 @@ export class UI<DATA extends LocalData = LocalData> {
     this.bridge.sendUnidirectionalMessage({
       type: 'closeModal',
       payload,
+    });
+  }
+
+  public async uploadFile<TYPE extends FileUploadType>(
+    fileUploadType: TYPE,
+    initialData?: PayloadForFileUploadType<TYPE>,
+  ): Promise<ResponseForFileUploadType<TYPE> | undefined> {
+    return this.bridge.postMessage({
+      type: 'fileUpload',
+      fileUploadType,
+      payload: initialData,
     });
   }
 }

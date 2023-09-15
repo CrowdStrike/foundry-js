@@ -44,7 +44,7 @@ test('it can send a RTR file-upload request and wait for response', async () => 
     },
   );
 
-  const result = await api.uploadFile('remote-response');
+  const result = await api.ui.uploadFile('remote-response');
 
   expect(result).toStrictEqual({
     resources: [{ foo: 'bar' }],
@@ -53,7 +53,7 @@ test('it can send a RTR file-upload request and wait for response', async () => 
 
 test('it will not time out', async () => {
   // we intentionally do not create a response message, and so we also do not await this call, as this promise will never resolve or reject
-  api.uploadFile('remote-response');
+  api.ui.uploadFile('remote-response');
 
   // any other request would have timed out at this point...
   await new Promise((r) => setTimeout(r, 50));
