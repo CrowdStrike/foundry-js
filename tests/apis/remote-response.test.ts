@@ -16,7 +16,7 @@ afterEach(() => api.destroy());
 test('it can call getScriptIds', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
 
-  api.remoteResponse.getEntitiesAppCommandV1({
+  api.apis.remoteResponse.getEntitiesAppCommandV1({
     cloudRequestId: '123',
     sequenceId: '456',
   });

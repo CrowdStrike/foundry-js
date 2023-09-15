@@ -45,9 +45,12 @@ test('it can accept path with query params', async () => {
 test('it can send request and wait for response', async () => {
   const cloudFunctionInstance = cloudFunction.path('testing');
 
-  const executionSpy = vi.spyOn(api.faasGateway, 'postEntitiesExecutionV1');
+  const executionSpy = vi.spyOn(
+    api.apis.faasGateway,
+    'postEntitiesExecutionV1',
+  );
   const executionResultSpy = vi.spyOn(
-    api.faasGateway,
+    api.apis.faasGateway,
     'getEntitiesExecutionV1',
   );
 
@@ -76,9 +79,12 @@ test('it can send request and wait for response', async () => {
 test('it can handle execution result failure', async () => {
   const cloudFunctionInstance = cloudFunction.path('testing');
 
-  const executionSpy = vi.spyOn(api.faasGateway, 'postEntitiesExecutionV1');
+  const executionSpy = vi.spyOn(
+    api.apis.faasGateway,
+    'postEntitiesExecutionV1',
+  );
   const executionResultSpy = vi.spyOn(
-    api.faasGateway,
+    api.apis.faasGateway,
     'getEntitiesExecutionV1',
   );
 
@@ -107,9 +113,12 @@ test('it can handle execution result failure', async () => {
 test('it stops after 3 failed retries for execution result', async () => {
   const cloudFunctionInstance = cloudFunction.path('testing');
 
-  const executionSpy = vi.spyOn(api.faasGateway, 'postEntitiesExecutionV1');
+  const executionSpy = vi.spyOn(
+    api.apis.faasGateway,
+    'postEntitiesExecutionV1',
+  );
   const executionResultSpy = vi.spyOn(
-    api.faasGateway,
+    api.apis.faasGateway,
     'getEntitiesExecutionV1',
   );
 

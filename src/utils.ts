@@ -1,7 +1,9 @@
-import type FalconPublicApis from './apis/public-api';
+import FalconApi from 'api';
 import type { LocalData, MessageEnvelope, ResponseMessage } from './types';
 
-export function assertConnection(falcon: FalconPublicApis) {
+export function assertConnection<DATA extends LocalData>(
+  falcon: FalconApi<DATA>,
+) {
   if (!falcon.isConnected) {
     throw new Error(
       'You cannot call this API before having established a connection to the host!',

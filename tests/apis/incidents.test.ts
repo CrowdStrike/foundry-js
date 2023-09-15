@@ -16,7 +16,7 @@ afterEach(() => api.destroy());
 test('it can call getIncidentIds', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
 
-  api.incidents.getQueriesIncidentsV1();
+  api.apis.incidents.getQueriesIncidentsV1();
 
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
@@ -38,7 +38,7 @@ test('it can call getIncidentIds', async () => {
 test('it can call getIncidentEntities', async () => {
   const spy = vi.spyOn(window.parent, 'postMessage');
 
-  api.incidents.postEntitiesIncidentsGetV1({});
+  api.apis.incidents.postEntitiesIncidentsGetV1({});
 
   expect(spy).toHaveBeenCalledOnce();
   expect(spy.mock.lastCall?.[0]).toEqual(
