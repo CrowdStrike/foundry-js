@@ -33,6 +33,7 @@
     "_build": "concurrently 'npm:build:*'",
     "_start": "concurrently 'npm:watch:*'",
     "build": "rollup -c ./config/rollup.config.ts --configPlugin typescript",
+    "docs": "typedoc",
     "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
     "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
     "lint:js": "eslint . --cache",
@@ -68,6 +69,9 @@
     "prettier": "^3.0.3",
     "rollup": "2.79.1",
     "tslib": "2.5.0",
+    "typedoc": "^0.25.1",
+    "typedoc-plugin-missing-exports": "^2.1.0",
+    "typedoc-plugin-rename-defaults": "^0.6.6",
     "typescript": "5.0.2",
     "vitest": "^0.31.0"
   },
