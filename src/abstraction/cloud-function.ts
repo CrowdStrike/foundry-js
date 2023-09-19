@@ -57,7 +57,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
             function_version: this.definition.version,
           };
 
-    const result = await this.falcon.faasGateway.postEntitiesExecutionV1({
+    const result = await this.falcon.api.faasGateway.postEntitiesExecutionV1({
       ...functionDefinition,
       payload: {
         path,
@@ -85,11 +85,10 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
   private async getExecutionResult(
     executionId: string,
   ): Promise<Record<string, unknown> | undefined> {
-    const resultResponse = await this.falcon.faasGateway.getEntitiesExecutionV1(
-      {
+    const resultResponse =
+      await this.falcon.api.faasGateway.getEntitiesExecutionV1({
         id: executionId,
-      },
-    );
+      });
 
     const executionResult = resultResponse?.resources?.[0] as any;
 

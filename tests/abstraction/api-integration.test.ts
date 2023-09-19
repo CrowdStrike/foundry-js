@@ -54,7 +54,7 @@ test('it can send request without passed parameters', async () => {
     { once: true },
   );
 
-  const executeSpy = vi.spyOn(api.plugins, 'postEntitiesExecuteV1');
+  const executeSpy = vi.spyOn(api.api.plugins, 'postEntitiesExecuteV1');
   const response = apiIntegration.execute();
 
   expect(executeSpy).toHaveBeenCalledWith({
@@ -88,7 +88,7 @@ test('it can send request with passed json parameters', async () => {
     { once: true },
   );
 
-  const executeSpy = vi.spyOn(api.plugins, 'postEntitiesExecuteV1');
+  const executeSpy = vi.spyOn(api.api.plugins, 'postEntitiesExecuteV1');
   const response = apiIntegration.execute({
     request: {
       json: { one: { two: 'three' } },
@@ -131,7 +131,7 @@ test('it can send request with passed params', async () => {
     { once: true },
   );
 
-  const executeSpy = vi.spyOn(api.plugins, 'postEntitiesExecuteV1');
+  const executeSpy = vi.spyOn(api.api.plugins, 'postEntitiesExecuteV1');
   const response = apiIntegration.execute({
     request: {
       params: {

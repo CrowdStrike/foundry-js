@@ -24,107 +24,106 @@ import { UserManagementApiBridge } from './user-management';
 import { WorkflowsApiBridge } from './workflows';
 
 import { assertConnection } from '../utils';
-import type { Bridge } from '../bridge';
+import type FalconApi from 'api';
 
-export default abstract class FalconPublicApis {
-  isConnected = false;
-  abstract bridge: Bridge<any>;
+export default class FalconPublicApis {
+  constructor(private api: FalconApi<any>) {}
 
   @Memoize()
   get actors(): ActorsApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new ActorsApiBridge(this.bridge);
+    return new ActorsApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get alerts(): AlertsApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new AlertsApiBridge(this.bridge);
+    return new AlertsApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get detects(): DetectsApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new DetectsApiBridge(this.bridge);
+    return new DetectsApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get devices(): DevicesApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new DevicesApiBridge(this.bridge);
+    return new DevicesApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get fwmgr(): FwmgrApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new FwmgrApiBridge(this.bridge);
+    return new FwmgrApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get incidents(): IncidentsApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new IncidentsApiBridge(this.bridge);
+    return new IncidentsApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get mitre(): MitreApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new MitreApiBridge(this.bridge);
+    return new MitreApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get plugins(): PluginsApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new PluginsApiBridge(this.bridge);
+    return new PluginsApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get remoteResponse(): RemoteResponseApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new RemoteResponseApiBridge(this.bridge);
+    return new RemoteResponseApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get userManagement(): UserManagementApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new UserManagementApiBridge(this.bridge);
+    return new UserManagementApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get workflows(): WorkflowsApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new WorkflowsApiBridge(this.bridge);
+    return new WorkflowsApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get customobjects(): CustomobjectsApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new CustomobjectsApiBridge(this.bridge);
+    return new CustomobjectsApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get faasGateway(): FaasGatewayApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new FaasGatewayApiBridge(this.bridge);
+    return new FaasGatewayApiBridge(this.api.bridge);
   }
 
   @Memoize()
   get loggingapi(): LoggingapiApiBridge {
-    assertConnection(this);
+    assertConnection(this.api);
 
-    return new LoggingapiApiBridge(this.bridge);
+    return new LoggingapiApiBridge(this.api.bridge);
   }
 }

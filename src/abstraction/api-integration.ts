@@ -24,7 +24,7 @@ export class ApiIntegration<DATA extends LocalData = LocalData> {
   ) {}
 
   public async execute({ request }: ExecuteParameters = {}) {
-    return this.falcon.plugins.postEntitiesExecuteV1({
+    return this.falcon.api.plugins.postEntitiesExecuteV1({
       resources: [
         {
           definition_id: this.definition.definitionId,
