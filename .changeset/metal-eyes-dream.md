@@ -4,7 +4,7 @@
 
 [BREAKING] Refactor namespaces for consistency
 
-This change moves the Cloud APIs, which were previously access directly from the `FalconAPI` instance, to their own `.api` namespace.
+This change moves the Cloud APIs, which were previously accessed directly from the `FalconAPI` instance, to their own `.api` namespace.
 
 To migrate:
 
