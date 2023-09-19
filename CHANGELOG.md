@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.8.2
+
+### Patch Changes
+
+- [#42](https://github.com/CrowdStrike/foundry-js/pull/42) [`6a1aee3`](https://github.com/CrowdStrike/foundry-js/commit/6a1aee3c7aacb988a359f3c934a26ca20b71da00) Thanks [@PaulRosset](https://github.com/PaulRosset)! - Add additional endpoints for handling File Upload GET/DELETE
+
 ## 0.8.1
 
 ### Patch Changes
