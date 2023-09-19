@@ -6,7 +6,10 @@ interface CollectionDefinition {
 }
 
 interface CollectionSearchDefinition {
-  // @todo what is this? How can we document this?
+  /**
+   * Falcon Query Language (FQL) to filter the requested collections
+   * @see https://falcon.crowdstrike.com/documentation/page/d3c84a1b/falcon-query-language-fql
+   */
   filter: string;
   offset: string;
   sort: string;
