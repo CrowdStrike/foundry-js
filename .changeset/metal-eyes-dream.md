@@ -4,7 +4,7 @@
 
 [BREAKING] Refactor namespaces for consistency
 
-This change moves the Cloud APIs, which were previously access directly from the `FalconAPI` instance, to their own `.apis` namespace.
+This change moves the Cloud APIs, which were previously access directly from the `FalconAPI` instance, to their own `.api` namespace.
 
 To migrate:
 
@@ -13,7 +13,7 @@ To migrate:
 falcon.incidents.getQueriesIncidentsV1();
 
 // after:
-falcon.apis.incidents.getQueriesIncidentsV1();
+falcon.api.incidents.getQueriesIncidentsV1();
 ```
 
 Furthermore, the `uploadFile()` function has been moved into the existing `.ui` namespace.

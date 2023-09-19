@@ -34,7 +34,7 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     onBroadcast: (msg) => this.handleBroadcastMessage(msg),
     onLivereload: () => this.handleLivereloadMessage(),
   });
-  public apis = new FalconPublicApis(this);
+  public api = new FalconPublicApis(this);
 
   public ui = new UI(this.bridge);
 
