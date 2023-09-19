@@ -1,5 +1,35 @@
 # @crowdstrike/foundry-js
 
+## 0.9.0
+
+### Minor Changes
+
+- [#45](https://github.com/CrowdStrike/foundry-js/pull/45) [`3d15b8f`](https://github.com/CrowdStrike/foundry-js/commit/3d15b8f0aea84f27b14fe05e9c2af3670d46377b) Thanks [@simonihmig](https://github.com/simonihmig)! - [BREAKING] Refactor namespaces for consistency
+
+  This change moves the Cloud APIs, which were previously accessed directly from the `FalconAPI` instance, to their own `.api` namespace.
+
+  To migrate:
+
+  ```js
+  // before:
+  falcon.incidents.getQueriesIncidentsV1();
+
+  // after:
+  falcon.api.incidents.getQueriesIncidentsV1();
+  ```
+
+  Furthermore, the `uploadFile()` function has been moved into the existing `.ui` namespace.
+
+  To migrate:
+
+  ```js
+  // before:
+  falcon.uploadFile('remote-response');
+
+  // after:
+  falcon.ui.uploadFile('remote-response');
+  ```
+
 ## 0.8.2
 
 ### Patch Changes
