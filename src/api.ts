@@ -62,11 +62,19 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
    * At the very least it will contain the data specified by the {@link LocalData} interface.
    */
   public data?: DATA;
+
+  /**
+   * @internal
+   */
   public bridge: Bridge<DATA> = new Bridge<DATA>({
     onDataUpdate: (data) => this.handleDataUpdate(data),
     onBroadcast: (msg) => this.handleBroadcastMessage(msg),
     onLivereload: () => this.handleLivereloadMessage(),
   });
+
+  /**
+   * Namespace for all the {@link FalconPublicApis | Falcon Cloud APIs} you have access to with this SDK.
+   */
   public api = new FalconPublicApis(this);
 
   /**
