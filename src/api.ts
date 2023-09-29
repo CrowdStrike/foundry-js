@@ -23,19 +23,63 @@ interface EventMap<DATA extends LocalData> {
   data: DATA;
   broadcast: unknown;
 }
-
+/**
+ * This is the main class and only entrypoint for engaging with the Falcon APIs from an Foundry UI extension or page.
+ *
+ * At the very minimum, you would have to instantiate the class and connect to the Falcon Console:
+ *
+ * ```js
+ * import FalconApi from '@crowdstrike/foundry-js';
+ *
+ * const api = new FalconApi();
+ *
+ * await api.connect();
+ * ```
+ *
+ */
 export default class FalconApi<DATA extends LocalData = LocalData> {
+  /**
+   * @internal
+   */
   public isConnected = false;
 
+  /**
+   * An event emitter that allows you to subscribe to events issued by the Falcon Console.
+   *
+   * Currently supported event types:
+   * * `data`: fires when {@link data} is updated.
+   * * `broadcast`: this event is received when another extension of the same app has send a `broadcast` event via {@link sendBroadcast}.
+   *
+   * ```js
+   * api.events.on('data', (newData) => console.log('new data received:', newData));
+   * ```
+   */
   public events = new Emittery<EventMap<DATA>>();
+
+  /**
+   * The "local data" that your extension receives from the Falcon Console. This can vary depending on the state of the Falcon Console and the socket of the extension.
+   *
+   * At the very least it will contain the data specified by the {@link LocalData} interface.
+   */
   public data?: DATA;
+
+  /**
+   * @internal
+   */
   public bridge: Bridge<DATA> = new Bridge<DATA>({
     onDataUpdate: (data) => this.handleDataUpdate(data),
     onBroadcast: (msg) => this.handleBroadcastMessage(msg),
     onLivereload: () => this.handleLivereloadMessage(),
   });
+
+  /**
+   * Namespace for all the {@link FalconPublicApis | Falcon Cloud APIs} you have access to with this SDK.
+   */
   public api = new FalconPublicApis(this);
 
+  /**
+   * The {@link UI} class contains methods to invoke UI features within the main Falcon Console.
+   */
   public ui = new UI(this.bridge);
 
   private resizeTracker?: ResizeTracker<DATA>;
@@ -43,6 +87,11 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
   private apiIntegrations: ApiIntegration<DATA>[] = [];
   private collections: Collection<DATA>[] = [];
 
+  /**
+   * Connect to the main Falcon Console from within your UI extension.
+   *
+   * This establishes a connection to send messages between the extension and the Falcon Console. Only when established you will be able to call other APIs.
+   */
   public async connect(): Promise<void> {
     const { origin, data } = await this.bridge.postMessage({ type: 'connect' });
 
@@ -55,10 +104,21 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     this.isConnected = true;
   }
 
+  /**
+   * The ID of the Foundry app this UI extension belongs to.
+   */
   public get appId() {
     return this.data?.app.id;
   }
 
+  /**
+   * Sending broadcast messages is a mechanism for allowing communication between different UI extensions, when they are displayed at the same time.
+   * When sending a broadcast message, other extensions need to listen for the `broadcast` event on the {@link events} event emitter.
+   *
+   * Note that broadcast messages are only dispatched between UI extensions of the same app!
+   *
+   * @param payload the data you want to send to other UI extensions
+   */
   public sendBroadcast(payload: unknown) {
     this.bridge.sendUnidirectionalMessage({ type: 'broadcast', payload });
   }
@@ -90,6 +150,12 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     document.documentElement.classList.remove(inactiveTheme);
   }
 
+  /**
+   * Create a {@link CloudFunction} to integrate with Falcon's "Function as a Service" platform.
+   *
+   * @param definition
+   * @returns
+   */
   cloudFunction(definition: CloudFunctionDefinition) {
     assertConnection(this);
 
@@ -100,6 +166,12 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     return cf;
   }
 
+  /**
+   * Create an {@link ApiIntegration} to call external APIs.
+   *
+   * @param defintition
+   * @returns
+   */
   apiIntegration({
     definitionId,
     operationId,
@@ -113,16 +185,22 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
       throw Error('Data from console is missing');
     }
 
-    const cf = new ApiIntegration(this, {
+    const apiIntegration = new ApiIntegration(this, {
       operationId,
       definitionId: definitionId ?? this.data?.app.id,
     });
 
-    this.apiIntegrations.push(cf);
+    this.apiIntegrations.push(apiIntegration);
 
-    return cf;
+    return apiIntegration;
   }
 
+  /**
+   * Create a {@link Collection} to write to and query Falcon's custom storage service.
+   *
+   * @param definition
+   * @returns
+   */
   collection({ collection }: { collection: string }) {
     assertConnection(this);
 
@@ -133,6 +211,9 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     return co;
   }
 
+  /**
+   * The {@link Navigation} class provides functionality to navigate to other pages.
+   */
   @Memoize()
   get navigation() {
     assertConnection(this);
@@ -140,6 +221,9 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     return new Navigation(this);
   }
 
+  /**
+   * The {@link Logscale} class allows you to read and write to your custom LogScale repository.
+   */
   @Memoize()
   get logscale() {
     assertConnection(this);

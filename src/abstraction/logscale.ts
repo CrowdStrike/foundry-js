@@ -10,7 +10,15 @@ interface WriteProperties {
 export class Logscale<DATA extends LocalData = LocalData> {
   constructor(private readonly falcon: FalconApi<DATA>) {}
 
+  /**
+   * Write data to LogScale
+   *
+   * @param data
+   * @param properties
+   * @returns
+   */
   public async write(
+    // @todo the proper type here is unclear  - we need to make clear how the user needs to call this
     data: LogscaleRequestMessage['payload']['data'],
     properties: WriteProperties,
   ) {
@@ -26,21 +34,40 @@ export class Logscale<DATA extends LocalData = LocalData> {
     });
   }
 
-  public async query(data: LogscaleRequestMessage['payload']['data']) {
+  /**
+   * Execute a dynamic query
+   *
+   * @param query
+   * @returns Promise that resolves with the data
+   */
+  public async query(
+    // @todo the proper type here is unclear  - we need to make clear how the user needs to call this
+    query: LogscaleRequestMessage['payload']['data'],
+  ) {
     return this.falcon.bridge.postMessage<LogscaleRequestMessage>({
       type: 'loggingapi',
       payload: {
         type: 'dynamic-execute',
-        data,
+        data: query,
       },
     });
   }
-  public async savedQuery(data: LogscaleRequestMessage['payload']['data']) {
+
+  /**
+   * Execute a saved query
+   *
+   * @param savedQuery
+   * @returns
+   */
+  public async savedQuery(
+    // @todo the proper type here is unclear  - we need to make clear how the user needs to call this
+    savedQuery: LogscaleRequestMessage['payload']['data'],
+  ) {
     return this.falcon.bridge.postMessage<LogscaleRequestMessage>({
       type: 'loggingapi',
       payload: {
         type: 'saved-query-execute',
-        data,
+        data: savedQuery,
       },
     });
   }
