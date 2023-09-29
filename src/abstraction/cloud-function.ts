@@ -31,15 +31,25 @@ interface GetParameters {
 }
 
 export class CloudFunction<DATA extends LocalData = LocalData> {
-  static GET = 'GET' as const;
-  static POST = 'POST' as const;
-  static PATCH = 'PATCH' as const;
-  static PUT = 'PUT' as const;
-  static DELETE = 'DELETE' as const;
+  private static GET = 'GET' as const;
+  private static POST = 'POST' as const;
+  private static PATCH = 'PATCH' as const;
+  private static PUT = 'PUT' as const;
+  private static DELETE = 'DELETE' as const;
 
+  /**
+   * @internal
+   */
   pollTimeout = 500;
+
+  /**
+   * @internal
+   */
   intervalId?: number;
 
+  /**
+   * @internal
+   */
   constructor(
     private readonly falcon: FalconApi<DATA>,
     private readonly definition: CloudFunctionDefinition,

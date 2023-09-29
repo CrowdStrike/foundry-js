@@ -1,6 +1,9 @@
 import type { Bridge } from '../bridge';
 import type { LocalData } from '../types';
 
+/**
+ * @internal
+ */
 export class ResizeTracker<DATA extends LocalData = LocalData> {
   private observer: ResizeObserver;
 
