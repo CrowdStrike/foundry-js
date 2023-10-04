@@ -60,48 +60,62 @@ import type {
 import type {
   DeleteEntitiesGroupsV1RequestMessage as Request30,
   GetAggregatesBucketsV1RequestMessage as Request31,
-  GetQueriesGroupsV1RequestMessage as Request310,
-  PatchEntitiesDevicesTagsV2RequestMessage as Request311,
-  PatchEntitiesGroupsV1RequestMessage as Request312,
-  PostAggregatesDevicesGetV1RequestMessage as Request313,
-  PostCombinedDevicesLoginHistoryV1RequestMessage as Request314,
-  PostEntitiesDevicesActionsV4RequestMessage as Request315,
-  PostEntitiesDevicesHiddenActionsV4RequestMessage as Request316,
-  PostEntitiesDevicesReportsV1RequestMessage as Request317,
-  PostEntitiesDevicesV2RequestMessage as Request318,
-  PostEntitiesGroupActionsV1RequestMessage as Request319,
-  GetAggregatesTagPrefixCountsV1RequestMessage as Request32,
-  PostEntitiesGroupsV1RequestMessage as Request320,
-  PostEntitiesReleasesV1RequestMessage as Request321,
-  GetEntitiesGroupsV1RequestMessage as Request33,
-  GetEntitiesReleasesV1RequestMessage as Request34,
-  GetEntitiesRespondV1RequestMessage as Request35,
-  GetQueriesAvailableGroupsV1RequestMessage as Request36,
-  GetQueriesDevicesHiddenV2RequestMessage as Request37,
-  GetQueriesDevicesV1RequestMessage as Request38,
-  GetQueriesDevicesV2RequestMessage as Request39,
+  GetQueriesDevicesV1RequestMessage as Request310,
+  GetQueriesDevicesV2RequestMessage as Request311,
+  GetQueriesFgaGroupsV1RequestMessage as Request312,
+  GetQueriesGroupsV1RequestMessage as Request313,
+  PatchEntitiesDevicesTagsV2RequestMessage as Request314,
+  PatchEntitiesGroupsV1RequestMessage as Request315,
+  PostAggregatesDevicesGetV1RequestMessage as Request316,
+  PostAggregatesFgaHostsGetV1RequestMessage as Request317,
+  PostCombinedDevicesLoginHistoryV1RequestMessage as Request318,
+  PostCombinedFgaHostsLoginHistoryV1RequestMessage as Request319,
+  GetAggregatesFgaTagPrefixCountsV1RequestMessage as Request32,
+  PostEntitiesDevicesActionsV4RequestMessage as Request320,
+  PostEntitiesDevicesHiddenActionsV4RequestMessage as Request321,
+  PostEntitiesDevicesReportsV1RequestMessage as Request322,
+  PostEntitiesDevicesV2RequestMessage as Request323,
+  PostEntitiesFgaHostsReportsV1RequestMessage as Request324,
+  PostEntitiesFgaHostsV1RequestMessage as Request325,
+  PostEntitiesGroupActionsV1RequestMessage as Request326,
+  PostEntitiesGroupsV1RequestMessage as Request327,
+  PostEntitiesReleasesV1RequestMessage as Request328,
+  GetAggregatesTagPrefixCountsV1RequestMessage as Request33,
+  GetEntitiesFgaGroupsV1RequestMessage as Request34,
+  GetEntitiesGroupsV1RequestMessage as Request35,
+  GetEntitiesReleasesV1RequestMessage as Request36,
+  GetEntitiesRespondV1RequestMessage as Request37,
+  GetQueriesAvailableGroupsV1RequestMessage as Request38,
+  GetQueriesDevicesHiddenV2RequestMessage as Request39,
   DeleteEntitiesGroupsV1ResponseMessage as Response30,
   GetAggregatesBucketsV1ResponseMessage as Response31,
-  GetQueriesGroupsV1ResponseMessage as Response310,
-  PatchEntitiesDevicesTagsV2ResponseMessage as Response311,
-  PatchEntitiesGroupsV1ResponseMessage as Response312,
-  PostAggregatesDevicesGetV1ResponseMessage as Response313,
-  PostCombinedDevicesLoginHistoryV1ResponseMessage as Response314,
-  PostEntitiesDevicesActionsV4ResponseMessage as Response315,
-  PostEntitiesDevicesHiddenActionsV4ResponseMessage as Response316,
-  PostEntitiesDevicesReportsV1ResponseMessage as Response317,
-  PostEntitiesDevicesV2ResponseMessage as Response318,
-  PostEntitiesGroupActionsV1ResponseMessage as Response319,
-  GetAggregatesTagPrefixCountsV1ResponseMessage as Response32,
-  PostEntitiesGroupsV1ResponseMessage as Response320,
-  PostEntitiesReleasesV1ResponseMessage as Response321,
-  GetEntitiesGroupsV1ResponseMessage as Response33,
-  GetEntitiesReleasesV1ResponseMessage as Response34,
-  GetEntitiesRespondV1ResponseMessage as Response35,
-  GetQueriesAvailableGroupsV1ResponseMessage as Response36,
-  GetQueriesDevicesHiddenV2ResponseMessage as Response37,
-  GetQueriesDevicesV1ResponseMessage as Response38,
-  GetQueriesDevicesV2ResponseMessage as Response39,
+  GetQueriesDevicesV1ResponseMessage as Response310,
+  GetQueriesDevicesV2ResponseMessage as Response311,
+  GetQueriesFgaGroupsV1ResponseMessage as Response312,
+  GetQueriesGroupsV1ResponseMessage as Response313,
+  PatchEntitiesDevicesTagsV2ResponseMessage as Response314,
+  PatchEntitiesGroupsV1ResponseMessage as Response315,
+  PostAggregatesDevicesGetV1ResponseMessage as Response316,
+  PostAggregatesFgaHostsGetV1ResponseMessage as Response317,
+  PostCombinedDevicesLoginHistoryV1ResponseMessage as Response318,
+  PostCombinedFgaHostsLoginHistoryV1ResponseMessage as Response319,
+  GetAggregatesFgaTagPrefixCountsV1ResponseMessage as Response32,
+  PostEntitiesDevicesActionsV4ResponseMessage as Response320,
+  PostEntitiesDevicesHiddenActionsV4ResponseMessage as Response321,
+  PostEntitiesDevicesReportsV1ResponseMessage as Response322,
+  PostEntitiesDevicesV2ResponseMessage as Response323,
+  PostEntitiesFgaHostsReportsV1ResponseMessage as Response324,
+  PostEntitiesFgaHostsV1ResponseMessage as Response325,
+  PostEntitiesGroupActionsV1ResponseMessage as Response326,
+  PostEntitiesGroupsV1ResponseMessage as Response327,
+  PostEntitiesReleasesV1ResponseMessage as Response328,
+  GetAggregatesTagPrefixCountsV1ResponseMessage as Response33,
+  GetEntitiesFgaGroupsV1ResponseMessage as Response34,
+  GetEntitiesGroupsV1ResponseMessage as Response35,
+  GetEntitiesReleasesV1ResponseMessage as Response36,
+  GetEntitiesRespondV1ResponseMessage as Response37,
+  GetQueriesAvailableGroupsV1ResponseMessage as Response38,
+  GetQueriesDevicesHiddenV2ResponseMessage as Response39,
 } from './devices';
 
 import type {
@@ -195,8 +209,8 @@ import type {
 } from './incidents';
 
 import type {
-  GetEntitiesMatrixV1RequestMessage as Request60,
-  GetEntitiesMatrixV1ResponseMessage as Response60,
+  GetIntelMitreEntitiesMatrixV1RequestMessage as Request60,
+  GetIntelMitreEntitiesMatrixV1ResponseMessage as Response60,
 } from './mitre';
 
 import type {
@@ -356,6 +370,20 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
   ? Response320
   : REQ extends Request321
   ? Response321
+  : REQ extends Request322
+  ? Response322
+  : REQ extends Request323
+  ? Response323
+  : REQ extends Request324
+  ? Response324
+  : REQ extends Request325
+  ? Response325
+  : REQ extends Request326
+  ? Response326
+  : REQ extends Request327
+  ? Response327
+  : REQ extends Request328
+  ? Response328
   : REQ extends Request40
   ? Response40
   : REQ extends Request41
