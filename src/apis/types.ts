@@ -6,7 +6,6 @@
  *
  **/
 
-import { ActorsApiRequestMessage, ActorsApiResponseMessage } from './actors';
 import { AlertsApiRequestMessage, AlertsApiResponseMessage } from './alerts';
 import {
   CustomobjectsApiRequestMessage,
@@ -43,8 +42,6 @@ import {
 } from './workflows';
 
 export {
-  ActorsApiRequestMessage,
-  ActorsApiResponseMessage,
   AlertsApiRequestMessage,
   AlertsApiResponseMessage,
   DetectsApiRequestMessage,
@@ -74,7 +71,6 @@ export {
 };
 
 export type ApiRequestMessage =
-  | ActorsApiRequestMessage
   | AlertsApiRequestMessage
   | DetectsApiRequestMessage
   | DevicesApiRequestMessage
@@ -90,7 +86,6 @@ export type ApiRequestMessage =
   | LoggingapiApiRequestMessage;
 
 export type ApiResponseMessage =
-  | ActorsApiResponseMessage
   | AlertsApiResponseMessage
   | DetectsApiResponseMessage
   | DevicesApiResponseMessage

@@ -8,7 +8,6 @@
 
 import { Memoize } from 'typescript-memoize';
 
-import { ActorsApiBridge } from './actors';
 import { AlertsApiBridge } from './alerts';
 import { CustomobjectsApiBridge } from './customobjects';
 import { DetectsApiBridge } from './detects';
@@ -24,17 +23,11 @@ import { UserManagementApiBridge } from './user-management';
 import { WorkflowsApiBridge } from './workflows';
 
 import { assertConnection } from '../utils';
-import type FalconApi from 'api';
+
+import type FalconApi from '../api';
 
 export default class FalconPublicApis {
   constructor(private api: FalconApi<any>) {}
-
-  @Memoize()
-  get actors(): ActorsApiBridge {
-    assertConnection(this.api);
-
-    return new ActorsApiBridge(this.api.bridge);
-  }
 
   @Memoize()
   get alerts(): AlertsApiBridge {

@@ -26,28 +26,31 @@ export interface CommonApiRequestMessage
   api: MitreRequestApi;
 }
 
-// types for getEntitiesMatrixV1
+// types for getIntelMitreEntitiesMatrixV1
 
-export interface GetEntitiesMatrixV1QueryParams extends BaseUrlParams {
+export interface GetIntelMitreEntitiesMatrixV1QueryParams
+  extends BaseUrlParams {
   version?: QueryParam;
 }
 
-export type GetEntitiesMatrixV1ApiResponse = ApiResponsePayload;
+export type GetIntelMitreEntitiesMatrixV1ApiResponse = ApiResponsePayload;
 
-export type GetEntitiesMatrixV1ResponseMessage =
-  BaseApiResponseMessage<GetEntitiesMatrixV1ApiResponse>;
+export type GetIntelMitreEntitiesMatrixV1ResponseMessage =
+  BaseApiResponseMessage<GetIntelMitreEntitiesMatrixV1ApiResponse>;
 
-export interface GetEntitiesMatrixV1RequestMessage
-  extends BaseApiRequestMessage<GetEntitiesMatrixV1QueryParams> {
+export interface GetIntelMitreEntitiesMatrixV1RequestMessage
+  extends BaseApiRequestMessage<GetIntelMitreEntitiesMatrixV1QueryParams> {
   api: MitreRequestApi;
-  method: 'getEntitiesMatrixV1';
+  method: 'getIntelMitreEntitiesMatrixV1';
 }
 
 // general types
 
-export type MitreApiRequestMessage = GetEntitiesMatrixV1RequestMessage;
+export type MitreApiRequestMessage =
+  GetIntelMitreEntitiesMatrixV1RequestMessage;
 
-export type MitreApiResponseMessage = GetEntitiesMatrixV1ResponseMessage;
+export type MitreApiResponseMessage =
+  GetIntelMitreEntitiesMatrixV1ResponseMessage;
 
 export class MitreApiBridge {
   private bridge;
@@ -60,13 +63,13 @@ export class MitreApiBridge {
     return this.bridge;
   }
 
-  async getEntitiesMatrixV1(
-    urlParams: GetEntitiesMatrixV1QueryParams = {},
-  ): Promise<GetEntitiesMatrixV1ApiResponse> {
-    const message: GetEntitiesMatrixV1RequestMessage = {
+  async getIntelMitreEntitiesMatrixV1(
+    urlParams: GetIntelMitreEntitiesMatrixV1QueryParams = {},
+  ): Promise<GetIntelMitreEntitiesMatrixV1ApiResponse> {
+    const message: GetIntelMitreEntitiesMatrixV1RequestMessage = {
       type: 'api',
       api: 'mitre',
-      method: 'getEntitiesMatrixV1',
+      method: 'getIntelMitreEntitiesMatrixV1',
       payload: {
         params: urlParams,
       },

@@ -66,6 +66,25 @@ export interface GetAggregatesBucketsV1RequestMessage
   method: 'getAggregatesBucketsV1';
 }
 
+// types for getAggregatesFgaTagPrefixCountsV1
+
+export interface GetAggregatesFgaTagPrefixCountsV1QueryParams
+  extends BaseUrlParams {
+  prefix: QueryParam;
+  limit?: QueryParam;
+}
+
+export type GetAggregatesFgaTagPrefixCountsV1ApiResponse = ApiResponsePayload;
+
+export type GetAggregatesFgaTagPrefixCountsV1ResponseMessage =
+  BaseApiResponseMessage<GetAggregatesFgaTagPrefixCountsV1ApiResponse>;
+
+export interface GetAggregatesFgaTagPrefixCountsV1RequestMessage
+  extends BaseApiRequestMessage<GetAggregatesFgaTagPrefixCountsV1QueryParams> {
+  api: DevicesRequestApi;
+  method: 'getAggregatesFgaTagPrefixCountsV1';
+}
+
 // types for getAggregatesTagPrefixCountsV1
 
 export interface GetAggregatesTagPrefixCountsV1QueryParams
@@ -85,6 +104,23 @@ export interface GetAggregatesTagPrefixCountsV1RequestMessage
   method: 'getAggregatesTagPrefixCountsV1';
 }
 
+// types for getEntitiesFgaGroupsV1
+
+export interface GetEntitiesFgaGroupsV1QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type GetEntitiesFgaGroupsV1ApiResponse = ApiResponsePayload;
+
+export type GetEntitiesFgaGroupsV1ResponseMessage =
+  BaseApiResponseMessage<GetEntitiesFgaGroupsV1ApiResponse>;
+
+export interface GetEntitiesFgaGroupsV1RequestMessage
+  extends BaseApiRequestMessage<GetEntitiesFgaGroupsV1QueryParams> {
+  api: DevicesRequestApi;
+  method: 'getEntitiesFgaGroupsV1';
+}
+
 // types for getEntitiesGroupsV1
 
 export interface GetEntitiesGroupsV1QueryParams extends BaseUrlParams {
@@ -100,38 +136,6 @@ export interface GetEntitiesGroupsV1RequestMessage
   extends BaseApiRequestMessage<GetEntitiesGroupsV1QueryParams> {
   api: DevicesRequestApi;
   method: 'getEntitiesGroupsV1';
-}
-
-// types for getEntitiesReleasesV1
-
-export interface GetEntitiesReleasesV1QueryParams extends BaseUrlParams {
-  ids: QueryParam;
-}
-
-export type GetEntitiesReleasesV1ApiResponse = ApiResponsePayload;
-
-export type GetEntitiesReleasesV1ResponseMessage =
-  BaseApiResponseMessage<GetEntitiesReleasesV1ApiResponse>;
-
-export interface GetEntitiesReleasesV1RequestMessage
-  extends BaseApiRequestMessage<GetEntitiesReleasesV1QueryParams> {
-  api: DevicesRequestApi;
-  method: 'getEntitiesReleasesV1';
-}
-
-// types for getEntitiesRespondV1
-
-export type GetEntitiesRespondV1QueryParams = BaseUrlParams;
-
-export type GetEntitiesRespondV1ApiResponse = ApiResponsePayload;
-
-export type GetEntitiesRespondV1ResponseMessage =
-  BaseApiResponseMessage<GetEntitiesRespondV1ApiResponse>;
-
-export interface GetEntitiesRespondV1RequestMessage
-  extends BaseApiRequestMessage<GetEntitiesRespondV1QueryParams> {
-  api: DevicesRequestApi;
-  method: 'getEntitiesRespondV1';
 }
 
 // types for getQueriesAvailableGroupsV1
@@ -228,6 +232,26 @@ export interface GetQueriesDevicesV2RequestMessage
   method: 'getQueriesDevicesV2';
 }
 
+// types for getQueriesFgaGroupsV1
+
+export interface GetQueriesFgaGroupsV1QueryParams extends BaseUrlParams {
+  filter?: string;
+  limit?: QueryParam;
+  offset?: QueryParam;
+  sort?: QueryParam;
+}
+
+export type GetQueriesFgaGroupsV1ApiResponse = ApiResponsePayload;
+
+export type GetQueriesFgaGroupsV1ResponseMessage =
+  BaseApiResponseMessage<GetQueriesFgaGroupsV1ApiResponse>;
+
+export interface GetQueriesFgaGroupsV1RequestMessage
+  extends BaseApiRequestMessage<GetQueriesFgaGroupsV1QueryParams> {
+  api: DevicesRequestApi;
+  method: 'getQueriesFgaGroupsV1';
+}
+
 // types for getQueriesGroupsV1
 
 export interface GetQueriesGroupsV1QueryParams extends BaseUrlParams {
@@ -310,6 +334,28 @@ export interface PostAggregatesDevicesGetV1RequestMessage
   method: 'postAggregatesDevicesGetV1';
 }
 
+// types for postAggregatesFgaHostsGetV1
+
+export interface PostAggregatesFgaHostsGetV1QueryParams extends BaseUrlParams {
+  groupId?: QueryParam;
+}
+
+export type PostAggregatesFgaHostsGetV1ApiResponse = ApiResponsePayload;
+
+export interface PostAggregatesFgaHostsGetV1PostData {}
+
+export type PostAggregatesFgaHostsGetV1ResponseMessage =
+  BaseApiResponseMessage<PostAggregatesFgaHostsGetV1ApiResponse>;
+
+export interface PostAggregatesFgaHostsGetV1RequestMessage
+  extends BaseApiRequestMessage<
+    PostAggregatesFgaHostsGetV1QueryParams,
+    PostAggregatesFgaHostsGetV1PostData
+  > {
+  api: DevicesRequestApi;
+  method: 'postAggregatesFgaHostsGetV1';
+}
+
 // types for postCombinedDevicesLoginHistoryV1
 
 export type PostCombinedDevicesLoginHistoryV1QueryParams = BaseUrlParams;
@@ -328,6 +374,26 @@ export interface PostCombinedDevicesLoginHistoryV1RequestMessage
   > {
   api: DevicesRequestApi;
   method: 'postCombinedDevicesLoginHistoryV1';
+}
+
+// types for postCombinedFgaHostsLoginHistoryV1
+
+export type PostCombinedFgaHostsLoginHistoryV1QueryParams = BaseUrlParams;
+
+export type PostCombinedFgaHostsLoginHistoryV1ApiResponse = ApiResponsePayload;
+
+export interface PostCombinedFgaHostsLoginHistoryV1PostData {}
+
+export type PostCombinedFgaHostsLoginHistoryV1ResponseMessage =
+  BaseApiResponseMessage<PostCombinedFgaHostsLoginHistoryV1ApiResponse>;
+
+export interface PostCombinedFgaHostsLoginHistoryV1RequestMessage
+  extends BaseApiRequestMessage<
+    PostCombinedFgaHostsLoginHistoryV1QueryParams,
+    PostCombinedFgaHostsLoginHistoryV1PostData
+  > {
+  api: DevicesRequestApi;
+  method: 'postCombinedFgaHostsLoginHistoryV1';
 }
 
 // types for postEntitiesDevicesActionsV4
@@ -415,6 +481,46 @@ export interface PostEntitiesDevicesV2RequestMessage
   method: 'postEntitiesDevicesV2';
 }
 
+// types for postEntitiesFgaHostsReportsV1
+
+export type PostEntitiesFgaHostsReportsV1QueryParams = BaseUrlParams;
+
+export type PostEntitiesFgaHostsReportsV1ApiResponse = ApiResponsePayload;
+
+export interface PostEntitiesFgaHostsReportsV1PostData {}
+
+export type PostEntitiesFgaHostsReportsV1ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesFgaHostsReportsV1ApiResponse>;
+
+export interface PostEntitiesFgaHostsReportsV1RequestMessage
+  extends BaseApiRequestMessage<
+    PostEntitiesFgaHostsReportsV1QueryParams,
+    PostEntitiesFgaHostsReportsV1PostData
+  > {
+  api: DevicesRequestApi;
+  method: 'postEntitiesFgaHostsReportsV1';
+}
+
+// types for postEntitiesFgaHostsV1
+
+export type PostEntitiesFgaHostsV1QueryParams = BaseUrlParams;
+
+export type PostEntitiesFgaHostsV1ApiResponse = ApiResponsePayload;
+
+export interface PostEntitiesFgaHostsV1PostData {}
+
+export type PostEntitiesFgaHostsV1ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesFgaHostsV1ApiResponse>;
+
+export interface PostEntitiesFgaHostsV1RequestMessage
+  extends BaseApiRequestMessage<
+    PostEntitiesFgaHostsV1QueryParams,
+    PostEntitiesFgaHostsV1PostData
+  > {
+  api: DevicesRequestApi;
+  method: 'postEntitiesFgaHostsV1';
+}
+
 // types for postEntitiesGroupActionsV1
 
 export interface PostEntitiesGroupActionsV1QueryParams extends BaseUrlParams {
@@ -459,77 +565,63 @@ export interface PostEntitiesGroupsV1RequestMessage
   method: 'postEntitiesGroupsV1';
 }
 
-// types for postEntitiesReleasesV1
-
-export interface PostEntitiesReleasesV1QueryParams extends BaseUrlParams {
-  ids: QueryParam;
-}
-
-export type PostEntitiesReleasesV1ApiResponse = ApiResponsePayload;
-
-export interface PostEntitiesReleasesV1PostData {}
-
-export type PostEntitiesReleasesV1ResponseMessage =
-  BaseApiResponseMessage<PostEntitiesReleasesV1ApiResponse>;
-
-export interface PostEntitiesReleasesV1RequestMessage
-  extends BaseApiRequestMessage<
-    PostEntitiesReleasesV1QueryParams,
-    PostEntitiesReleasesV1PostData
-  > {
-  api: DevicesRequestApi;
-  method: 'postEntitiesReleasesV1';
-}
-
 // general types
 
 export type DevicesApiRequestMessage =
   | DeleteEntitiesGroupsV1RequestMessage
   | GetAggregatesBucketsV1RequestMessage
+  | GetAggregatesFgaTagPrefixCountsV1RequestMessage
   | GetAggregatesTagPrefixCountsV1RequestMessage
+  | GetEntitiesFgaGroupsV1RequestMessage
   | GetEntitiesGroupsV1RequestMessage
-  | GetEntitiesReleasesV1RequestMessage
-  | GetEntitiesRespondV1RequestMessage
   | GetQueriesAvailableGroupsV1RequestMessage
   | GetQueriesDevicesHiddenV2RequestMessage
   | GetQueriesDevicesV1RequestMessage
   | GetQueriesDevicesV2RequestMessage
+  | GetQueriesFgaGroupsV1RequestMessage
   | GetQueriesGroupsV1RequestMessage
   | PatchEntitiesDevicesTagsV2RequestMessage
   | PatchEntitiesGroupsV1RequestMessage
   | PostAggregatesDevicesGetV1RequestMessage
+  | PostAggregatesFgaHostsGetV1RequestMessage
   | PostCombinedDevicesLoginHistoryV1RequestMessage
+  | PostCombinedFgaHostsLoginHistoryV1RequestMessage
   | PostEntitiesDevicesActionsV4RequestMessage
   | PostEntitiesDevicesHiddenActionsV4RequestMessage
   | PostEntitiesDevicesReportsV1RequestMessage
   | PostEntitiesDevicesV2RequestMessage
+  | PostEntitiesFgaHostsReportsV1RequestMessage
+  | PostEntitiesFgaHostsV1RequestMessage
   | PostEntitiesGroupActionsV1RequestMessage
-  | PostEntitiesGroupsV1RequestMessage
-  | PostEntitiesReleasesV1RequestMessage;
+  | PostEntitiesGroupsV1RequestMessage;
 
 export type DevicesApiResponseMessage =
   | DeleteEntitiesGroupsV1ResponseMessage
   | GetAggregatesBucketsV1ResponseMessage
+  | GetAggregatesFgaTagPrefixCountsV1ResponseMessage
   | GetAggregatesTagPrefixCountsV1ResponseMessage
+  | GetEntitiesFgaGroupsV1ResponseMessage
   | GetEntitiesGroupsV1ResponseMessage
-  | GetEntitiesReleasesV1ResponseMessage
-  | GetEntitiesRespondV1ResponseMessage
   | GetQueriesAvailableGroupsV1ResponseMessage
   | GetQueriesDevicesHiddenV2ResponseMessage
   | GetQueriesDevicesV1ResponseMessage
   | GetQueriesDevicesV2ResponseMessage
+  | GetQueriesFgaGroupsV1ResponseMessage
   | GetQueriesGroupsV1ResponseMessage
   | PatchEntitiesDevicesTagsV2ResponseMessage
   | PatchEntitiesGroupsV1ResponseMessage
   | PostAggregatesDevicesGetV1ResponseMessage
+  | PostAggregatesFgaHostsGetV1ResponseMessage
   | PostCombinedDevicesLoginHistoryV1ResponseMessage
+  | PostCombinedFgaHostsLoginHistoryV1ResponseMessage
   | PostEntitiesDevicesActionsV4ResponseMessage
   | PostEntitiesDevicesHiddenActionsV4ResponseMessage
   | PostEntitiesDevicesReportsV1ResponseMessage
   | PostEntitiesDevicesV2ResponseMessage
+  | PostEntitiesFgaHostsReportsV1ResponseMessage
+  | PostEntitiesFgaHostsV1ResponseMessage
   | PostEntitiesGroupActionsV1ResponseMessage
-  | PostEntitiesGroupsV1ResponseMessage
-  | PostEntitiesReleasesV1ResponseMessage;
+  | PostEntitiesGroupsV1ResponseMessage;
 
 export class DevicesApiBridge {
   private bridge;
@@ -572,6 +664,21 @@ export class DevicesApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async getAggregatesFgaTagPrefixCountsV1(
+    urlParams: GetAggregatesFgaTagPrefixCountsV1QueryParams,
+  ): Promise<GetAggregatesFgaTagPrefixCountsV1ApiResponse> {
+    const message: GetAggregatesFgaTagPrefixCountsV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'getAggregatesFgaTagPrefixCountsV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
   async getAggregatesTagPrefixCountsV1(
     urlParams: GetAggregatesTagPrefixCountsV1QueryParams,
   ): Promise<GetAggregatesTagPrefixCountsV1ApiResponse> {
@@ -587,6 +694,21 @@ export class DevicesApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async getEntitiesFgaGroupsV1(
+    urlParams: GetEntitiesFgaGroupsV1QueryParams,
+  ): Promise<GetEntitiesFgaGroupsV1ApiResponse> {
+    const message: GetEntitiesFgaGroupsV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'getEntitiesFgaGroupsV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
   async getEntitiesGroupsV1(
     urlParams: GetEntitiesGroupsV1QueryParams,
   ): Promise<GetEntitiesGroupsV1ApiResponse> {
@@ -594,36 +716,6 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'getEntitiesGroupsV1',
-      payload: {
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async getEntitiesReleasesV1(
-    urlParams: GetEntitiesReleasesV1QueryParams,
-  ): Promise<GetEntitiesReleasesV1ApiResponse> {
-    const message: GetEntitiesReleasesV1RequestMessage = {
-      type: 'api',
-      api: 'devices',
-      method: 'getEntitiesReleasesV1',
-      payload: {
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async getEntitiesRespondV1(
-    urlParams: GetEntitiesRespondV1QueryParams = {},
-  ): Promise<GetEntitiesRespondV1ApiResponse> {
-    const message: GetEntitiesRespondV1RequestMessage = {
-      type: 'api',
-      api: 'devices',
-      method: 'getEntitiesRespondV1',
       payload: {
         params: urlParams,
       },
@@ -684,6 +776,21 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'getQueriesDevicesV2',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async getQueriesFgaGroupsV1(
+    urlParams: GetQueriesFgaGroupsV1QueryParams = {},
+  ): Promise<GetQueriesFgaGroupsV1ApiResponse> {
+    const message: GetQueriesFgaGroupsV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'getQueriesFgaGroupsV1',
       payload: {
         params: urlParams,
       },
@@ -758,6 +865,23 @@ export class DevicesApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async postAggregatesFgaHostsGetV1(
+    postBody: PostAggregatesFgaHostsGetV1PostData,
+    urlParams: PostAggregatesFgaHostsGetV1QueryParams = {},
+  ): Promise<PostAggregatesFgaHostsGetV1ApiResponse> {
+    const message: PostAggregatesFgaHostsGetV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'postAggregatesFgaHostsGetV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
   async postCombinedDevicesLoginHistoryV1(
     postBody: PostCombinedDevicesLoginHistoryV1PostData,
     urlParams: PostCombinedDevicesLoginHistoryV1QueryParams = {},
@@ -766,6 +890,23 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'postCombinedDevicesLoginHistoryV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async postCombinedFgaHostsLoginHistoryV1(
+    postBody: PostCombinedFgaHostsLoginHistoryV1PostData,
+    urlParams: PostCombinedFgaHostsLoginHistoryV1QueryParams = {},
+  ): Promise<PostCombinedFgaHostsLoginHistoryV1ApiResponse> {
+    const message: PostCombinedFgaHostsLoginHistoryV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'postCombinedFgaHostsLoginHistoryV1',
       payload: {
         body: postBody,
         params: urlParams,
@@ -843,6 +984,40 @@ export class DevicesApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async postEntitiesFgaHostsReportsV1(
+    postBody: PostEntitiesFgaHostsReportsV1PostData,
+    urlParams: PostEntitiesFgaHostsReportsV1QueryParams = {},
+  ): Promise<PostEntitiesFgaHostsReportsV1ApiResponse> {
+    const message: PostEntitiesFgaHostsReportsV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'postEntitiesFgaHostsReportsV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async postEntitiesFgaHostsV1(
+    postBody: PostEntitiesFgaHostsV1PostData,
+    urlParams: PostEntitiesFgaHostsV1QueryParams = {},
+  ): Promise<PostEntitiesFgaHostsV1ApiResponse> {
+    const message: PostEntitiesFgaHostsV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'postEntitiesFgaHostsV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
   async postEntitiesGroupActionsV1(
     postBody: PostEntitiesGroupActionsV1PostData,
     urlParams: PostEntitiesGroupActionsV1QueryParams,
@@ -868,23 +1043,6 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'postEntitiesGroupsV1',
-      payload: {
-        body: postBody,
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async postEntitiesReleasesV1(
-    postBody: PostEntitiesReleasesV1PostData,
-    urlParams: PostEntitiesReleasesV1QueryParams,
-  ): Promise<PostEntitiesReleasesV1ApiResponse> {
-    const message: PostEntitiesReleasesV1RequestMessage = {
-      type: 'api',
-      api: 'devices',
-      method: 'postEntitiesReleasesV1',
       payload: {
         body: postBody,
         params: urlParams,
