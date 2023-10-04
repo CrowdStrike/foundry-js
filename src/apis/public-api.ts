@@ -23,7 +23,8 @@ import { UserManagementApiBridge } from './user-management';
 import { WorkflowsApiBridge } from './workflows';
 
 import { assertConnection } from '../utils';
-import type FalconApi from 'api';
+
+import type FalconApi from '../api';
 
 export default class FalconPublicApis {
   constructor(private api: FalconApi<any>) {}
