@@ -1,5 +1,12 @@
 # @crowdstrike/foundry-js
 
+## 0.10.0
+
+### Minor Changes
+
+- [#49](https://github.com/CrowdStrike/foundry-js/pull/49) [`0cbf06a`](https://github.com/CrowdStrike/foundry-js/commit/0cbf06aa95300ea1fc86313ca0788c7035440239) Thanks [@RuslanZavacky](https://github.com/RuslanZavacky)! - \* Use `getIntelMitreEntitiesMatrixV1` instead of `getEntitiesMatrixV1`
+  - Updated available APIs
+
 ## 0.9.0
 
 ### Minor Changes
