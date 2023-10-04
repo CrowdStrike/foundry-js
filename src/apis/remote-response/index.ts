@@ -120,26 +120,6 @@ export interface PostEntitiesAppCommandV1RequestMessage
   method: 'postEntitiesAppCommandV1';
 }
 
-// types for postEntitiesAppRefreshSessionsV1
-
-export type PostEntitiesAppRefreshSessionsV1QueryParams = BaseUrlParams;
-
-export type PostEntitiesAppRefreshSessionsV1ApiResponse = ApiResponsePayload;
-
-export interface PostEntitiesAppRefreshSessionsV1PostData {}
-
-export type PostEntitiesAppRefreshSessionsV1ResponseMessage =
-  BaseApiResponseMessage<PostEntitiesAppRefreshSessionsV1ApiResponse>;
-
-export interface PostEntitiesAppRefreshSessionsV1RequestMessage
-  extends BaseApiRequestMessage<
-    PostEntitiesAppRefreshSessionsV1QueryParams,
-    PostEntitiesAppRefreshSessionsV1PostData
-  > {
-  api: RemoteResponseRequestApi;
-  method: 'postEntitiesAppRefreshSessionsV1';
-}
-
 // types for postEntitiesAppSessionsV1
 
 export interface PostEntitiesAppSessionsV1QueryParams extends BaseUrlParams {
@@ -191,7 +171,6 @@ export type RemoteResponseApiRequestMessage =
   | GetEntitiesPutFilesV2RequestMessage
   | GetQueriesPutFilesV1RequestMessage
   | PostEntitiesAppCommandV1RequestMessage
-  | PostEntitiesAppRefreshSessionsV1RequestMessage
   | PostEntitiesAppSessionsV1RequestMessage;
 
 export type RemoteResponseApiResponseMessage =
@@ -200,7 +179,6 @@ export type RemoteResponseApiResponseMessage =
   | GetEntitiesPutFilesV2ResponseMessage
   | GetQueriesPutFilesV1ResponseMessage
   | PostEntitiesAppCommandV1ResponseMessage
-  | PostEntitiesAppRefreshSessionsV1ResponseMessage
   | PostEntitiesAppSessionsV1ResponseMessage;
 
 export class RemoteResponseApiBridge {
@@ -282,23 +260,6 @@ export class RemoteResponseApiBridge {
       type: 'api',
       api: 'remoteResponse',
       method: 'postEntitiesAppCommandV1',
-      payload: {
-        body: postBody,
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async postEntitiesAppRefreshSessionsV1(
-    postBody: PostEntitiesAppRefreshSessionsV1PostData,
-    urlParams: PostEntitiesAppRefreshSessionsV1QueryParams = {},
-  ): Promise<PostEntitiesAppRefreshSessionsV1ApiResponse> {
-    const message: PostEntitiesAppRefreshSessionsV1RequestMessage = {
-      type: 'api',
-      api: 'remoteResponse',
-      method: 'postEntitiesAppRefreshSessionsV1',
       payload: {
         body: postBody,
         params: urlParams,

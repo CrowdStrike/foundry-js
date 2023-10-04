@@ -7,7 +7,6 @@
  **/
 
 export type ApiIdentifier =
-  | 'actors'
   | 'alerts'
   | 'detects'
   | 'devices'
