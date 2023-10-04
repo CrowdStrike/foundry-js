@@ -138,38 +138,6 @@ export interface GetEntitiesGroupsV1RequestMessage
   method: 'getEntitiesGroupsV1';
 }
 
-// types for getEntitiesReleasesV1
-
-export interface GetEntitiesReleasesV1QueryParams extends BaseUrlParams {
-  ids: QueryParam;
-}
-
-export type GetEntitiesReleasesV1ApiResponse = ApiResponsePayload;
-
-export type GetEntitiesReleasesV1ResponseMessage =
-  BaseApiResponseMessage<GetEntitiesReleasesV1ApiResponse>;
-
-export interface GetEntitiesReleasesV1RequestMessage
-  extends BaseApiRequestMessage<GetEntitiesReleasesV1QueryParams> {
-  api: DevicesRequestApi;
-  method: 'getEntitiesReleasesV1';
-}
-
-// types for getEntitiesRespondV1
-
-export type GetEntitiesRespondV1QueryParams = BaseUrlParams;
-
-export type GetEntitiesRespondV1ApiResponse = ApiResponsePayload;
-
-export type GetEntitiesRespondV1ResponseMessage =
-  BaseApiResponseMessage<GetEntitiesRespondV1ApiResponse>;
-
-export interface GetEntitiesRespondV1RequestMessage
-  extends BaseApiRequestMessage<GetEntitiesRespondV1QueryParams> {
-  api: DevicesRequestApi;
-  method: 'getEntitiesRespondV1';
-}
-
 // types for getQueriesAvailableGroupsV1
 
 export interface GetQueriesAvailableGroupsV1QueryParams extends BaseUrlParams {
@@ -597,28 +565,6 @@ export interface PostEntitiesGroupsV1RequestMessage
   method: 'postEntitiesGroupsV1';
 }
 
-// types for postEntitiesReleasesV1
-
-export interface PostEntitiesReleasesV1QueryParams extends BaseUrlParams {
-  ids: QueryParam;
-}
-
-export type PostEntitiesReleasesV1ApiResponse = ApiResponsePayload;
-
-export interface PostEntitiesReleasesV1PostData {}
-
-export type PostEntitiesReleasesV1ResponseMessage =
-  BaseApiResponseMessage<PostEntitiesReleasesV1ApiResponse>;
-
-export interface PostEntitiesReleasesV1RequestMessage
-  extends BaseApiRequestMessage<
-    PostEntitiesReleasesV1QueryParams,
-    PostEntitiesReleasesV1PostData
-  > {
-  api: DevicesRequestApi;
-  method: 'postEntitiesReleasesV1';
-}
-
 // general types
 
 export type DevicesApiRequestMessage =
@@ -628,8 +574,6 @@ export type DevicesApiRequestMessage =
   | GetAggregatesTagPrefixCountsV1RequestMessage
   | GetEntitiesFgaGroupsV1RequestMessage
   | GetEntitiesGroupsV1RequestMessage
-  | GetEntitiesReleasesV1RequestMessage
-  | GetEntitiesRespondV1RequestMessage
   | GetQueriesAvailableGroupsV1RequestMessage
   | GetQueriesDevicesHiddenV2RequestMessage
   | GetQueriesDevicesV1RequestMessage
@@ -649,8 +593,7 @@ export type DevicesApiRequestMessage =
   | PostEntitiesFgaHostsReportsV1RequestMessage
   | PostEntitiesFgaHostsV1RequestMessage
   | PostEntitiesGroupActionsV1RequestMessage
-  | PostEntitiesGroupsV1RequestMessage
-  | PostEntitiesReleasesV1RequestMessage;
+  | PostEntitiesGroupsV1RequestMessage;
 
 export type DevicesApiResponseMessage =
   | DeleteEntitiesGroupsV1ResponseMessage
@@ -659,8 +602,6 @@ export type DevicesApiResponseMessage =
   | GetAggregatesTagPrefixCountsV1ResponseMessage
   | GetEntitiesFgaGroupsV1ResponseMessage
   | GetEntitiesGroupsV1ResponseMessage
-  | GetEntitiesReleasesV1ResponseMessage
-  | GetEntitiesRespondV1ResponseMessage
   | GetQueriesAvailableGroupsV1ResponseMessage
   | GetQueriesDevicesHiddenV2ResponseMessage
   | GetQueriesDevicesV1ResponseMessage
@@ -680,8 +621,7 @@ export type DevicesApiResponseMessage =
   | PostEntitiesFgaHostsReportsV1ResponseMessage
   | PostEntitiesFgaHostsV1ResponseMessage
   | PostEntitiesGroupActionsV1ResponseMessage
-  | PostEntitiesGroupsV1ResponseMessage
-  | PostEntitiesReleasesV1ResponseMessage;
+  | PostEntitiesGroupsV1ResponseMessage;
 
 export class DevicesApiBridge {
   private bridge;
@@ -776,36 +716,6 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'getEntitiesGroupsV1',
-      payload: {
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async getEntitiesReleasesV1(
-    urlParams: GetEntitiesReleasesV1QueryParams,
-  ): Promise<GetEntitiesReleasesV1ApiResponse> {
-    const message: GetEntitiesReleasesV1RequestMessage = {
-      type: 'api',
-      api: 'devices',
-      method: 'getEntitiesReleasesV1',
-      payload: {
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async getEntitiesRespondV1(
-    urlParams: GetEntitiesRespondV1QueryParams = {},
-  ): Promise<GetEntitiesRespondV1ApiResponse> {
-    const message: GetEntitiesRespondV1RequestMessage = {
-      type: 'api',
-      api: 'devices',
-      method: 'getEntitiesRespondV1',
       payload: {
         params: urlParams,
       },
@@ -1133,23 +1043,6 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'postEntitiesGroupsV1',
-      payload: {
-        body: postBody,
-        params: urlParams,
-      },
-    };
-
-    return this.bridge.postMessage(message);
-  }
-
-  async postEntitiesReleasesV1(
-    postBody: PostEntitiesReleasesV1PostData,
-    urlParams: PostEntitiesReleasesV1QueryParams,
-  ): Promise<PostEntitiesReleasesV1ApiResponse> {
-    const message: PostEntitiesReleasesV1RequestMessage = {
-      type: 'api',
-      api: 'devices',
-      method: 'postEntitiesReleasesV1',
       payload: {
         body: postBody,
         params: urlParams,
