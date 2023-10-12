@@ -50,6 +50,11 @@ export interface UserData {
 }
 
 /**
+ * A map of custom app permissions, mapping permission keys to a boolean, indicating the permission status for the current user and that particular permission.
+ */
+export type Permissions = Record<string, boolean>;
+
+/**
  * The minimum {@link FalconApi.data} every UI extension receives from the Falcon Console.
  */
 export interface LocalData {
@@ -86,6 +91,11 @@ export interface LocalData {
    * The date format preferred by the current user, in a [`moment.js` format](https://momentjs.com/docs/#/displaying/format/)
    */
   dateFormat?: string;
+
+  /**
+   * A map of custom app permissions, mapping permission keys to a boolean, indicating the permission status for the current user and that particular permission.
+   */
+  permissions?: Permissions;
   [key: string]: unknown;
 }
 
