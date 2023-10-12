@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.10.1
+
+### Patch Changes
+
+- [#51](https://github.com/CrowdStrike/foundry-js/pull/51) [`4d60e65`](https://github.com/CrowdStrike/foundry-js/commit/4d60e650035f390d5d8818cabba71ca157bf81e1) Thanks [@simonihmig](https://github.com/simonihmig)! - Expose permissions map as local data
+
 ## 0.10.0
 
 ### Minor Changes
