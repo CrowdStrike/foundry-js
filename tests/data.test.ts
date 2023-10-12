@@ -26,6 +26,7 @@ test('it receives initial data', async () => {
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
+    permissions: { ['foo:read']: true },
     foo: 'bar',
   };
 
@@ -55,6 +56,7 @@ test('data can update', async () => {
         theme: 'theme-light',
         cid: 'xxx',
         locale: 'en-us',
+        permissions: { ['foo:read']: true },
         some: 'stuff',
       },
     },
@@ -76,6 +78,7 @@ test('data can update', async () => {
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
+    permissions: { ['foo:read']: true },
     some: 'stuff',
   });
 });
@@ -103,6 +106,7 @@ test('it can subscribe to data updates', async () => {
         theme: 'theme-light',
         cid: 'xxx',
         locale: 'en-us',
+        permissions: { ['foo:read']: true },
         some: 'stuff',
       },
     },
@@ -128,6 +132,7 @@ test('it can subscribe to data updates', async () => {
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
+    permissions: { ['foo:read']: true },
     some: 'stuff',
   });
   expect(api.data, 'new data is updated on .data').toEqual({
@@ -141,6 +146,7 @@ test('it can subscribe to data updates', async () => {
     theme: 'theme-light',
     cid: 'xxx',
     locale: 'en-us',
+    permissions: { ['foo:read']: true },
     some: 'stuff',
   });
 });
