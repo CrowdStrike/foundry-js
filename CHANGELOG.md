@@ -1,5 +1,21 @@
 # @crowdstrike/foundry-js
 
+## 0.11.0
+
+### Minor Changes
+
+- [#53](https://github.com/CrowdStrike/foundry-js/pull/53) [`2000545`](https://github.com/CrowdStrike/foundry-js/commit/200054522811b9a22164f288e10a8dfb0909a9c9) Thanks [@RuslanZavacky](https://github.com/RuslanZavacky)! - Improve how we handle onClick for navigation. Now when adding event listener to click event:
+
+  ```javascript
+  document
+    .querySelector('[data-internal-links]')
+    .addEventListener('click', (event) =>
+      falcon.navigation.onClick(event, '_self', 'internal'),
+    );
+  ```
+
+  we'll call preventDefault correctly and won't throw error in the console.
+
 ## 0.10.1
 
 ### Patch Changes
