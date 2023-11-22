@@ -48,11 +48,11 @@ export class Navigation<DATA extends LocalData = LocalData> {
       return;
     }
 
-    event.preventDefault();
-
     if (!(event.target instanceof HTMLAnchorElement)) {
-      throw Error(`event target is not an anchor element, ${event.target}`);
+      return;
     }
+
+    event.preventDefault();
 
     const path = event.target.getAttribute('href');
     defaultTarget =
