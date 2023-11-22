@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.12.0
+
+### Minor Changes
+
+- [#55](https://github.com/CrowdStrike/foundry-js/pull/55) [`4fb9b96`](https://github.com/CrowdStrike/foundry-js/commit/4fb9b965975d9392788e2bf2b310bc116d53de0e) Thanks [@RuslanZavacky](https://github.com/RuslanZavacky)! - Connect message can be undefined, if app runs without iframe. If that happens, we'll gracefully ignore failure and allow application to continue to work.
+
 ## 0.11.0
 
 ### Minor Changes
