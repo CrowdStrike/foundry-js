@@ -93,15 +93,20 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
    * This establishes a connection to send messages between the extension and the Falcon Console. Only when established you will be able to call other APIs.
    */
   public async connect(): Promise<void> {
-    const { origin, data } = await this.bridge.postMessage({ type: 'connect' });
+    const response = await this.bridge.postMessage({ type: 'connect' });
 
-    this.bridge.setOrigin(origin);
-    this.data = data;
+    if (response !== undefined) {
+      const { origin, data } = response;
 
-    this.updateTheme(data?.theme);
+      this.bridge.setOrigin(origin);
+      this.data = data;
+
+      this.updateTheme(data?.theme);
+
+      this.isConnected = true;
+    }
+
     this.resizeTracker = new ResizeTracker(this.bridge);
-
-    this.isConnected = true;
   }
 
   /**
