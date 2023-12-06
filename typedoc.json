@@ -1,6 +1,6 @@
 {
   "name": "foundry-js",
-  "out": "docs",
+  "out": "api-docs",
   "theme": "default",
   "entryPoints": ["src/api.ts"],
   "includeVersion": true,
