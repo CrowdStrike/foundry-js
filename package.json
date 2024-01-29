@@ -33,7 +33,7 @@
     "_build": "concurrently 'npm:build:*'",
     "_start": "concurrently 'npm:watch:*'",
     "build": "rollup -c ./config/rollup.config.ts --configPlugin typescript",
-    "docs": "typedoc",
+    "api-docs": "typedoc",
     "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
     "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
     "lint:js": "eslint . --cache",
