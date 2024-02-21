@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.12.1
+
+### Patch Changes
+
+- [#58](https://github.com/CrowdStrike/foundry-js/pull/58) [`3d05e29`](https://github.com/CrowdStrike/foundry-js/commit/3d05e29a536efc186ce0a5ee4e180505ab367520) Thanks [@RuslanZavacky](https://github.com/RuslanZavacky)! - Added code of conduct
+
 ## 0.12.0
 
 ### Minor Changes
