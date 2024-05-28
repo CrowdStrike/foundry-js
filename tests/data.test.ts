@@ -1,6 +1,6 @@
 import FalconApi from '../src';
 import { afterEach, beforeEach, expect, test } from 'vitest';
-import { connectApi } from './helpers';
+import { connectApi, nextTick } from './helpers';
 import { pEvent } from 'p-event';
 import { v4 as uuidv4 } from 'uuid';
 import type { DataUpdateMessage, LocalData, MessageEnvelope } from '../src';
@@ -66,6 +66,8 @@ test('data can update', async () => {
   };
 
   window.postMessage(dataUpdate);
+
+  await nextTick();
 
   expect(api.data, 'new data is updated on .data').toEqual({
     app: {

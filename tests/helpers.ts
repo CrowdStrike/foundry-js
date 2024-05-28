@@ -25,5 +25,9 @@ export async function connectApi(api: FalconApi, data?: LocalData) {
   return api.connect();
 }
 
+export async function nextTick() {
+  await new Promise((resolve) => setTimeout(resolve, 0));
+}
+
 export const uuidV4Regex =
   /^[0-9a-fA-F]{8}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{4}\b-[0-9a-fA-F]{12}$/;
