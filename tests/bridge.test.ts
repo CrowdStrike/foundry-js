@@ -9,6 +9,7 @@ let bridge: Bridge;
 
 beforeEach(() => {
   bridge = new Bridge();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore-next-line
   window.parent = new Window();
 });
