@@ -34,7 +34,8 @@
     "noImplicitReturns": true,
 
     // This addon does not allow JavaScript
-    "allowJs": false
+    "allowJs": false,
+    "skipLibCheck": true
   },
   "include": ["src/**/*", "tests/**/*"]
 }

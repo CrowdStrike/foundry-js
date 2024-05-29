@@ -9,6 +9,7 @@ let bridge: Bridge;
 
 beforeEach(() => {
   bridge = new Bridge();
+  // @ts-ignore-next-line
   window.parent = new Window();
 });
 
