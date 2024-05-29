@@ -73,7 +73,7 @@
     "typedoc": "^0.25.13",
     "typedoc-plugin-missing-exports": "^2.2.0",
     "typedoc-plugin-rename-defaults": "^0.7.0",
-    "typescript": "5.0.2",
+    "typescript": "5.4.5",
     "vitest": "^1.6.0"
   },
   "engines": {
