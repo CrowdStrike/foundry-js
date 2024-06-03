@@ -404,16 +404,16 @@ type ResponseFor<
 > = REQ extends ConnectRequestMessage
   ? ConnectResponseMessage<DATA>
   : REQ extends NavigateToRequestMessage
-  ? NavigateToResponseMessage
-  : REQ extends CollectionRequestMessage
-  ? CollectionResponseMessage
-  : REQ extends LogscaleRequestMessage
-  ? LogscaleResponseMessage
-  : REQ extends FileUploadRequestMessage<infer FILEUPLOADTYPE>
-  ? FileUploadResponseMessage<FILEUPLOADTYPE>
-  : REQ extends OpenModalRequestMessage
-  ? OpenModalResponseMessage
-  : ApiResponseFor<REQ>;
+    ? NavigateToResponseMessage
+    : REQ extends CollectionRequestMessage
+      ? CollectionResponseMessage
+      : REQ extends LogscaleRequestMessage
+        ? LogscaleResponseMessage
+        : REQ extends FileUploadRequestMessage<infer FILEUPLOADTYPE>
+          ? FileUploadResponseMessage<FILEUPLOADTYPE>
+          : REQ extends OpenModalRequestMessage
+            ? OpenModalResponseMessage
+            : ApiResponseFor<REQ>;
 
 export { ResponseFor };
 

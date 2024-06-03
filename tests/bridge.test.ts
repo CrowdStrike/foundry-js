@@ -1,6 +1,7 @@
 import { Bridge } from '../src/bridge';
+import { Window } from 'happy-dom';
 import { afterEach, beforeEach, expect, test, vi } from 'vitest';
-import { uuidV4Regex } from './helpers';
+import { nextTick, uuidV4Regex } from './helpers';
 
 import type { MessageEnvelope } from '../src/types';
 
@@ -8,22 +9,34 @@ let bridge: Bridge;
 
 beforeEach(() => {
   bridge = new Bridge();
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore-next-line
   window.parent = new Window();
 });
 
-afterEach(() => bridge.destroy());
+afterEach(() => {
+  bridge.destroy();
+  vi.restoreAllMocks();
+});
 
 test('it can be instantiated', () => {
   expect(bridge).toBeDefined();
 });
 
-test('it throws when receiving an unexpected message', () => {
+test('it throws when receiving an unexpected message', async () => {
   const invalidMessage: MessageEnvelope<unknown> = {
     meta: { messageId: 'foo', version: 'current' },
     message: {},
   };
 
-  expect(() => window.postMessage(invalidMessage)).toThrow();
+  const errorSpy = vi.spyOn(bridge, 'throwError');
+
+  errorSpy.mockImplementationOnce(() => true);
+
+  window.postMessage(invalidMessage);
+  await nextTick();
+
+  expect(errorSpy).toHaveBeenCalledTimes(1);
 });
 
 test('it can send a message', () => {
