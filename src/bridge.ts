@@ -25,11 +25,11 @@ function timeoutForMessage(message: RequestMessage): number | null {
     message.type === 'connect'
       ? CONNECTION_TIMEOUT
       : message.type === 'api'
-      ? API_TIMEOUT
-      : message.type === 'navigateTo'
-      ? NAVIGATION_TIMEOUT
-      : // Requests not explicitly covered above will not have a timeout. This includes 'fileUpload', which is a user interaction that can take any amount of time.
-        null;
+        ? API_TIMEOUT
+        : message.type === 'navigateTo'
+          ? NAVIGATION_TIMEOUT
+          : // Requests not explicitly covered above will not have a timeout. This includes 'fileUpload', which is a user interaction that can take any amount of time.
+            null;
 
   // In tests we have mocked responses which do not require long timeouts
   return timeout !== null && process.env.VITEST ? 40 : timeout;
@@ -61,11 +61,11 @@ export class Bridge<DATA extends LocalData = LocalData> {
     this.onBroadcast = onBroadcast;
     this.onLivereload = onLivereload;
 
-    window.addEventListener('message', this.handleMessage);
+    window.addEventListener('message', this.handleMessageWrapper);
   }
 
   public destroy() {
-    window.removeEventListener('message', this.handleMessage);
+    window.removeEventListener('message', this.handleMessageWrapper);
   }
 
   public setOrigin(origin: string) {
@@ -122,7 +122,13 @@ export class Bridge<DATA extends LocalData = LocalData> {
     }) satisfies Promise<PayloadOf<ResponseFor<REQ, DATA>>>;
   }
 
-  private handleMessage = (
+  private handleMessageWrapper = (
+    event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | unknown>,
+  ) => {
+    return this.handleMessage(event);
+  };
+
+  public handleMessage = (
     event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | unknown>,
   ) => {
     if (!isValidResponse<DATA>(event)) {
@@ -156,11 +162,16 @@ export class Bridge<DATA extends LocalData = LocalData> {
     const callback = this.pendingMessages.get(messageId);
 
     if (!callback) {
-      throw new Error(`Received unexpected message`);
+      this.throwError(`Received unexpected message`);
+      return;
     }
 
     this.pendingMessages.delete(messageId);
 
     callback(message.payload);
   };
+
+  public throwError(message: string): void {
+    throw new Error(message);
+  }
 }

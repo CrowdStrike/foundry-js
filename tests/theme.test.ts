@@ -1,6 +1,6 @@
 import FalconApi from '../src';
-import { afterEach, beforeEach, expect, test } from 'vitest';
-import { connectApi } from './helpers';
+import { afterEach, beforeEach, expect, test, vi } from 'vitest';
+import { connectApi, nextTick } from './helpers';
 import { v4 as uuidv4 } from 'uuid';
 import type { DataUpdateMessage, LocalData, MessageEnvelope } from '../src';
 
@@ -38,6 +38,10 @@ test('it receives initial theme', async () => {
 test('theme can update', async () => {
   await connectApi(api);
 
+  const handleMessageSpy = vi.spyOn(api.bridge, 'handleMessage');
+
+  expect(handleMessageSpy).toHaveBeenCalledTimes(0);
+
   expect(api.data).toBeUndefined();
 
   const dataUpdate: MessageEnvelope<DataUpdateMessage> = {
@@ -62,6 +66,10 @@ test('theme can update', async () => {
   };
 
   window.postMessage(dataUpdate);
+
+  await nextTick();
+
+  expect(handleMessageSpy).toHaveBeenCalledTimes(1);
 
   expect(
     document.documentElement.classList.contains('theme-dark'),
