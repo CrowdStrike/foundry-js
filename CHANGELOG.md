@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.13.0
+
+### Minor Changes
+
+- [#60](https://github.com/CrowdStrike/foundry-js/pull/60) [`70f1700`](https://github.com/CrowdStrike/foundry-js/commit/70f1700ced5a19f56398a735a12c4b2cf362565b) Thanks [@RuslanZavacky](https://github.com/RuslanZavacky)! - Update packages, adapt code & tests for new versions.
+
 ## 0.12.1
 
 ### Patch Changes
