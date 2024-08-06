@@ -198,9 +198,11 @@ import type {
   GetEntitiesConfigsV1RequestMessage as Request60,
   PostEntitiesExecuteDraftV1RequestMessage as Request61,
   PostEntitiesExecuteV1RequestMessage as Request62,
+  GetEntitiesDefinitionsV1RequestMessage as Request63,
   GetEntitiesConfigsV1ResponseMessage as Response60,
   PostEntitiesExecuteDraftV1ResponseMessage as Response61,
   PostEntitiesExecuteV1ResponseMessage as Response62,
+  GetEntitiesDefinitionsV1ResponseMessage as Response63,
 } from './plugins';
 
 import type {
@@ -261,8 +263,10 @@ import type {
 import type {
   GetEntitiesSavedSearchesExecuteV1RequestMessage as Request120,
   PostEntitiesSavedSearchesExecuteV1RequestMessage as Request121,
+  GetEntitiesSavedSearchesV1RequestMessage as Request122,
   GetEntitiesSavedSearchesExecuteV1ResponseMessage as Response120,
   PostEntitiesSavedSearchesExecuteV1ResponseMessage as Response121,
+  GetEntitiesSavedSearchesV1ResponseMessage as Response122,
 } from './loggingapi';
 
 export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
@@ -439,48 +443,52 @@ export type ResponseFor<REQ extends RequestMessage> = REQ extends Request00
                                                                                                                                                                             ? Response61
                                                                                                                                                                             : REQ extends Request62
                                                                                                                                                                               ? Response62
-                                                                                                                                                                              : REQ extends Request70
-                                                                                                                                                                                ? Response70
-                                                                                                                                                                                : REQ extends Request71
-                                                                                                                                                                                  ? Response71
-                                                                                                                                                                                  : REQ extends Request72
-                                                                                                                                                                                    ? Response72
-                                                                                                                                                                                    : REQ extends Request73
-                                                                                                                                                                                      ? Response73
-                                                                                                                                                                                      : REQ extends Request74
-                                                                                                                                                                                        ? Response74
-                                                                                                                                                                                        : REQ extends Request75
-                                                                                                                                                                                          ? Response75
-                                                                                                                                                                                          : REQ extends Request80
-                                                                                                                                                                                            ? Response80
-                                                                                                                                                                                            : REQ extends Request81
-                                                                                                                                                                                              ? Response81
-                                                                                                                                                                                              : REQ extends Request90
-                                                                                                                                                                                                ? Response90
-                                                                                                                                                                                                : REQ extends Request91
-                                                                                                                                                                                                  ? Response91
-                                                                                                                                                                                                  : REQ extends Request92
-                                                                                                                                                                                                    ? Response92
-                                                                                                                                                                                                    : REQ extends Request100
-                                                                                                                                                                                                      ? Response100
-                                                                                                                                                                                                      : REQ extends Request101
-                                                                                                                                                                                                        ? Response101
-                                                                                                                                                                                                        : REQ extends Request102
-                                                                                                                                                                                                          ? Response102
-                                                                                                                                                                                                          : REQ extends Request103
-                                                                                                                                                                                                            ? Response103
-                                                                                                                                                                                                            : REQ extends Request104
-                                                                                                                                                                                                              ? Response104
-                                                                                                                                                                                                              : REQ extends Request105
-                                                                                                                                                                                                                ? Response105
-                                                                                                                                                                                                                : REQ extends Request106
-                                                                                                                                                                                                                  ? Response106
-                                                                                                                                                                                                                  : REQ extends Request110
-                                                                                                                                                                                                                    ? Response110
-                                                                                                                                                                                                                    : REQ extends Request111
-                                                                                                                                                                                                                      ? Response111
-                                                                                                                                                                                                                      : REQ extends Request120
-                                                                                                                                                                                                                        ? Response120
-                                                                                                                                                                                                                        : REQ extends Request121
-                                                                                                                                                                                                                          ? Response121
-                                                                                                                                                                                                                          : any;
+                                                                                                                                                                              : REQ extends Request63
+                                                                                                                                                                                ? Response63
+                                                                                                                                                                                : REQ extends Request70
+                                                                                                                                                                                  ? Response70
+                                                                                                                                                                                  : REQ extends Request71
+                                                                                                                                                                                    ? Response71
+                                                                                                                                                                                    : REQ extends Request72
+                                                                                                                                                                                      ? Response72
+                                                                                                                                                                                      : REQ extends Request73
+                                                                                                                                                                                        ? Response73
+                                                                                                                                                                                        : REQ extends Request74
+                                                                                                                                                                                          ? Response74
+                                                                                                                                                                                          : REQ extends Request75
+                                                                                                                                                                                            ? Response75
+                                                                                                                                                                                            : REQ extends Request80
+                                                                                                                                                                                              ? Response80
+                                                                                                                                                                                              : REQ extends Request81
+                                                                                                                                                                                                ? Response81
+                                                                                                                                                                                                : REQ extends Request90
+                                                                                                                                                                                                  ? Response90
+                                                                                                                                                                                                  : REQ extends Request91
+                                                                                                                                                                                                    ? Response91
+                                                                                                                                                                                                    : REQ extends Request92
+                                                                                                                                                                                                      ? Response92
+                                                                                                                                                                                                      : REQ extends Request100
+                                                                                                                                                                                                        ? Response100
+                                                                                                                                                                                                        : REQ extends Request101
+                                                                                                                                                                                                          ? Response101
+                                                                                                                                                                                                          : REQ extends Request102
+                                                                                                                                                                                                            ? Response102
+                                                                                                                                                                                                            : REQ extends Request103
+                                                                                                                                                                                                              ? Response103
+                                                                                                                                                                                                              : REQ extends Request104
+                                                                                                                                                                                                                ? Response104
+                                                                                                                                                                                                                : REQ extends Request105
+                                                                                                                                                                                                                  ? Response105
+                                                                                                                                                                                                                  : REQ extends Request106
+                                                                                                                                                                                                                    ? Response106
+                                                                                                                                                                                                                    : REQ extends Request110
+                                                                                                                                                                                                                      ? Response110
+                                                                                                                                                                                                                      : REQ extends Request111
+                                                                                                                                                                                                                        ? Response111
+                                                                                                                                                                                                                        : REQ extends Request120
+                                                                                                                                                                                                                          ? Response120
+                                                                                                                                                                                                                          : REQ extends Request121
+                                                                                                                                                                                                                            ? Response121
+                                                                                                                                                                                                                            : REQ extends Request122
+                                                                                                                                                                                                                              ? Response122
+                                                                                                                                                                                                                              : any;
