@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.14.0
+
+### Minor Changes
+
+- [#63](https://github.com/CrowdStrike/foundry-js/pull/63) [`80aa395`](https://github.com/CrowdStrike/foundry-js/commit/80aa3952de0ec18b7ccf5b8b531047553108571b) Thanks [@rhinchey-cs](https://github.com/rhinchey-cs)! - Adding new methods to plugins and logging apis
+
 ## 0.13.0
 
 ### Minor Changes
