@@ -49,6 +49,23 @@ export interface GetEntitiesSavedSearchesExecuteV1RequestMessage
   method: 'getEntitiesSavedSearchesExecuteV1';
 }
 
+// types for getEntitiesSavedSearchesV1
+
+export interface GetEntitiesSavedSearchesV1QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type GetEntitiesSavedSearchesV1ApiResponse = ApiResponsePayload;
+
+export type GetEntitiesSavedSearchesV1ResponseMessage =
+  BaseApiResponseMessage<GetEntitiesSavedSearchesV1ApiResponse>;
+
+export interface GetEntitiesSavedSearchesV1RequestMessage
+  extends BaseApiRequestMessage<GetEntitiesSavedSearchesV1QueryParams> {
+  api: LoggingapiRequestApi;
+  method: 'getEntitiesSavedSearchesV1';
+}
+
 // types for postEntitiesSavedSearchesDynamicExecuteV1
 
 export interface PostEntitiesSavedSearchesDynamicExecuteV1QueryParams
@@ -124,10 +141,12 @@ export interface PostEntitiesSavedSearchesIngestV1RequestMessage
 
 export type LoggingapiApiRequestMessage =
   | GetEntitiesSavedSearchesExecuteV1RequestMessage
+  | GetEntitiesSavedSearchesV1RequestMessage
   | PostEntitiesSavedSearchesExecuteV1RequestMessage;
 
 export type LoggingapiApiResponseMessage =
   | GetEntitiesSavedSearchesExecuteV1ResponseMessage
+  | GetEntitiesSavedSearchesV1ResponseMessage
   | PostEntitiesSavedSearchesExecuteV1ResponseMessage;
 
 export class LoggingapiApiBridge {
@@ -148,6 +167,21 @@ export class LoggingapiApiBridge {
       type: 'api',
       api: 'loggingapi',
       method: 'getEntitiesSavedSearchesExecuteV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async getEntitiesSavedSearchesV1(
+    urlParams: GetEntitiesSavedSearchesV1QueryParams,
+  ): Promise<GetEntitiesSavedSearchesV1ApiResponse> {
+    const message: GetEntitiesSavedSearchesV1RequestMessage = {
+      type: 'api',
+      api: 'loggingapi',
+      method: 'getEntitiesSavedSearchesV1',
       payload: {
         params: urlParams,
       },
