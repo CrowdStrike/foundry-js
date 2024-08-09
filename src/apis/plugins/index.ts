@@ -44,6 +44,23 @@ export interface GetEntitiesConfigsV1RequestMessage
   method: 'getEntitiesConfigsV1';
 }
 
+// types for getEntitiesDefinitionsV1
+
+export interface GetEntitiesDefinitionsV1QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type GetEntitiesDefinitionsV1ApiResponse = ApiResponsePayload;
+
+export type GetEntitiesDefinitionsV1ResponseMessage =
+  BaseApiResponseMessage<GetEntitiesDefinitionsV1ApiResponse>;
+
+export interface GetEntitiesDefinitionsV1RequestMessage
+  extends BaseApiRequestMessage<GetEntitiesDefinitionsV1QueryParams> {
+  api: PluginsRequestApi;
+  method: 'getEntitiesDefinitionsV1';
+}
+
 // types for postEntitiesExecuteDraftV1
 
 export type PostEntitiesExecuteDraftV1QueryParams = BaseUrlParams;
@@ -88,11 +105,13 @@ export interface PostEntitiesExecuteV1RequestMessage
 
 export type PluginsApiRequestMessage =
   | GetEntitiesConfigsV1RequestMessage
+  | GetEntitiesDefinitionsV1RequestMessage
   | PostEntitiesExecuteDraftV1RequestMessage
   | PostEntitiesExecuteV1RequestMessage;
 
 export type PluginsApiResponseMessage =
   | GetEntitiesConfigsV1ResponseMessage
+  | GetEntitiesDefinitionsV1ResponseMessage
   | PostEntitiesExecuteDraftV1ResponseMessage
   | PostEntitiesExecuteV1ResponseMessage;
 
@@ -114,6 +133,21 @@ export class PluginsApiBridge {
       type: 'api',
       api: 'plugins',
       method: 'getEntitiesConfigsV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async getEntitiesDefinitionsV1(
+    urlParams: GetEntitiesDefinitionsV1QueryParams,
+  ): Promise<GetEntitiesDefinitionsV1ApiResponse> {
+    const message: GetEntitiesDefinitionsV1RequestMessage = {
+      type: 'api',
+      api: 'plugins',
+      method: 'getEntitiesDefinitionsV1',
       payload: {
         params: urlParams,
       },
