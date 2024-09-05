@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.15.0
+
+### Minor Changes
+
+- [#66](https://github.com/CrowdStrike/foundry-js/pull/66) [`6dffedd`](https://github.com/CrowdStrike/foundry-js/commit/6dffeddb0faa344028a182d487b72e35e13920fb) Thanks [@rhinchey-cs](https://github.com/rhinchey-cs)! - return initial data from connect()
+
 ## 0.14.0
 
 ### Minor Changes
