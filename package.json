@@ -1,6 +1,6 @@
 {
   "name": "@crowdstrike/foundry-js",
-  "version": "0.14.0",
+  "version": "0.15.0",
   "description": "foundry.js is the JavaScript SDK for authoring UI Extensions for CrowdStrike's Foundry platform.",
   "repository": {
     "type": "git",
