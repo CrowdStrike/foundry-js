@@ -101,19 +101,40 @@ export interface PostEntitiesExecuteV1RequestMessage
   method: 'postEntitiesExecuteV1';
 }
 
+// types for postEntitiesMobiledocV1
+
+export type PostEntitiesMobiledocV1QueryParams = BaseUrlParams;
+
+export type PostEntitiesMobiledocV1ApiResponse = ApiResponsePayload;
+
+export interface PostEntitiesMobiledocV1PostData {}
+
+export type PostEntitiesMobiledocV1ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesMobiledocV1ApiResponse>;
+
+export interface PostEntitiesMobiledocV1RequestMessage
+  extends BaseApiRequestMessage<
+    PostEntitiesMobiledocV1QueryParams,
+    PostEntitiesMobiledocV1PostData
+  > {
+  api: PluginsRequestApi;
+  method: 'postEntitiesMobiledocV1';
+}
 // general types
 
 export type PluginsApiRequestMessage =
   | GetEntitiesConfigsV1RequestMessage
   | GetEntitiesDefinitionsV1RequestMessage
   | PostEntitiesExecuteDraftV1RequestMessage
-  | PostEntitiesExecuteV1RequestMessage;
+  | PostEntitiesExecuteV1RequestMessage
+  | PostEntitiesMobiledocV1RequestMessage;
 
 export type PluginsApiResponseMessage =
   | GetEntitiesConfigsV1ResponseMessage
   | GetEntitiesDefinitionsV1ResponseMessage
   | PostEntitiesExecuteDraftV1ResponseMessage
-  | PostEntitiesExecuteV1ResponseMessage;
+  | PostEntitiesExecuteV1ResponseMessage
+  | PostEntitiesMobiledocV1ResponseMessage;
 
 export class PluginsApiBridge {
   private bridge;
@@ -181,6 +202,23 @@ export class PluginsApiBridge {
       type: 'api',
       api: 'plugins',
       method: 'postEntitiesExecuteV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async postEntitiesMobiledocV1(
+    postBody: PostEntitiesMobiledocV1PostData,
+    urlParams: PostEntitiesMobiledocV1QueryParams = {},
+  ): Promise<PostEntitiesMobiledocV1ApiResponse> {
+    const message: PostEntitiesMobiledocV1RequestMessage = {
+      type: 'api',
+      api: 'plugins',
+      method: 'postEntitiesMobiledocV1',
       payload: {
         body: postBody,
         params: urlParams,
