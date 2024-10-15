@@ -115,6 +115,7 @@ To call API Integration, App should be initially provisioned, and configuration 
   // we assume, that API Integration was created and operation Get Cities exists
   
   const apiIntegration = falcon.apiIntegration({
+    definitionId: '<api-integration-id from manifest.yml>',
     operationId: 'Get Cities',
   });
 
@@ -128,6 +129,7 @@ To call API Integration, App should be initially provisioned, and configuration 
     }
   });
   // response.resources?.[0]?.status_code === 200
+  // date is at response.resources[0].response_body
 });
 ```
 
