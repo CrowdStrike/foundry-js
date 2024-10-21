@@ -184,7 +184,7 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     operationId,
   }: {
     operationId: string;
-    definitionId?: string;
+    definitionId: string;
   }) {
     assertConnection(this);
 
@@ -194,7 +194,7 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
 
     const apiIntegration = new ApiIntegration(this, {
       operationId,
-      definitionId: definitionId ?? this.data?.app.id,
+      definitionId: definitionId,
     });
 
     this.apiIntegrations.push(apiIntegration);
