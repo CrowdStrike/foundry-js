@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.16.0
+
+### Minor Changes
+
+- [#70](https://github.com/CrowdStrike/foundry-js/pull/70) [`0550a4e`](https://github.com/CrowdStrike/foundry-js/commit/0550a4e3a294d2e3b1a1e41f20d922f29b233a1d) Thanks [@rlucha-crowdstrike](https://github.com/rlucha-crowdstrike)! - Enforce mandatory definitionID for API Integration calls
+
 ## 0.15.0
 
 ### Minor Changes
