@@ -2,7 +2,7 @@
 
 # @crowdstrike/foundry-js
 
-`foundry-js` javascript library provides convenient access to the CrowdStrike's Foundry API to author UI pages and extensions.
+The `foundry-js` JavaScript library provides convenient access to CrowdStrike's Foundry API for authoring UI pages and extensions.
 
 ### Installation
 
