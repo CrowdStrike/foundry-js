@@ -1,5 +1,16 @@
 # @crowdstrike/foundry-js
 
+## 0.17.0
+
+### Minor Changes
+
+- [#73](https://github.com/CrowdStrike/foundry-js/pull/73) [`804f1fe`](https://github.com/CrowdStrike/foundry-js/commit/804f1fe41c8e56ef397a829a0ad106e3c64c2ba3) Thanks [@cs-ade-adesokan](https://github.com/cs-ade-adesokan)! - Added upgraded alerts api methods
+  - deprecated `getQueriesAlertsV1` and added `getQueriesAlertsV2`to be used in its place.
+  - deprecated `patchCombinedAlertsV2` and added `patchCombinedAlertsV3`to be used in its place.
+  - deprecated `patchEntitiesAlertsV2` and added `patchEntitiesAlertsV3`to be used in its place.
+  - deprecated `postAggregatesAlertsV1` and added `postAggregatesAlertsV2`to be used in its place.
+  - deprecated `postEntitiesAlertsV1` and added `postEntitiesAlertsV2`to be used in its place.
+
 ## 0.16.0
 
 ### Minor Changes
