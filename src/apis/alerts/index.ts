@@ -65,6 +65,29 @@ export interface GetQueriesAlertsV1RequestMessage
   method: 'getQueriesAlertsV1';
 }
 
+// types for getQueriesAlertsV2
+
+export interface GetQueriesAlertsV2QueryParams extends BaseUrlParams {
+  filter?: string;
+  limit?: QueryParam;
+  offset?: QueryParam;
+  q?: QueryParam;
+  sort?: QueryParam;
+  msspRouteCid?: QueryParam;
+  includeHidden?: QueryParam;
+}
+
+export type GetQueriesAlertsV2ApiResponse = ApiResponsePayload;
+
+export type GetQueriesAlertsV2ResponseMessage =
+  BaseApiResponseMessage<GetQueriesAlertsV2ApiResponse>;
+
+export interface GetQueriesAlertsV2RequestMessage
+  extends BaseApiRequestMessage<GetQueriesAlertsV2QueryParams> {
+  api: AlertsRequestApi;
+  method: 'getQueriesAlertsV2';
+}
+
 // types for patchCombinedAlertsV2
 
 export type PatchCombinedAlertsV2QueryParams = BaseUrlParams;
@@ -85,6 +108,29 @@ export interface PatchCombinedAlertsV2RequestMessage
   method: 'patchCombinedAlertsV2';
 }
 
+// types for patchCombinedAlertsV3
+
+export interface PatchCombinedAlertsV3QueryParams extends BaseUrlParams {
+  msspRouteCid?: QueryParam;
+  includeHidden?: QueryParam;
+}
+
+export type PatchCombinedAlertsV3ApiResponse = ApiResponsePayload;
+
+export interface PatchCombinedAlertsV3PostData {}
+
+export type PatchCombinedAlertsV3ResponseMessage =
+  BaseApiResponseMessage<PatchCombinedAlertsV3ApiResponse>;
+
+export interface PatchCombinedAlertsV3RequestMessage
+  extends BaseApiRequestMessage<
+    PatchCombinedAlertsV3QueryParams,
+    PatchCombinedAlertsV3PostData
+  > {
+  api: AlertsRequestApi;
+  method: 'patchCombinedAlertsV3';
+}
+
 // types for patchEntitiesAlertsV2
 
 export type PatchEntitiesAlertsV2QueryParams = BaseUrlParams;
@@ -103,6 +149,28 @@ export interface PatchEntitiesAlertsV2RequestMessage
   > {
   api: AlertsRequestApi;
   method: 'patchEntitiesAlertsV2';
+}
+
+// types for patchEntitiesAlertsV3
+
+export interface PatchEntitiesAlertsV3QueryParams extends BaseUrlParams {
+  msspRouteCid?: QueryParam;
+}
+
+export type PatchEntitiesAlertsV3ApiResponse = ApiResponsePayload;
+
+export interface PatchEntitiesAlertsV3PostData {}
+
+export type PatchEntitiesAlertsV3ResponseMessage =
+  BaseApiResponseMessage<PatchEntitiesAlertsV3ApiResponse>;
+
+export interface PatchEntitiesAlertsV3RequestMessage
+  extends BaseApiRequestMessage<
+    PatchEntitiesAlertsV3QueryParams,
+    PatchEntitiesAlertsV3PostData
+  > {
+  api: AlertsRequestApi;
+  method: 'patchEntitiesAlertsV3';
 }
 
 // types for patchEntitiesSuppressedDevicesV1
@@ -165,6 +233,45 @@ export interface PostAggregatesAlertsV1RequestMessage
   method: 'postAggregatesAlertsV1';
 }
 
+// types for postAggregatesAlertsV2
+
+export interface PostAggregatesAlertsV2QueryParams extends BaseUrlParams {
+  dateRanges?: QueryParam;
+  field?: QueryParam;
+  filter?: string;
+  from?: QueryParam;
+  include?: QueryParam;
+  interval?: QueryParam;
+  minDocCount?: QueryParam;
+  missing?: QueryParam;
+  msspRouteCid?: QueryParam;
+  name?: QueryParam;
+  q?: QueryParam;
+  ranges?: QueryParam;
+  size?: QueryParam;
+  sort?: QueryParam;
+  subAggregates?: QueryParam;
+  timeZone?: QueryParam;
+  type?: QueryParam;
+  includeHidden?: QueryParam;
+}
+
+export type PostAggregatesAlertsV2ApiResponse = ApiResponsePayload;
+
+export interface PostAggregatesAlertsV2PostData {}
+
+export type PostAggregatesAlertsV2ResponseMessage =
+  BaseApiResponseMessage<PostAggregatesAlertsV2ApiResponse>;
+
+export interface PostAggregatesAlertsV2RequestMessage
+  extends BaseApiRequestMessage<
+    PostAggregatesAlertsV2QueryParams,
+    PostAggregatesAlertsV2PostData
+  > {
+  api: AlertsRequestApi;
+  method: 'postAggregatesAlertsV2';
+}
+
 // types for postEntitiesAlertsV1
 
 export interface PostEntitiesAlertsV1QueryParams extends BaseUrlParams {
@@ -185,6 +292,28 @@ export interface PostEntitiesAlertsV1RequestMessage
   > {
   api: AlertsRequestApi;
   method: 'postEntitiesAlertsV1';
+}
+
+// types for postEntitiesAlertsV2
+
+export interface PostEntitiesAlertsV2QueryParams extends BaseUrlParams {
+  compositeIds?: QueryParam;
+}
+
+export type PostEntitiesAlertsV2ApiResponse = ApiResponsePayload;
+
+export interface PostEntitiesAlertsV2PostData {}
+
+export type PostEntitiesAlertsV2ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesAlertsV2ApiResponse>;
+
+export interface PostEntitiesAlertsV2RequestMessage
+  extends BaseApiRequestMessage<
+    PostEntitiesAlertsV2QueryParams,
+    PostEntitiesAlertsV2PostData
+  > {
+  api: AlertsRequestApi;
+  method: 'postEntitiesAlertsV2';
 }
 
 // types for postEntitiesSuppressedDevicesV1
@@ -212,21 +341,31 @@ export interface PostEntitiesSuppressedDevicesV1RequestMessage
 export type AlertsApiRequestMessage =
   | DeleteEntitiesSuppressedDevicesV1RequestMessage
   | GetQueriesAlertsV1RequestMessage
+  | GetQueriesAlertsV2RequestMessage
   | PatchCombinedAlertsV2RequestMessage
+  | PatchCombinedAlertsV3RequestMessage
   | PatchEntitiesAlertsV2RequestMessage
+  | PatchEntitiesAlertsV3RequestMessage
   | PatchEntitiesSuppressedDevicesV1RequestMessage
   | PostAggregatesAlertsV1RequestMessage
+  | PostAggregatesAlertsV2RequestMessage
   | PostEntitiesAlertsV1RequestMessage
+  | PostEntitiesAlertsV2RequestMessage
   | PostEntitiesSuppressedDevicesV1RequestMessage;
 
 export type AlertsApiResponseMessage =
   | DeleteEntitiesSuppressedDevicesV1ResponseMessage
   | GetQueriesAlertsV1ResponseMessage
+  | GetQueriesAlertsV2ResponseMessage
   | PatchCombinedAlertsV2ResponseMessage
+  | PatchCombinedAlertsV3ResponseMessage
   | PatchEntitiesAlertsV2ResponseMessage
+  | PatchEntitiesAlertsV3ResponseMessage
   | PatchEntitiesSuppressedDevicesV1ResponseMessage
   | PostAggregatesAlertsV1ResponseMessage
+  | PostAggregatesAlertsV2ResponseMessage
   | PostEntitiesAlertsV1ResponseMessage
+  | PostEntitiesAlertsV2ResponseMessage
   | PostEntitiesSuppressedDevicesV1ResponseMessage;
 
 export class AlertsApiBridge {
@@ -255,9 +394,13 @@ export class AlertsApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  /**
+   * @deprecated This method is deprecated. Use getQueriesAlertsV2 instead.
+   */
   async getQueriesAlertsV1(
     urlParams: GetQueriesAlertsV1QueryParams = {},
   ): Promise<GetQueriesAlertsV1ApiResponse> {
+    console.warn('This method is deprecated. Use getQueriesAlertsV2 instead.');
     const message: GetQueriesAlertsV1RequestMessage = {
       type: 'api',
       api: 'alerts',
@@ -270,10 +413,31 @@ export class AlertsApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async getQueriesAlertsV2(
+    urlParams: GetQueriesAlertsV2QueryParams = {},
+  ): Promise<GetQueriesAlertsV2ApiResponse> {
+    const message: GetQueriesAlertsV2RequestMessage = {
+      type: 'api',
+      api: 'alerts',
+      method: 'getQueriesAlertsV2',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  /**
+   * @deprecated This method is deprecated. Use patchCombinedAlertsV3 instead.
+   */
   async patchCombinedAlertsV2(
     postBody: PatchCombinedAlertsV2PostData,
     urlParams: PatchCombinedAlertsV2QueryParams = {},
   ): Promise<PatchCombinedAlertsV2ApiResponse> {
+    console.warn(
+      'This method is deprecated. Use patchCombinedAlertsV3 instead.',
+    );
     const message: PatchCombinedAlertsV2RequestMessage = {
       type: 'api',
       api: 'alerts',
@@ -287,14 +451,54 @@ export class AlertsApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async patchCombinedAlertsV3(
+    postBody: PatchCombinedAlertsV3PostData,
+    urlParams: PatchCombinedAlertsV3QueryParams = {},
+  ): Promise<PatchCombinedAlertsV3ApiResponse> {
+    const message: PatchCombinedAlertsV3RequestMessage = {
+      type: 'api',
+      api: 'alerts',
+      method: 'patchCombinedAlertsV3',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  /**
+   * @deprecated This method is deprecated. Use patchEntitiesAlertsV3 instead.
+   */
   async patchEntitiesAlertsV2(
     postBody: PatchEntitiesAlertsV2PostData,
     urlParams: PatchEntitiesAlertsV2QueryParams = {},
   ): Promise<PatchEntitiesAlertsV2ApiResponse> {
+    console.warn(
+      'This method is deprecated. Use patchEntitiesAlertsV3 instead.',
+    );
     const message: PatchEntitiesAlertsV2RequestMessage = {
       type: 'api',
       api: 'alerts',
       method: 'patchEntitiesAlertsV2',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async patchEntitiesAlertsV3(
+    postBody: PatchEntitiesAlertsV3PostData,
+    urlParams: PatchEntitiesAlertsV3QueryParams = {},
+  ): Promise<PatchEntitiesAlertsV3ApiResponse> {
+    const message: PatchEntitiesAlertsV3RequestMessage = {
+      type: 'api',
+      api: 'alerts',
+      method: 'patchEntitiesAlertsV3',
       payload: {
         body: postBody,
         params: urlParams,
@@ -321,10 +525,16 @@ export class AlertsApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  /**
+   * @deprecated This method is deprecated. Use postAggregatesAlertsV2 instead.
+   */
   async postAggregatesAlertsV1(
     postBody: PostAggregatesAlertsV1PostData,
     urlParams: PostAggregatesAlertsV1QueryParams = {},
   ): Promise<PostAggregatesAlertsV1ApiResponse> {
+    console.warn(
+      'This method is deprecated. Use postAggregatesAlertsV2 instead.',
+    );
     const message: PostAggregatesAlertsV1RequestMessage = {
       type: 'api',
       api: 'alerts',
@@ -338,14 +548,54 @@ export class AlertsApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async postAggregatesAlertsV2(
+    postBody: PostAggregatesAlertsV2PostData,
+    urlParams: PostAggregatesAlertsV2QueryParams = {},
+  ): Promise<PostAggregatesAlertsV2ApiResponse> {
+    const message: PostAggregatesAlertsV2RequestMessage = {
+      type: 'api',
+      api: 'alerts',
+      method: 'postAggregatesAlertsV2',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  /**
+   * @deprecated This method is deprecated. Use postEntitiesAlertsV2 instead.
+   */
   async postEntitiesAlertsV1(
     postBody: PostEntitiesAlertsV1PostData,
     urlParams: PostEntitiesAlertsV1QueryParams = {},
   ): Promise<PostEntitiesAlertsV1ApiResponse> {
+    console.warn(
+      'This method is deprecated. Use postEntitiesAlertsV2 instead.',
+    );
     const message: PostEntitiesAlertsV1RequestMessage = {
       type: 'api',
       api: 'alerts',
       method: 'postEntitiesAlertsV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async postEntitiesAlertsV2(
+    postBody: PostEntitiesAlertsV2PostData,
+    urlParams: PostEntitiesAlertsV2QueryParams = {},
+  ): Promise<PostEntitiesAlertsV2ApiResponse> {
+    const message: PostEntitiesAlertsV2RequestMessage = {
+      type: 'api',
+      api: 'alerts',
+      method: 'postEntitiesAlertsV2',
       payload: {
         body: postBody,
         params: urlParams,
