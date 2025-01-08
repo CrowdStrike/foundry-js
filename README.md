@@ -80,8 +80,11 @@ To call on-demand workflow:
   const record = await collection.read('test-key');
   // record.age === 42
   
-  // search collection, `filter` uses FQL (Falcon Query Language)
-  const searchResult = await collection.search({ filter: `name:'*'` });
+  // search collection, `filter` does NOT use FQL (Falcon Query Language). An exact match for the name has to be used in this example below
+  const searchResult = await collection.search({ filter: `name:'exact-name-value'` });
+
+  // list the object keys in the collection, pagination is supported using; `start`, `end` and `limit`.
+  const listResult = await collection.list({ start, end, limit });
   
   // deletes record
   const deleteResponse = await collection.delete('test-key');
