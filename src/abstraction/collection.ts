@@ -16,6 +16,12 @@ interface CollectionSearchDefinition {
   limit: number;
 }
 
+interface CollectionListDefinition {
+  end: string;
+  limit: number;
+  start: string;
+}
+
 export class Collection<DATA extends LocalData = LocalData> {
   constructor(
     private readonly falcon: FalconApi<DATA>,
@@ -96,6 +102,25 @@ export class Collection<DATA extends LocalData = LocalData> {
         offset,
         sort,
         collection: this.definition.collection,
+      },
+    });
+  }
+
+  /**
+   * lists the object keys in the specified collection
+   *
+   * @param searchDefinition
+   * @returns
+   */
+  public async list(options?: CollectionListDefinition) {
+    return this.falcon.bridge.postMessage<CollectionRequestMessage>({
+      type: 'collection',
+      payload: {
+        type: 'list',
+        collection: this.definition.collection,
+        start: options?.start,
+        end: options?.end,
+        limit: options?.limit,
       },
     });
   }
