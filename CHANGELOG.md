@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.17.1
+
+### Patch Changes
+
+- [#75](https://github.com/CrowdStrike/foundry-js/pull/75) [`aa135d6`](https://github.com/CrowdStrike/foundry-js/commit/aa135d6ca45e6dc3501c5d815ef1c64592aba14f) Thanks [@cs-ade-adesokan](https://github.com/cs-ade-adesokan)! - Added list method to collections
+
 ## 0.17.0
 
 ### Minor Changes
