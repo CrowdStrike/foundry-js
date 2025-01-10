@@ -208,6 +208,13 @@ export interface CollectionRequestMessage extends BaseMessage {
         collection: string;
       }
     | {
+        type: 'list';
+        end?: string;
+        limit?: number;
+        start?: string;
+        collection: string;
+      }
+    | {
         type: 'read' | 'delete';
         key: string;
         collection: string;
