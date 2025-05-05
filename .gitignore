@@ -4,3 +4,6 @@
 
 # auto-generated
 /api-docs
+
+# IntelliJ IDEA
+/.idea
