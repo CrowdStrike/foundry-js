@@ -21,7 +21,7 @@ jobs:
       - name: Build
         run: yarn build
       - name: Push to dist branch
-        uses: kategengler/put-built-npm-package-contents-on-branch@v1.0.0
+        uses: kategengler/put-built-npm-package-contents-on-branch@v2.1.0
         with:
           branch: dist
           token: ${{ secrets.GITHUB_TOKEN }}
