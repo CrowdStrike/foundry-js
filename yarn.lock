@@ -1965,9 +1965,9 @@ graphemer@^1.4.0:
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
 happy-dom@^17.4.6:
-  version "17.4.6"
-  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-17.4.6.tgz#7a94bbba593e3ed800795b24124c4f3a1dc64f54"
-  integrity sha512-OEV1hDe9i2rFr66+WZNiwy1S8rAJy6bRXmXql68YJDjdfHBRbN76om+qVh68vQACf6y5Bcr90e/oK53RQxsDdg==
+  version "17.4.7"
+  resolved "https://registry.yarnpkg.com/happy-dom/-/happy-dom-17.4.7.tgz#d3a928792902086a747883f8d9753048395ad4ba"
+  integrity sha512-NZypxadhCiV5NT4A+Y86aQVVKQ05KDmueja3sz008uJfDRwz028wd0aTiJPwo4RQlvlz0fznkEEBBCHVNWc08g==
   dependencies:
     webidl-conversions "^7.0.0"
     whatwg-mimetype "^3.0.0"
