@@ -308,7 +308,7 @@ __metadata:
     rollup: "npm:4.43.0"
     tslib: "npm:2.8.1"
     typedoc: "npm:^0.25.13"
-    typedoc-plugin-missing-exports: "npm:^2.2.0"
+    typedoc-plugin-missing-exports: "npm:^4.0.0"
     typedoc-plugin-rename-defaults: "npm:^0.7.0"
     typescript: "npm:5.4.5"
     typescript-memoize: "npm:^1.1.1"
@@ -5563,12 +5563,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typedoc-plugin-missing-exports@npm:^2.2.0":
-  version: 2.3.0
-  resolution: "typedoc-plugin-missing-exports@npm:2.3.0"
+"typedoc-plugin-missing-exports@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "typedoc-plugin-missing-exports@npm:4.0.0"
   peerDependencies:
-    typedoc: 0.24.x || 0.25.x
-  checksum: 10c0/797fa90a8ae50c6b9268871a7d547ce4cc60cadb9adf65b62134030ad180ed59913d14fab86500ff06a086a84bf7751801a1b9658b1bbaa6fd499d322fb21735
+    typedoc: ^0.28.1
+  checksum: 10c0/2f17df442536df7f7dcbb083aab924c24c4004a14d92a392e80d2dacd5acc8ccc19b409d516df8ca5c91b9a578f84c04de008a8d30876a28f7f038c78d18dc8a
   languageName: node
   linkType: hard
 
