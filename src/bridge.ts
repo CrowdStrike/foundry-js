@@ -119,7 +119,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
       };
 
       window.parent.postMessage(eventData, this.targetOrigin);
-    }) satisfies Promise<PayloadOf<ResponseFor<REQ, DATA>>>;
+    }) as Promise<PayloadOf<ResponseFor<REQ, DATA>>>;
   }
 
   private handleMessageWrapper = (
