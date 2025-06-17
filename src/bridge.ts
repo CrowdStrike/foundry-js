@@ -11,7 +11,6 @@ import type {
   MessageEnvelope,
   PayloadOf,
   RequestMessage,
-  ResponseFor,
   ResponseMessage,
   UnidirectionalRequestMessage,
 } from './types';
@@ -85,7 +84,10 @@ export class Bridge<DATA extends LocalData = LocalData> {
     window.parent.postMessage(eventData, this.targetOrigin);
   }
 
-  async postMessage<REQ extends RequestMessage>(message: REQ) {
+  async postMessage<
+    REQ extends RequestMessage = RequestMessage,
+    ResolvedValue = void,
+  >(message: REQ): Promise<ResolvedValue> {
     return new Promise((resolve, reject) => {
       const messageId = uuidv4();
 
@@ -107,7 +109,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
           clearTimeout(timeoutTimer);
         }
 
-        resolve(result);
+        resolve(result as ResolvedValue);
       });
 
       const eventData: MessageEnvelope<REQ> = {
@@ -119,7 +121,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
       };
 
       window.parent.postMessage(eventData, this.targetOrigin);
-    }) satisfies Promise<PayloadOf<ResponseFor<REQ, DATA>>>;
+    });
   }
 
   private handleMessageWrapper = (

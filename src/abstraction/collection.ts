@@ -36,7 +36,7 @@ export class Collection<DATA extends LocalData = LocalData> {
    * @returns
    */
   public async write(key: string, data: Record<string, unknown>) {
-    return this.falcon.bridge.postMessage<CollectionRequestMessage>({
+    return this.falcon.bridge.postMessage({
       type: 'collection',
       payload: {
         type: 'write',
