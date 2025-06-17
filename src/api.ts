@@ -13,6 +13,7 @@ import { assertConnection } from './utils';
 import type {
   BroadcastMessage,
   CloudFunctionDefinition,
+  ConnectRequestMessage,
   DataUpdateMessage,
   LocalData,
   Theme,
@@ -93,7 +94,10 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
    * This establishes a connection to send messages between the extension and the Falcon Console. Only when established you will be able to call other APIs.
    */
   public async connect(): Promise<{ origin: string; data?: DATA }> {
-    const response = await this.bridge.postMessage({ type: 'connect' });
+    const response = await this.bridge.postMessage<
+      ConnectRequestMessage,
+      { data: DATA; origin: string }
+    >({ type: 'connect' });
 
     if (response !== undefined) {
       const { data, origin } = response;

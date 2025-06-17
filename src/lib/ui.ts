@@ -1,12 +1,13 @@
-import type { Bridge } from '../bridge';
-import type {
-  ExtensionIdentifier,
-  FileUploadType,
-  LocalData,
-  OpenModalOptions,
-  PayloadForFileUploadType,
-  ResponseForFileUploadType,
+import {
+  type ExtensionIdentifier,
+  type FileUploadType,
+  type LocalData,
+  type OpenModalOptions,
+  type OpenModalRequestMessage,
+  type PayloadForFileUploadType,
+  type ResponseForFileUploadType,
 } from '../types';
+import type { Bridge } from '../bridge';
 
 /**
  * Invoke UI features within the main Falcon Console.
@@ -36,7 +37,10 @@ export class UI<DATA extends LocalData = LocalData> {
     title: string,
     options: OpenModalOptions = {},
   ): Promise<PAYLOAD | undefined> {
-    const result = await this.bridge.postMessage({
+    const result = await this.bridge.postMessage<
+      OpenModalRequestMessage,
+      PAYLOAD | Error
+    >({
       type: 'openModal',
       payload: {
         extension,
