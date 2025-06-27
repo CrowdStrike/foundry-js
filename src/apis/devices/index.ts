@@ -104,6 +104,23 @@ export interface GetAggregatesTagPrefixCountsV1RequestMessage
   method: 'getAggregatesTagPrefixCountsV1';
 }
 
+// types for getEntitiesDevicesV1
+
+export interface GetEntitiesDevicesV1QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type GetEntitiesDevicesV1ApiResponse = ApiResponsePayload;
+
+export type GetEntitiesDevicesV1ResponseMessage =
+  BaseApiResponseMessage<GetEntitiesDevicesV1ApiResponse>;
+
+export interface GetEntitiesDevicesV1RequestMessage
+  extends BaseApiRequestMessage<GetEntitiesDevicesV1QueryParams> {
+  api: DevicesRequestApi;
+  method: 'getEntitiesDevicesV1';
+}
+
 // types for getEntitiesFgaGroupsV1
 
 export interface GetEntitiesFgaGroupsV1QueryParams extends BaseUrlParams {
@@ -292,6 +309,28 @@ export interface PatchEntitiesDevicesTagsV2RequestMessage
   method: 'patchEntitiesDevicesTagsV2';
 }
 
+// types for patchEntitiesDevicesV1
+
+export interface PatchEntitiesDevicesV1QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type PatchEntitiesDevicesV1ApiResponse = ApiResponsePayload;
+
+export interface PatchEntitiesDevicesV1PostData {}
+
+export type PatchEntitiesDevicesV1ResponseMessage =
+  BaseApiResponseMessage<PatchEntitiesDevicesV1ApiResponse>;
+
+export interface PatchEntitiesDevicesV1RequestMessage
+  extends BaseApiRequestMessage<
+    PatchEntitiesDevicesV1QueryParams,
+    PatchEntitiesDevicesV1PostData
+  > {
+  api: DevicesRequestApi;
+  method: 'patchEntitiesDevicesV1';
+}
+
 // types for patchEntitiesGroupsV1
 
 export type PatchEntitiesGroupsV1QueryParams = BaseUrlParams;
@@ -461,6 +500,28 @@ export interface PostEntitiesDevicesReportsV1RequestMessage
   method: 'postEntitiesDevicesReportsV1';
 }
 
+// types for postEntitiesDevicesV1
+
+export interface PostEntitiesDevicesV1QueryParams extends BaseUrlParams {
+  ids: QueryParam;
+}
+
+export type PostEntitiesDevicesV1ApiResponse = ApiResponsePayload;
+
+export interface PostEntitiesDevicesV1PostData {}
+
+export type PostEntitiesDevicesV1ResponseMessage =
+  BaseApiResponseMessage<PostEntitiesDevicesV1ApiResponse>;
+
+export interface PostEntitiesDevicesV1RequestMessage
+  extends BaseApiRequestMessage<
+    PostEntitiesDevicesV1QueryParams,
+    PostEntitiesDevicesV1PostData
+  > {
+  api: DevicesRequestApi;
+  method: 'postEntitiesDevicesV1';
+}
+
 // types for postEntitiesDevicesV2
 
 export type PostEntitiesDevicesV2QueryParams = BaseUrlParams;
@@ -572,6 +633,7 @@ export type DevicesApiRequestMessage =
   | GetAggregatesBucketsV1RequestMessage
   | GetAggregatesFgaTagPrefixCountsV1RequestMessage
   | GetAggregatesTagPrefixCountsV1RequestMessage
+  | GetEntitiesDevicesV1RequestMessage
   | GetEntitiesFgaGroupsV1RequestMessage
   | GetEntitiesGroupsV1RequestMessage
   | GetQueriesAvailableGroupsV1RequestMessage
@@ -581,6 +643,7 @@ export type DevicesApiRequestMessage =
   | GetQueriesFgaGroupsV1RequestMessage
   | GetQueriesGroupsV1RequestMessage
   | PatchEntitiesDevicesTagsV2RequestMessage
+  | PatchEntitiesDevicesV1RequestMessage
   | PatchEntitiesGroupsV1RequestMessage
   | PostAggregatesDevicesGetV1RequestMessage
   | PostAggregatesFgaHostsGetV1RequestMessage
@@ -589,6 +652,7 @@ export type DevicesApiRequestMessage =
   | PostEntitiesDevicesActionsV4RequestMessage
   | PostEntitiesDevicesHiddenActionsV4RequestMessage
   | PostEntitiesDevicesReportsV1RequestMessage
+  | PostEntitiesDevicesV1RequestMessage
   | PostEntitiesDevicesV2RequestMessage
   | PostEntitiesFgaHostsReportsV1RequestMessage
   | PostEntitiesFgaHostsV1RequestMessage
@@ -600,6 +664,7 @@ export type DevicesApiResponseMessage =
   | GetAggregatesBucketsV1ResponseMessage
   | GetAggregatesFgaTagPrefixCountsV1ResponseMessage
   | GetAggregatesTagPrefixCountsV1ResponseMessage
+  | GetEntitiesDevicesV1ResponseMessage
   | GetEntitiesFgaGroupsV1ResponseMessage
   | GetEntitiesGroupsV1ResponseMessage
   | GetQueriesAvailableGroupsV1ResponseMessage
@@ -609,6 +674,7 @@ export type DevicesApiResponseMessage =
   | GetQueriesFgaGroupsV1ResponseMessage
   | GetQueriesGroupsV1ResponseMessage
   | PatchEntitiesDevicesTagsV2ResponseMessage
+  | PatchEntitiesDevicesV1ResponseMessage
   | PatchEntitiesGroupsV1ResponseMessage
   | PostAggregatesDevicesGetV1ResponseMessage
   | PostAggregatesFgaHostsGetV1ResponseMessage
@@ -617,6 +683,7 @@ export type DevicesApiResponseMessage =
   | PostEntitiesDevicesActionsV4ResponseMessage
   | PostEntitiesDevicesHiddenActionsV4ResponseMessage
   | PostEntitiesDevicesReportsV1ResponseMessage
+  | PostEntitiesDevicesV1ResponseMessage
   | PostEntitiesDevicesV2ResponseMessage
   | PostEntitiesFgaHostsReportsV1ResponseMessage
   | PostEntitiesFgaHostsV1ResponseMessage
@@ -686,6 +753,21 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'getAggregatesTagPrefixCountsV1',
+      payload: {
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async getEntitiesDevicesV1(
+    urlParams: GetEntitiesDevicesV1QueryParams,
+  ): Promise<GetEntitiesDevicesV1ApiResponse> {
+    const message: GetEntitiesDevicesV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'getEntitiesDevicesV1',
       payload: {
         params: urlParams,
       },
@@ -831,6 +913,23 @@ export class DevicesApiBridge {
     return this.bridge.postMessage(message);
   }
 
+  async patchEntitiesDevicesV1(
+    postBody: PatchEntitiesDevicesV1PostData,
+    urlParams: PatchEntitiesDevicesV1QueryParams,
+  ): Promise<PatchEntitiesDevicesV1ApiResponse> {
+    const message: PatchEntitiesDevicesV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'patchEntitiesDevicesV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
   async patchEntitiesGroupsV1(
     postBody: PatchEntitiesGroupsV1PostData,
     urlParams: PatchEntitiesGroupsV1QueryParams = {},
@@ -958,6 +1057,23 @@ export class DevicesApiBridge {
       type: 'api',
       api: 'devices',
       method: 'postEntitiesDevicesReportsV1',
+      payload: {
+        body: postBody,
+        params: urlParams,
+      },
+    };
+
+    return this.bridge.postMessage(message);
+  }
+
+  async postEntitiesDevicesV1(
+    postBody: PostEntitiesDevicesV1PostData,
+    urlParams: PostEntitiesDevicesV1QueryParams,
+  ): Promise<PostEntitiesDevicesV1ApiResponse> {
+    const message: PostEntitiesDevicesV1RequestMessage = {
+      type: 'api',
+      api: 'devices',
+      method: 'postEntitiesDevicesV1',
       payload: {
         body: postBody,
         params: urlParams,
