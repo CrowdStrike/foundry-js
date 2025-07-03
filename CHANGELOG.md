@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.18.0
+
+### Minor Changes
+
+- [#134](https://github.com/CrowdStrike/foundry-js/pull/134) [`49a562b`](https://github.com/CrowdStrike/foundry-js/commit/49a562b993ff48367b38088adfa4c78610101579) Thanks [@karbi-cs](https://github.com/karbi-cs)! - Adding GET, POST, and PATCH methods for /devices/entities/devices/v1
+
 ## 0.17.1
 
 ### Patch Changes
