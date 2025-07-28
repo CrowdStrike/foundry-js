@@ -8,6 +8,26 @@
 
 import { AlertsApiRequestMessage, AlertsApiResponseMessage } from './alerts';
 import {
+  CloudSecurityAssetsApiRequestMessage,
+  CloudSecurityAssetsApiResponseMessage,
+} from './cloud-security-assets';
+import {
+  CloudregistrationApiRequestMessage,
+  CloudregistrationApiResponseMessage,
+} from './cloudregistration';
+import {
+  ContainerSecurityApiRequestMessage,
+  ContainerSecurityApiResponseMessage,
+} from './container-security';
+import {
+  CspmRegistrationApiRequestMessage,
+  CspmRegistrationApiResponseMessage,
+} from './cspm-registration';
+import {
+  CspmregistrationApiRequestMessage,
+  CspmregistrationApiResponseMessage,
+} from './cspmregistration';
+import {
   CustomobjectsApiRequestMessage,
   CustomobjectsApiResponseMessage,
 } from './customobjects';
@@ -28,6 +48,10 @@ import {
 } from './loggingapi';
 import { MitreApiRequestMessage, MitreApiResponseMessage } from './mitre';
 import { PluginsApiRequestMessage, PluginsApiResponseMessage } from './plugins';
+import {
+  RegistryAssessmentApiRequestMessage,
+  RegistryAssessmentApiResponseMessage,
+} from './registry-assessment';
 import {
   RemoteResponseApiRequestMessage,
   RemoteResponseApiResponseMessage,
@@ -62,12 +86,24 @@ export {
   UserManagementApiResponseMessage,
   WorkflowsApiRequestMessage,
   WorkflowsApiResponseMessage,
+  CloudSecurityAssetsApiRequestMessage,
+  CloudSecurityAssetsApiResponseMessage,
+  CloudregistrationApiRequestMessage,
+  CloudregistrationApiResponseMessage,
+  ContainerSecurityApiRequestMessage,
+  ContainerSecurityApiResponseMessage,
+  CspmRegistrationApiRequestMessage,
+  CspmRegistrationApiResponseMessage,
+  CspmregistrationApiRequestMessage,
+  CspmregistrationApiResponseMessage,
   CustomobjectsApiRequestMessage,
   CustomobjectsApiResponseMessage,
   FaasGatewayApiRequestMessage,
   FaasGatewayApiResponseMessage,
   LoggingapiApiRequestMessage,
   LoggingapiApiResponseMessage,
+  RegistryAssessmentApiRequestMessage,
+  RegistryAssessmentApiResponseMessage,
 };
 
 export type ApiRequestMessage =
@@ -81,9 +117,15 @@ export type ApiRequestMessage =
   | RemoteResponseApiRequestMessage
   | UserManagementApiRequestMessage
   | WorkflowsApiRequestMessage
+  | CloudSecurityAssetsApiRequestMessage
+  | CloudregistrationApiRequestMessage
+  | ContainerSecurityApiRequestMessage
+  | CspmRegistrationApiRequestMessage
+  | CspmregistrationApiRequestMessage
   | CustomobjectsApiRequestMessage
   | FaasGatewayApiRequestMessage
-  | LoggingapiApiRequestMessage;
+  | LoggingapiApiRequestMessage
+  | RegistryAssessmentApiRequestMessage;
 
 export type ApiResponseMessage =
   | AlertsApiResponseMessage
@@ -96,6 +138,12 @@ export type ApiResponseMessage =
   | RemoteResponseApiResponseMessage
   | UserManagementApiResponseMessage
   | WorkflowsApiResponseMessage
+  | CloudSecurityAssetsApiResponseMessage
+  | CloudregistrationApiResponseMessage
+  | ContainerSecurityApiResponseMessage
+  | CspmRegistrationApiResponseMessage
+  | CspmregistrationApiResponseMessage
   | CustomobjectsApiResponseMessage
   | FaasGatewayApiResponseMessage
-  | LoggingapiApiResponseMessage;
+  | LoggingapiApiResponseMessage
+  | RegistryAssessmentApiResponseMessage;
