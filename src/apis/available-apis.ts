@@ -17,6 +17,12 @@ export type ApiIdentifier =
   | 'remoteResponse'
   | 'userManagement'
   | 'workflows'
+  | 'cloudSecurityAssets'
+  | 'cloudregistration'
+  | 'containerSecurity'
+  | 'cspmRegistration'
+  | 'cspmregistration'
   | 'customobjects'
   | 'faasGateway'
-  | 'loggingapi';
+  | 'loggingapi'
+  | 'registryAssessment';
