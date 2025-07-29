@@ -9,6 +9,11 @@
 import { Memoize } from 'typescript-memoize';
 
 import { AlertsApiBridge } from './alerts';
+import { CloudSecurityAssetsApiBridge } from './cloud-security-assets';
+import { CloudregistrationApiBridge } from './cloudregistration';
+import { ContainerSecurityApiBridge } from './container-security';
+import { CspmRegistrationApiBridge } from './cspm-registration';
+import { CspmregistrationApiBridge } from './cspmregistration';
 import { CustomobjectsApiBridge } from './customobjects';
 import { DetectsApiBridge } from './detects';
 import { DevicesApiBridge } from './devices';
@@ -18,12 +23,12 @@ import { IncidentsApiBridge } from './incidents';
 import { LoggingapiApiBridge } from './loggingapi';
 import { MitreApiBridge } from './mitre';
 import { PluginsApiBridge } from './plugins';
+import { RegistryAssessmentApiBridge } from './registry-assessment';
 import { RemoteResponseApiBridge } from './remote-response';
 import { UserManagementApiBridge } from './user-management';
 import { WorkflowsApiBridge } from './workflows';
 
 import { assertConnection } from '../utils';
-
 import type FalconApi from '../api';
 
 export default class FalconPublicApis {
@@ -71,9 +76,6 @@ export default class FalconPublicApis {
     return new MitreApiBridge(this.api.bridge);
   }
 
-  /**
-   * @internal
-   */
   @Memoize()
   get plugins(): PluginsApiBridge {
     assertConnection(this.api);
@@ -102,9 +104,41 @@ export default class FalconPublicApis {
     return new WorkflowsApiBridge(this.api.bridge);
   }
 
-  /**
-   * @internal
-   */
+  @Memoize()
+  get cloudSecurityAssets(): CloudSecurityAssetsApiBridge {
+    assertConnection(this.api);
+
+    return new CloudSecurityAssetsApiBridge(this.api.bridge);
+  }
+
+  @Memoize()
+  get cloudregistration(): CloudregistrationApiBridge {
+    assertConnection(this.api);
+
+    return new CloudregistrationApiBridge(this.api.bridge);
+  }
+
+  @Memoize()
+  get containerSecurity(): ContainerSecurityApiBridge {
+    assertConnection(this.api);
+
+    return new ContainerSecurityApiBridge(this.api.bridge);
+  }
+
+  @Memoize()
+  get cspmRegistration(): CspmRegistrationApiBridge {
+    assertConnection(this.api);
+
+    return new CspmRegistrationApiBridge(this.api.bridge);
+  }
+
+  @Memoize()
+  get cspmregistration(): CspmregistrationApiBridge {
+    assertConnection(this.api);
+
+    return new CspmregistrationApiBridge(this.api.bridge);
+  }
+
   @Memoize()
   get customobjects(): CustomobjectsApiBridge {
     assertConnection(this.api);
@@ -112,9 +146,6 @@ export default class FalconPublicApis {
     return new CustomobjectsApiBridge(this.api.bridge);
   }
 
-  /**
-   * @internal
-   */
   @Memoize()
   get faasGateway(): FaasGatewayApiBridge {
     assertConnection(this.api);
@@ -122,13 +153,17 @@ export default class FalconPublicApis {
     return new FaasGatewayApiBridge(this.api.bridge);
   }
 
-  /**
-   * @internal
-   */
   @Memoize()
   get loggingapi(): LoggingapiApiBridge {
     assertConnection(this.api);
 
     return new LoggingapiApiBridge(this.api.bridge);
+  }
+
+  @Memoize()
+  get registryAssessment(): RegistryAssessmentApiBridge {
+    assertConnection(this.api);
+
+    return new RegistryAssessmentApiBridge(this.api.bridge);
   }
 }
