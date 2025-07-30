@@ -13,7 +13,6 @@ import { CloudSecurityAssetsApiBridge } from './cloud-security-assets';
 import { CloudregistrationApiBridge } from './cloudregistration';
 import { ContainerSecurityApiBridge } from './container-security';
 import { CspmRegistrationApiBridge } from './cspm-registration';
-import { CspmregistrationApiBridge } from './cspmregistration';
 import { CustomobjectsApiBridge } from './customobjects';
 import { DetectsApiBridge } from './detects';
 import { DevicesApiBridge } from './devices';
@@ -130,13 +129,6 @@ export default class FalconPublicApis {
     assertConnection(this.api);
 
     return new CspmRegistrationApiBridge(this.api.bridge);
-  }
-
-  @Memoize()
-  get cspmregistration(): CspmregistrationApiBridge {
-    assertConnection(this.api);
-
-    return new CspmregistrationApiBridge(this.api.bridge);
   }
 
   @Memoize()

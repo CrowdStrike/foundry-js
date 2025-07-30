@@ -21,7 +21,6 @@ export type ApiIdentifier =
   | 'cloudregistration'
   | 'containerSecurity'
   | 'cspmRegistration'
-  | 'cspmregistration'
   | 'customobjects'
   | 'faasGateway'
   | 'loggingapi'
