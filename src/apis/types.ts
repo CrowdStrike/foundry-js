@@ -24,10 +24,6 @@ import {
   CspmRegistrationApiResponseMessage,
 } from './cspm-registration';
 import {
-  CspmregistrationApiRequestMessage,
-  CspmregistrationApiResponseMessage,
-} from './cspmregistration';
-import {
   CustomobjectsApiRequestMessage,
   CustomobjectsApiResponseMessage,
 } from './customobjects';
@@ -94,8 +90,6 @@ export {
   ContainerSecurityApiResponseMessage,
   CspmRegistrationApiRequestMessage,
   CspmRegistrationApiResponseMessage,
-  CspmregistrationApiRequestMessage,
-  CspmregistrationApiResponseMessage,
   CustomobjectsApiRequestMessage,
   CustomobjectsApiResponseMessage,
   FaasGatewayApiRequestMessage,
@@ -121,7 +115,6 @@ export type ApiRequestMessage =
   | CloudregistrationApiRequestMessage
   | ContainerSecurityApiRequestMessage
   | CspmRegistrationApiRequestMessage
-  | CspmregistrationApiRequestMessage
   | CustomobjectsApiRequestMessage
   | FaasGatewayApiRequestMessage
   | LoggingapiApiRequestMessage
@@ -142,7 +135,6 @@ export type ApiResponseMessage =
   | CloudregistrationApiResponseMessage
   | ContainerSecurityApiResponseMessage
   | CspmRegistrationApiResponseMessage
-  | CspmregistrationApiResponseMessage
   | CustomobjectsApiResponseMessage
   | FaasGatewayApiResponseMessage
   | LoggingapiApiResponseMessage
