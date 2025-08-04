@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.19.0
+
+### Minor Changes
+
+- [#160](https://github.com/CrowdStrike/foundry-js/pull/160) [`f29ca68`](https://github.com/CrowdStrike/foundry-js/commit/f29ca68d772c09bb926bb924aa94b6597d091f16) Thanks [@karbi-cs](https://github.com/karbi-cs)! - Add several Cloud Security modules and endpoints
+
 ## 0.18.0
 
 ### Minor Changes
