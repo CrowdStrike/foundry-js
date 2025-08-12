@@ -5699,11 +5699,11 @@ __metadata:
   linkType: hard
 
 "typedoc-plugin-missing-exports@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "typedoc-plugin-missing-exports@npm:4.0.0"
+  version: 4.1.0
+  resolution: "typedoc-plugin-missing-exports@npm:4.1.0"
   peerDependencies:
     typedoc: ^0.28.1
-  checksum: c9fc2de70918b0f97ea347002182dc3ad05fe1dd0d7c4292dfc2c6f6e870acb4ca8c74ecb8de4db0513f729d65589d1fd2cfb2aa7fa57d9f966f6ba1d72a86a8
+  checksum: ef1105383051a0c1c384bf415eed8f60c1538c372c9c1a0d626fb6c8f1e03bed4bdd5427e05011b7916537765506db65dd4958f86a054f3745c0c7910b61b5f5
   languageName: node
   linkType: hard
 
