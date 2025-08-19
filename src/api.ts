@@ -76,7 +76,7 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
   /**
    * Namespace for all the {@link FalconPublicApis | Falcon Cloud APIs} you have access to with this SDK.
    */
-  public api = new FalconPublicApis(this);
+  public api = new FalconPublicApis(this as unknown as FalconApi);
 
   /**
    * The {@link UI} class contains methods to invoke UI features within the main Falcon Console.

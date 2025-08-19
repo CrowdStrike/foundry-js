@@ -55,7 +55,7 @@ export interface PostEntitiesExecuteV1QueryParams extends BaseUrlParams {
 
 export type PostEntitiesExecuteV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesExecuteV1PostData {}
+export type PostEntitiesExecuteV1PostData = Record<string, never>;
 
 export type PostEntitiesExecuteV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesExecuteV1ApiResponse>;
@@ -78,7 +78,7 @@ export interface PostEntitiesExecutionActionsV1QueryParams
 
 export type PostEntitiesExecutionActionsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesExecutionActionsV1PostData {}
+export type PostEntitiesExecutionActionsV1PostData = Record<string, never>;
 
 export type PostEntitiesExecutionActionsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesExecutionActionsV1ApiResponse>;

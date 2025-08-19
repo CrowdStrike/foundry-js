@@ -94,7 +94,7 @@ export type PatchCombinedAlertsV2QueryParams = BaseUrlParams;
 
 export type PatchCombinedAlertsV2ApiResponse = ApiResponsePayload;
 
-export interface PatchCombinedAlertsV2PostData {}
+export type PatchCombinedAlertsV2PostData = Record<string, never>;
 
 export type PatchCombinedAlertsV2ResponseMessage =
   BaseApiResponseMessage<PatchCombinedAlertsV2ApiResponse>;
@@ -117,7 +117,7 @@ export interface PatchCombinedAlertsV3QueryParams extends BaseUrlParams {
 
 export type PatchCombinedAlertsV3ApiResponse = ApiResponsePayload;
 
-export interface PatchCombinedAlertsV3PostData {}
+export type PatchCombinedAlertsV3PostData = Record<string, never>;
 
 export type PatchCombinedAlertsV3ResponseMessage =
   BaseApiResponseMessage<PatchCombinedAlertsV3ApiResponse>;
@@ -137,7 +137,7 @@ export type PatchEntitiesAlertsV2QueryParams = BaseUrlParams;
 
 export type PatchEntitiesAlertsV2ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesAlertsV2PostData {}
+export type PatchEntitiesAlertsV2PostData = Record<string, never>;
 
 export type PatchEntitiesAlertsV2ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesAlertsV2ApiResponse>;
@@ -159,7 +159,7 @@ export interface PatchEntitiesAlertsV3QueryParams extends BaseUrlParams {
 
 export type PatchEntitiesAlertsV3ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesAlertsV3PostData {}
+export type PatchEntitiesAlertsV3PostData = Record<string, never>;
 
 export type PatchEntitiesAlertsV3ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesAlertsV3ApiResponse>;
@@ -182,7 +182,7 @@ export interface PatchEntitiesSuppressedDevicesV1QueryParams
 
 export type PatchEntitiesSuppressedDevicesV1ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesSuppressedDevicesV1PostData {}
+export type PatchEntitiesSuppressedDevicesV1PostData = Record<string, never>;
 
 export type PatchEntitiesSuppressedDevicesV1ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesSuppressedDevicesV1ApiResponse>;
@@ -219,7 +219,7 @@ export interface PostAggregatesAlertsV1QueryParams extends BaseUrlParams {
 
 export type PostAggregatesAlertsV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesAlertsV1PostData {}
+export type PostAggregatesAlertsV1PostData = Record<string, never>;
 
 export type PostAggregatesAlertsV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesAlertsV1ApiResponse>;
@@ -258,7 +258,7 @@ export interface PostAggregatesAlertsV2QueryParams extends BaseUrlParams {
 
 export type PostAggregatesAlertsV2ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesAlertsV2PostData {}
+export type PostAggregatesAlertsV2PostData = Record<string, never>;
 
 export type PostAggregatesAlertsV2ResponseMessage =
   BaseApiResponseMessage<PostAggregatesAlertsV2ApiResponse>;
@@ -280,7 +280,7 @@ export interface PostEntitiesAlertsV1QueryParams extends BaseUrlParams {
 
 export type PostEntitiesAlertsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesAlertsV1PostData {}
+export type PostEntitiesAlertsV1PostData = Record<string, never>;
 
 export type PostEntitiesAlertsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesAlertsV1ApiResponse>;
@@ -302,7 +302,7 @@ export interface PostEntitiesAlertsV2QueryParams extends BaseUrlParams {
 
 export type PostEntitiesAlertsV2ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesAlertsV2PostData {}
+export type PostEntitiesAlertsV2PostData = Record<string, never>;
 
 export type PostEntitiesAlertsV2ResponseMessage =
   BaseApiResponseMessage<PostEntitiesAlertsV2ApiResponse>;
@@ -322,7 +322,7 @@ export type PostEntitiesSuppressedDevicesV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesSuppressedDevicesV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesSuppressedDevicesV1PostData {}
+export type PostEntitiesSuppressedDevicesV1PostData = Record<string, never>;
 
 export type PostEntitiesSuppressedDevicesV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesSuppressedDevicesV1ApiResponse>;

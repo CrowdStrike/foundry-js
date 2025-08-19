@@ -31,7 +31,7 @@ import { assertConnection } from '../utils';
 import type FalconApi from '../api';
 
 export default class FalconPublicApis {
-  constructor(private api: FalconApi<any>) {}
+  constructor(private api: FalconApi) {}
 
   @Memoize()
   get alerts(): AlertsApiBridge {

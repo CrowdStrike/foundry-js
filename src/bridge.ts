@@ -46,7 +46,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
   private onLivereload: BridgeOptions<DATA>['onLivereload'];
   private pendingMessages = new Map<
     string,
-    (result: PayloadOf<ResponseMessage>) => void
+        (_result: PayloadOf<ResponseMessage>) => void
   >();
 
   private targetOrigin = '*';
