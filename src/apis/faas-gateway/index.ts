@@ -49,7 +49,15 @@ export type PostEntitiesExecutionV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesExecutionV1ApiResponse = ApiResponsePayload;
 
-export type PostEntitiesExecutionV1PostData = Record<string, never>;
+export type PostEntitiesExecutionV1PostData = {
+  payload?: {
+    path?: string;
+    method?: string;
+    body?: Record<string, unknown>;
+    params?: Record<string, unknown>;
+  };
+  [key: string]: unknown;
+};
 
 export type PostEntitiesExecutionV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesExecutionV1ApiResponse>;
