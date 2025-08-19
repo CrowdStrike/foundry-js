@@ -49,7 +49,7 @@ export type PostEntitiesExecutionV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesExecutionV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesExecutionV1PostData {}
+export type PostEntitiesExecutionV1PostData = Record<string, never>;
 
 export type PostEntitiesExecutionV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesExecutionV1ApiResponse>;

@@ -106,7 +106,7 @@ export interface PostEntitiesAppCommandV1QueryParams extends BaseUrlParams {
 
 export type PostEntitiesAppCommandV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesAppCommandV1PostData {}
+export type PostEntitiesAppCommandV1PostData = Record<string, never>;
 
 export type PostEntitiesAppCommandV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesAppCommandV1ApiResponse>;
@@ -129,7 +129,7 @@ export interface PostEntitiesAppSessionsV1QueryParams extends BaseUrlParams {
 
 export type PostEntitiesAppSessionsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesAppSessionsV1PostData {}
+export type PostEntitiesAppSessionsV1PostData = Record<string, never>;
 
 export type PostEntitiesAppSessionsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesAppSessionsV1ApiResponse>;
@@ -149,7 +149,7 @@ export type PostEntitiesPutFilesV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesPutFilesV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesPutFilesV1PostData {}
+export type PostEntitiesPutFilesV1PostData = Record<string, never>;
 
 export type PostEntitiesPutFilesV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesPutFilesV1ApiResponse>;
