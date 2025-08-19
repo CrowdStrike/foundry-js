@@ -9,11 +9,11 @@ interface ApiIntegrationDefinition {
 interface ExecuteParameters {
   request?: {
     params?: {
-      path?: Record<any, unknown>;
-      query?: Record<any, unknown>;
-      header?: Record<any, unknown>;
+      path?: Record<string, unknown>;
+      query?: Record<string, unknown>;
+      header?: Record<string, unknown>;
     };
-    json?: Record<any, unknown> | Record<any, unknown>[];
+    json?: Record<string, unknown> | Record<string, unknown>[];
   };
 }
 

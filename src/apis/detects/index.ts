@@ -50,7 +50,7 @@ export type PatchEntitiesDetectsV2QueryParams = BaseUrlParams;
 
 export type PatchEntitiesDetectsV2ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesDetectsV2PostData {}
+export type PatchEntitiesDetectsV2PostData = Record<string, never>;
 
 export type PatchEntitiesDetectsV2ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesDetectsV2ApiResponse>;
@@ -70,7 +70,7 @@ export type PatchQueriesDetectsV1QueryParams = BaseUrlParams;
 
 export type PatchQueriesDetectsV1ApiResponse = ApiResponsePayload;
 
-export interface PatchQueriesDetectsV1PostData {}
+export type PatchQueriesDetectsV1PostData = Record<string, never>;
 
 export type PatchQueriesDetectsV1ResponseMessage =
   BaseApiResponseMessage<PatchQueriesDetectsV1ApiResponse>;
@@ -90,7 +90,7 @@ export type PatchQueriesDetectsV2QueryParams = BaseUrlParams;
 
 export type PatchQueriesDetectsV2ApiResponse = ApiResponsePayload;
 
-export interface PatchQueriesDetectsV2PostData {}
+export type PatchQueriesDetectsV2PostData = Record<string, never>;
 
 export type PatchQueriesDetectsV2ResponseMessage =
   BaseApiResponseMessage<PatchQueriesDetectsV2ApiResponse>;
@@ -110,7 +110,7 @@ export type PostAggregatesDetectsGetV1QueryParams = BaseUrlParams;
 
 export type PostAggregatesDetectsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesDetectsGetV1PostData {}
+export type PostAggregatesDetectsGetV1PostData = Record<string, never>;
 
 export type PostAggregatesDetectsGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesDetectsGetV1ApiResponse>;
@@ -130,7 +130,7 @@ export type PostEntitiesSummariesGetV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesSummariesGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesSummariesGetV1PostData {}
+export type PostEntitiesSummariesGetV1PostData = Record<string, never>;
 
 export type PostEntitiesSummariesGetV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesSummariesGetV1ApiResponse>;
@@ -153,7 +153,7 @@ export interface PostEntitiesSuppressedDevicesV1QueryParams
 
 export type PostEntitiesSuppressedDevicesV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesSuppressedDevicesV1PostData {}
+export type PostEntitiesSuppressedDevicesV1PostData = Record<string, never>;
 
 export type PostEntitiesSuppressedDevicesV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesSuppressedDevicesV1ApiResponse>;
