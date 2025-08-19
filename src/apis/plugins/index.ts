@@ -67,7 +67,7 @@ export type PostEntitiesExecuteDraftV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesExecuteDraftV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesExecuteDraftV1PostData {}
+export type PostEntitiesExecuteDraftV1PostData = Record<string, never>;
 
 export type PostEntitiesExecuteDraftV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesExecuteDraftV1ApiResponse>;
@@ -87,7 +87,7 @@ export type PostEntitiesExecuteV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesExecuteV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesExecuteV1PostData {}
+export type PostEntitiesExecuteV1PostData = Record<string, never>;
 
 export type PostEntitiesExecuteV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesExecuteV1ApiResponse>;
