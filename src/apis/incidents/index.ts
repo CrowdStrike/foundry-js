@@ -92,7 +92,7 @@ export type PostAggregatesBehaviorsGetV1QueryParams = BaseUrlParams;
 
 export type PostAggregatesBehaviorsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesBehaviorsGetV1PostData {}
+export type PostAggregatesBehaviorsGetV1PostData = Record<string, never>;
 
 export type PostAggregatesBehaviorsGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesBehaviorsGetV1ApiResponse>;
@@ -112,7 +112,7 @@ export type PostAggregatesIncidentsGetV1QueryParams = BaseUrlParams;
 
 export type PostAggregatesIncidentsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesIncidentsGetV1PostData {}
+export type PostAggregatesIncidentsGetV1PostData = Record<string, never>;
 
 export type PostAggregatesIncidentsGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesIncidentsGetV1ApiResponse>;
@@ -132,7 +132,7 @@ export type PostEntitiesBehaviorsGetV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesBehaviorsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesBehaviorsGetV1PostData {}
+export type PostEntitiesBehaviorsGetV1PostData = Record<string, never>;
 
 export type PostEntitiesBehaviorsGetV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesBehaviorsGetV1ApiResponse>;
@@ -155,7 +155,7 @@ export interface PostEntitiesIncidentActionsV1QueryParams
 
 export type PostEntitiesIncidentActionsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesIncidentActionsV1PostData {}
+export type PostEntitiesIncidentActionsV1PostData = Record<string, never>;
 
 export type PostEntitiesIncidentActionsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesIncidentActionsV1ApiResponse>;
@@ -175,7 +175,7 @@ export type PostEntitiesIncidentsGetV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesIncidentsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesIncidentsGetV1PostData {}
+export type PostEntitiesIncidentsGetV1PostData = Record<string, never>;
 
 export type PostEntitiesIncidentsGetV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesIncidentsGetV1ApiResponse>;
