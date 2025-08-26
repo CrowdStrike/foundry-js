@@ -4,6 +4,7 @@ import type { CloudFunctionDefinition, LocalData } from '../types';
 interface Params {
   header?: Record<string, string[]>;
   query?: Record<string, string[]>;
+  [key: string]: unknown;
 }
 
 interface ExecuteParameters {
@@ -78,7 +79,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     });
 
     return new Promise((resolve, reject) => {
-      const execution = result?.resources?.[0] as any;
+      const execution = result?.resources?.[0] as { execution_id?: string };
 
       if (!execution?.execution_id) {
         reject(result?.errors);
@@ -100,9 +101,9 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         id: executionId,
       });
 
-    const executionResult = resultResponse?.resources?.[0] as any;
+    const executionResult = resultResponse?.resources?.[0] as { payload?: unknown };
 
-    return executionResult?.payload;
+    return executionResult?.payload as Record<string, unknown> | undefined;
   }
 
   private pollForResult({

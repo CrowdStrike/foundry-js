@@ -295,7 +295,7 @@ export type PatchEntitiesDevicesTagsV2QueryParams = BaseUrlParams;
 
 export type PatchEntitiesDevicesTagsV2ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesDevicesTagsV2PostData {}
+export type PatchEntitiesDevicesTagsV2PostData = Record<string, never>;
 
 export type PatchEntitiesDevicesTagsV2ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesDevicesTagsV2ApiResponse>;
@@ -317,7 +317,7 @@ export interface PatchEntitiesDevicesV1QueryParams extends BaseUrlParams {
 
 export type PatchEntitiesDevicesV1ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesDevicesV1PostData {}
+export type PatchEntitiesDevicesV1PostData = Record<string, never>;
 
 export type PatchEntitiesDevicesV1ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesDevicesV1ApiResponse>;
@@ -337,7 +337,7 @@ export type PatchEntitiesGroupsV1QueryParams = BaseUrlParams;
 
 export type PatchEntitiesGroupsV1ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesGroupsV1PostData {}
+export type PatchEntitiesGroupsV1PostData = Record<string, never>;
 
 export type PatchEntitiesGroupsV1ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesGroupsV1ApiResponse>;
@@ -359,7 +359,7 @@ export interface PostAggregatesDevicesGetV1QueryParams extends BaseUrlParams {
 
 export type PostAggregatesDevicesGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesDevicesGetV1PostData {}
+export type PostAggregatesDevicesGetV1PostData = Record<string, never>;
 
 export type PostAggregatesDevicesGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesDevicesGetV1ApiResponse>;
@@ -381,7 +381,7 @@ export interface PostAggregatesFgaHostsGetV1QueryParams extends BaseUrlParams {
 
 export type PostAggregatesFgaHostsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesFgaHostsGetV1PostData {}
+export type PostAggregatesFgaHostsGetV1PostData = Record<string, never>;
 
 export type PostAggregatesFgaHostsGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesFgaHostsGetV1ApiResponse>;
@@ -401,7 +401,7 @@ export type PostCombinedDevicesLoginHistoryV1QueryParams = BaseUrlParams;
 
 export type PostCombinedDevicesLoginHistoryV1ApiResponse = ApiResponsePayload;
 
-export interface PostCombinedDevicesLoginHistoryV1PostData {}
+export type PostCombinedDevicesLoginHistoryV1PostData = Record<string, never>;
 
 export type PostCombinedDevicesLoginHistoryV1ResponseMessage =
   BaseApiResponseMessage<PostCombinedDevicesLoginHistoryV1ApiResponse>;
@@ -421,7 +421,7 @@ export type PostCombinedFgaHostsLoginHistoryV1QueryParams = BaseUrlParams;
 
 export type PostCombinedFgaHostsLoginHistoryV1ApiResponse = ApiResponsePayload;
 
-export interface PostCombinedFgaHostsLoginHistoryV1PostData {}
+export type PostCombinedFgaHostsLoginHistoryV1PostData = Record<string, never>;
 
 export type PostCombinedFgaHostsLoginHistoryV1ResponseMessage =
   BaseApiResponseMessage<PostCombinedFgaHostsLoginHistoryV1ApiResponse>;
@@ -443,7 +443,7 @@ export interface PostEntitiesDevicesActionsV4QueryParams extends BaseUrlParams {
 
 export type PostEntitiesDevicesActionsV4ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesDevicesActionsV4PostData {}
+export type PostEntitiesDevicesActionsV4PostData = Record<string, never>;
 
 export type PostEntitiesDevicesActionsV4ResponseMessage =
   BaseApiResponseMessage<PostEntitiesDevicesActionsV4ApiResponse>;
@@ -466,7 +466,7 @@ export interface PostEntitiesDevicesHiddenActionsV4QueryParams
 
 export type PostEntitiesDevicesHiddenActionsV4ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesDevicesHiddenActionsV4PostData {}
+export type PostEntitiesDevicesHiddenActionsV4PostData = Record<string, never>;
 
 export type PostEntitiesDevicesHiddenActionsV4ResponseMessage =
   BaseApiResponseMessage<PostEntitiesDevicesHiddenActionsV4ApiResponse>;
@@ -486,7 +486,7 @@ export type PostEntitiesDevicesReportsV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesDevicesReportsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesDevicesReportsV1PostData {}
+export type PostEntitiesDevicesReportsV1PostData = Record<string, never>;
 
 export type PostEntitiesDevicesReportsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesDevicesReportsV1ApiResponse>;
@@ -508,7 +508,7 @@ export interface PostEntitiesDevicesV1QueryParams extends BaseUrlParams {
 
 export type PostEntitiesDevicesV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesDevicesV1PostData {}
+export type PostEntitiesDevicesV1PostData = Record<string, never>;
 
 export type PostEntitiesDevicesV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesDevicesV1ApiResponse>;
@@ -528,7 +528,7 @@ export type PostEntitiesDevicesV2QueryParams = BaseUrlParams;
 
 export type PostEntitiesDevicesV2ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesDevicesV2PostData {}
+export type PostEntitiesDevicesV2PostData = Record<string, never>;
 
 export type PostEntitiesDevicesV2ResponseMessage =
   BaseApiResponseMessage<PostEntitiesDevicesV2ApiResponse>;
@@ -548,7 +548,7 @@ export type PostEntitiesFgaHostsReportsV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesFgaHostsReportsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesFgaHostsReportsV1PostData {}
+export type PostEntitiesFgaHostsReportsV1PostData = Record<string, never>;
 
 export type PostEntitiesFgaHostsReportsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesFgaHostsReportsV1ApiResponse>;
@@ -568,7 +568,7 @@ export type PostEntitiesFgaHostsV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesFgaHostsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesFgaHostsV1PostData {}
+export type PostEntitiesFgaHostsV1PostData = Record<string, never>;
 
 export type PostEntitiesFgaHostsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesFgaHostsV1ApiResponse>;
@@ -592,7 +592,7 @@ export interface PostEntitiesGroupActionsV1QueryParams extends BaseUrlParams {
 
 export type PostEntitiesGroupActionsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesGroupActionsV1PostData {}
+export type PostEntitiesGroupActionsV1PostData = Record<string, never>;
 
 export type PostEntitiesGroupActionsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesGroupActionsV1ApiResponse>;
@@ -612,7 +612,7 @@ export type PostEntitiesGroupsV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesGroupsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesGroupsV1PostData {}
+export type PostEntitiesGroupsV1PostData = Record<string, never>;
 
 export type PostEntitiesGroupsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesGroupsV1ApiResponse>;

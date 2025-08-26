@@ -411,7 +411,7 @@ export interface PatchEntitiesNetworkLocationsV1QueryParams
 
 export type PatchEntitiesNetworkLocationsV1ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesNetworkLocationsV1PostData {}
+export type PatchEntitiesNetworkLocationsV1PostData = Record<string, never>;
 
 export type PatchEntitiesNetworkLocationsV1ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesNetworkLocationsV1ApiResponse>;
@@ -433,7 +433,7 @@ export interface PatchEntitiesRuleGroupsV1QueryParams extends BaseUrlParams {
 
 export type PatchEntitiesRuleGroupsV1ApiResponse = ApiResponsePayload;
 
-export interface PatchEntitiesRuleGroupsV1PostData {}
+export type PatchEntitiesRuleGroupsV1PostData = Record<string, never>;
 
 export type PatchEntitiesRuleGroupsV1ResponseMessage =
   BaseApiResponseMessage<PatchEntitiesRuleGroupsV1ApiResponse>;
@@ -453,7 +453,7 @@ export type PostAggregatesEventsGetV1QueryParams = BaseUrlParams;
 
 export type PostAggregatesEventsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesEventsGetV1PostData {}
+export type PostAggregatesEventsGetV1PostData = Record<string, never>;
 
 export type PostAggregatesEventsGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesEventsGetV1ApiResponse>;
@@ -473,7 +473,7 @@ export type PostAggregatesPolicyRulesGetV1QueryParams = BaseUrlParams;
 
 export type PostAggregatesPolicyRulesGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesPolicyRulesGetV1PostData {}
+export type PostAggregatesPolicyRulesGetV1PostData = Record<string, never>;
 
 export type PostAggregatesPolicyRulesGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesPolicyRulesGetV1ApiResponse>;
@@ -493,7 +493,7 @@ export type PostAggregatesRuleGroupsGetV1QueryParams = BaseUrlParams;
 
 export type PostAggregatesRuleGroupsGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesRuleGroupsGetV1PostData {}
+export type PostAggregatesRuleGroupsGetV1PostData = Record<string, never>;
 
 export type PostAggregatesRuleGroupsGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesRuleGroupsGetV1ApiResponse>;
@@ -513,7 +513,7 @@ export type PostAggregatesRulesGetV1QueryParams = BaseUrlParams;
 
 export type PostAggregatesRulesGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostAggregatesRulesGetV1PostData {}
+export type PostAggregatesRulesGetV1PostData = Record<string, never>;
 
 export type PostAggregatesRulesGetV1ResponseMessage =
   BaseApiResponseMessage<PostAggregatesRulesGetV1ApiResponse>;
@@ -534,7 +534,7 @@ export type PostEntitiesNetworkLocationsMetadataV1QueryParams = BaseUrlParams;
 export type PostEntitiesNetworkLocationsMetadataV1ApiResponse =
   ApiResponsePayload;
 
-export interface PostEntitiesNetworkLocationsMetadataV1PostData {}
+export type PostEntitiesNetworkLocationsMetadataV1PostData = Record<string, never>;
 
 export type PostEntitiesNetworkLocationsMetadataV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesNetworkLocationsMetadataV1ApiResponse>;
@@ -555,7 +555,7 @@ export type PostEntitiesNetworkLocationsPrecedenceV1QueryParams = BaseUrlParams;
 export type PostEntitiesNetworkLocationsPrecedenceV1ApiResponse =
   ApiResponsePayload;
 
-export interface PostEntitiesNetworkLocationsPrecedenceV1PostData {}
+export type PostEntitiesNetworkLocationsPrecedenceV1PostData = Record<string, never>;
 
 export type PostEntitiesNetworkLocationsPrecedenceV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesNetworkLocationsPrecedenceV1ApiResponse>;
@@ -580,7 +580,7 @@ export interface PostEntitiesNetworkLocationsV1QueryParams
 
 export type PostEntitiesNetworkLocationsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesNetworkLocationsV1PostData {}
+export type PostEntitiesNetworkLocationsV1PostData = Record<string, never>;
 
 export type PostEntitiesNetworkLocationsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesNetworkLocationsV1ApiResponse>;
@@ -600,7 +600,7 @@ export type PostEntitiesOntologyV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesOntologyV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesOntologyV1PostData {}
+export type PostEntitiesOntologyV1PostData = Record<string, never>;
 
 export type PostEntitiesOntologyV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesOntologyV1ApiResponse>;
@@ -623,7 +623,7 @@ export interface PostEntitiesRuleGroupsV1QueryParams extends BaseUrlParams {
 
 export type PostEntitiesRuleGroupsV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesRuleGroupsV1PostData {}
+export type PostEntitiesRuleGroupsV1PostData = Record<string, never>;
 
 export type PostEntitiesRuleGroupsV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesRuleGroupsV1ApiResponse>;
@@ -643,7 +643,7 @@ export type PostEntitiesRulesValidateFilepathV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesRulesValidateFilepathV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesRulesValidateFilepathV1PostData {}
+export type PostEntitiesRulesValidateFilepathV1PostData = Record<string, never>;
 
 export type PostEntitiesRulesValidateFilepathV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesRulesValidateFilepathV1ApiResponse>;
@@ -666,7 +666,7 @@ export interface PutEntitiesNetworkLocationsV1QueryParams
 
 export type PutEntitiesNetworkLocationsV1ApiResponse = ApiResponsePayload;
 
-export interface PutEntitiesNetworkLocationsV1PostData {}
+export type PutEntitiesNetworkLocationsV1PostData = Record<string, never>;
 
 export type PutEntitiesNetworkLocationsV1ResponseMessage =
   BaseApiResponseMessage<PutEntitiesNetworkLocationsV1ApiResponse>;
@@ -689,7 +689,7 @@ export interface PutEntitiesPoliciesV2QueryParams extends BaseUrlParams {
 
 export type PutEntitiesPoliciesV2ApiResponse = ApiResponsePayload;
 
-export interface PutEntitiesPoliciesV2PostData {}
+export type PutEntitiesPoliciesV2PostData = Record<string, never>;
 
 export type PutEntitiesPoliciesV2ResponseMessage =
   BaseApiResponseMessage<PutEntitiesPoliciesV2ApiResponse>;

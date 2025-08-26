@@ -130,7 +130,7 @@ export interface PostV1CollectionsCollectionNameObjectsQueryParams
 export type PostV1CollectionsCollectionNameObjectsApiResponse =
   ApiResponsePayload;
 
-export interface PostV1CollectionsCollectionNameObjectsPostData {}
+export type PostV1CollectionsCollectionNameObjectsPostData = Record<string, never>;
 
 export type PostV1CollectionsCollectionNameObjectsResponseMessage =
   BaseApiResponseMessage<PostV1CollectionsCollectionNameObjectsApiResponse>;
@@ -152,7 +152,7 @@ export type PutV1CollectionsCollectionNameObjectsObjectKeyQueryParams =
 export type PutV1CollectionsCollectionNameObjectsObjectKeyApiResponse =
   ApiResponsePayload;
 
-export interface PutV1CollectionsCollectionNameObjectsObjectKeyPostData {}
+export type PutV1CollectionsCollectionNameObjectsObjectKeyPostData = Record<string, never>;
 
 export type PutV1CollectionsCollectionNameObjectsObjectKeyResponseMessage =
   BaseApiResponseMessage<PutV1CollectionsCollectionNameObjectsObjectKeyApiResponse>;

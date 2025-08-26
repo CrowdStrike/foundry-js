@@ -76,7 +76,7 @@ export interface PostEntitiesSavedSearchesDynamicExecuteV1QueryParams
 export type PostEntitiesSavedSearchesDynamicExecuteV1ApiResponse =
   ApiResponsePayload;
 
-export interface PostEntitiesSavedSearchesDynamicExecuteV1PostData {}
+export type PostEntitiesSavedSearchesDynamicExecuteV1PostData = Record<string, never>;
 
 export type PostEntitiesSavedSearchesDynamicExecuteV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesSavedSearchesDynamicExecuteV1ApiResponse>;
@@ -103,7 +103,7 @@ export interface PostEntitiesSavedSearchesExecuteV1QueryParams
 
 export type PostEntitiesSavedSearchesExecuteV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesSavedSearchesExecuteV1PostData {}
+export type PostEntitiesSavedSearchesExecuteV1PostData = Record<string, never>;
 
 export type PostEntitiesSavedSearchesExecuteV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesSavedSearchesExecuteV1ApiResponse>;
@@ -123,7 +123,7 @@ export type PostEntitiesSavedSearchesIngestV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesSavedSearchesIngestV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesSavedSearchesIngestV1PostData {}
+export type PostEntitiesSavedSearchesIngestV1PostData = Record<string, never>;
 
 export type PostEntitiesSavedSearchesIngestV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesSavedSearchesIngestV1ApiResponse>;

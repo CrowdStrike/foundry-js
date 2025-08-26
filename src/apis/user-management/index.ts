@@ -52,7 +52,7 @@ export type PostEntitiesUsersGetV1QueryParams = BaseUrlParams;
 
 export type PostEntitiesUsersGetV1ApiResponse = ApiResponsePayload;
 
-export interface PostEntitiesUsersGetV1PostData {}
+export type PostEntitiesUsersGetV1PostData = Record<string, never>;
 
 export type PostEntitiesUsersGetV1ResponseMessage =
   BaseApiResponseMessage<PostEntitiesUsersGetV1ApiResponse>;
