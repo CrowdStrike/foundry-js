@@ -302,7 +302,7 @@ __metadata:
     eslint-plugin-sort-imports-es6-autofix: ^0.6.0
     happy-dom: ^18.0.1
     jsdom: ^26.1.0
-    p-event: ^6.0.1
+    p-event: ^7.0.0
     prettier: ^3.2.5
     rollup: 4.50.0
     tslib: 2.8.1
@@ -4175,12 +4175,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-event@npm:^6.0.1":
-  version: 6.0.1
-  resolution: "p-event@npm:6.0.1"
+"p-event@npm:^7.0.0":
+  version: 7.0.0
+  resolution: "p-event@npm:7.0.0"
   dependencies:
-    p-timeout: "npm:^6.1.2"
-  checksum: f8a6bb7e5addee541f5be42685fb070d9848aa0fb761132e825762c1e4009d90416b3f78ec06f7d4ee96b48ef9cebda0b809a0a87e504d7ae5f371f406cf16a8
+    p-timeout: ^6.1.4
+  checksum: 8/1facd616d07b5310f8ba32ef3f9b65252a7d2ad9146a994dcd01dccea53b6391f736297fb41da39f5f3c8e45855b75704328806d085c44d65feac97561361b44
   languageName: node
   linkType: hard
 
@@ -4243,7 +4243,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"p-timeout@npm:^6.1.2":
+"p-timeout@npm:^6.1.4":
   version: 6.1.4
   resolution: "p-timeout@npm:6.1.4"
   checksum: 5ee0df408ba353cc2d7036af90d2eb1724c428fd1cf67cd9110c03f0035077c29f6506bff7198dfbef4910ec558c711f21f9741d89d043a6f2c2ff82064afcaf
