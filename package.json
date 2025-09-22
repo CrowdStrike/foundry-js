@@ -1,0 +1,83 @@
+{
+  "name": "@crowdstrike/foundry-js",
+  "version": "0.19.0",
+  "description": "foundry-js is the JavaScript SDK for authoring UI Extensions for CrowdStrike's Foundry platform.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CrowdStrike/foundry-js.git"
+  },
+  "license": "MIT",
+  "author": "CrowdStrike UX Team",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./apis/*": {
+      "types": "./dist/apis/*/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*/index.d.ts",
+        "dist/*"
+      ]
+    }
+  },
+  "directories": {},
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "_build": "concurrently 'npm:build:*'",
+    "_start": "concurrently 'npm:watch:*'",
+    "build": "rollup -c ./config/rollup.config.ts --configPlugin typescript",
+    "api-docs": "typedoc",
+    "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
+    "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "lint:types": "tsc --noEmit",
+    "prepublishOnly": "yarn build",
+    "release": "changeset publish",
+    "start": "yarn build --watch",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "emittery": "1.0.3",
+    "typescript-memoize": "1.1.1",
+    "uuid": "11.1.0"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "0.5.0",
+    "@changesets/cli": "2.27.3",
+    "@eslint/js": "^9.33.0",
+    "@rollup/plugin-node-resolve": "16.0.1",
+    "@rollup/plugin-replace": "6.0.2",
+    "@rollup/plugin-typescript": "12.1.4",
+    "@types/uuid": "10.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/parser": "^8.34.0",
+    "concurrently": "9.1.2",
+    "eslint": "^8.40.0",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-prettier": "^5.0.0",
+    "eslint-plugin-sort-imports-es6-autofix": "^0.6.0",
+    "happy-dom": "18.0.1",
+    "jsdom": "26.1.0",
+    "p-event": "6.0.1",
+    "prettier": "3.2.5",
+    "rollup": "4.50.0",
+    "tslib": "2.8.1",
+    "typedoc": "0.28.5",
+    "typedoc-plugin-missing-exports": "4.0.0",
+    "typedoc-plugin-rename-defaults": "0.7.0",
+    "typescript": "5.9.2",
+    "vitest": "3.1.4"
+  },
+  "engines": {
+    "node": ">=22"
+  }
+}
