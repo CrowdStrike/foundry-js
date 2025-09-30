@@ -1,8 +1,8 @@
-const js = require('@eslint/js');
-const typescriptEslint = require('@typescript-eslint/eslint-plugin');
-const typescriptParser = require('@typescript-eslint/parser');
+import js from '@eslint/js';
+import typescriptEslint from '@typescript-eslint/eslint-plugin';
+import typescriptParser from '@typescript-eslint/parser';
 
-module.exports = [
+export default [
   // Apply to all JS/TS files
   {
     files: ['**/*.{js,mjs,cjs,ts,tsx}'],
@@ -50,26 +50,6 @@ module.exports = [
         argsIgnorePattern: '^_',
         varsIgnorePattern: '^_',
       }],
-    },
-  },
-  
-  // Configuration files
-  {
-    files: ['eslint.config.js', '.eslintrc.js', '.prettierrc.js'],
-    languageOptions: {
-      globals: {
-        // Node environment
-        module: 'readonly',
-        require: 'readonly',
-        process: 'readonly',
-        __dirname: 'readonly',
-        __filename: 'readonly',
-        Buffer: 'readonly',
-        global: 'readonly',
-      },
-    },
-    rules: {
-      '@typescript-eslint/no-var-requires': 'off',
     },
   },
   
