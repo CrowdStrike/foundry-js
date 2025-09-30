@@ -163,7 +163,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
     const { messageId } = event.data.meta;
     const callback = this.pendingMessages.get(messageId);
 
-    if (!callback) {
+    if (!callback || typeof callback !== "function") {
       this.throwError(`Received unexpected message`);
       return;
     }
