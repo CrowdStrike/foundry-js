@@ -122,10 +122,10 @@ test('it stops after 3 failed retries for execution result', async () => {
   executionResultSpy.mockRejectedValueOnce({ errors: [{ code: 501 }] });
   executionResultSpy.mockRejectedValueOnce({ errors: [{ code: 502 }] });
 
-  expect(() => cloudFunctionInstance.get()).rejects.toThrowError();
+  await expect(() => cloudFunctionInstance.get()).rejects.toThrowError();
 
   expect(executionSpy).toHaveBeenCalledOnce();
-  expect(executionResultSpy).toHaveBeenCalledTimes(0);
+  expect(executionResultSpy).toHaveBeenCalledTimes(3);
 });
 
 test('it clears interval on destroy', async () => {
