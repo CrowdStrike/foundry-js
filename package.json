@@ -64,7 +64,7 @@
     "eslint-plugin-import": "2.32.0",
     "eslint-plugin-prettier": "5.5.4",
     "eslint-plugin-sort-imports-es6-autofix": "0.6.0",
-    "happy-dom": "19.0.2",
+    "happy-dom": "20.0.0",
     "jsdom": "27.0.0",
     "p-event": "7.0.0",
     "prettier": "3.6.2",
