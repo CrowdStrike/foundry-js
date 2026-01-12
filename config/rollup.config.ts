@@ -12,8 +12,7 @@ export default defineConfig({
   },
   input: ['src/index.ts'],
   output: {
-    dir: 'dist',
-    sourcemap: true,
+    dir: 'dist'
   },
   plugins: [
     nodeResolve(),
