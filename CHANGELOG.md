@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.20.0
+
+### Minor Changes
+
+- [#217](https://github.com/CrowdStrike/foundry-js/pull/217) [`a0d83e5`](https://github.com/CrowdStrike/foundry-js/commit/a0d83e5697897a71e5ec03baf7c69efb8f41ad48) Thanks [@rhinchey-cs](https://github.com/rhinchey-cs)! - Update several dependencies and validate message ids
+
 ## 0.19.0
 
 ### Minor Changes
