@@ -9,12 +9,14 @@ concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 permissions:
   contents: read
-  pull-requests: write
 
 jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    permissions:
+        pull-requests: write
+        contents: write
     steps:
       - name: Checkout Repo
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
@@ -34,6 +36,3 @@ jobs:
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
           publish: yarn release
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
