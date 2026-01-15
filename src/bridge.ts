@@ -1,4 +1,4 @@
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4, validate as isValidUUID } from 'uuid';
 
 import { VERSION } from './apis/version';
 import { isValidResponse } from './utils';
@@ -18,6 +18,15 @@ import type {
 const CONNECTION_TIMEOUT = 5_000;
 const API_TIMEOUT = 30_000;
 const NAVIGATION_TIMEOUT = 5_000;
+
+function sanitizeMessageId(messageId: unknown): string | null {
+  // Only allow valid UUID strings
+  if (typeof messageId !== 'string' || !isValidUUID(messageId)) {
+    return null;
+  }
+
+  return messageId;
+}
 
 function timeoutForMessage(message: RequestMessage): number | null {
   const timeout =
@@ -46,7 +55,7 @@ export class Bridge<DATA extends LocalData = LocalData> {
   private onLivereload: BridgeOptions<DATA>['onLivereload'];
   private pendingMessages = new Map<
     string,
-        (_result: PayloadOf<ResponseMessage>) => void
+    (_result: PayloadOf<ResponseMessage>) => void
   >();
 
   private targetOrigin = '*';
@@ -161,14 +170,22 @@ export class Bridge<DATA extends LocalData = LocalData> {
     }
 
     const { messageId } = event.data.meta;
-    const callback = this.pendingMessages.get(messageId);
 
-    if (!callback || typeof callback !== "function") {
+    // Sanitize messageId to prevent unvalidated dynamic method calls
+    const sanitizedMessageId = sanitizeMessageId(messageId);
+    if (!sanitizedMessageId) {
+      this.throwError(`Received message with invalid messageId format`);
+      return;
+    }
+
+    const callback = this.pendingMessages.get(sanitizedMessageId);
+
+    if (!callback || typeof callback !== 'function') {
       this.throwError(`Received unexpected message`);
       return;
     }
 
-    this.pendingMessages.delete(messageId);
+    this.pendingMessages.delete(sanitizedMessageId);
 
     callback(message.payload);
   };
