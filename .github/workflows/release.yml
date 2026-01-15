@@ -14,6 +14,7 @@ jobs:
   release:
     name: Release
     runs-on: ubuntu-latest
+    environment: foundry-js-deployments 
     permissions:
         pull-requests: write
         contents: write
@@ -35,4 +36,7 @@ jobs:
         uses: changesets/action@e0145edc7d9d8679003495b11f87bd8ef63c0cba
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
-          publish: yarn release
+          publish: yarn release 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
