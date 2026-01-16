@@ -169,36 +169,23 @@ To call API Integration, App should be initially provisioned, and configuration 
 
 ### Navigation utilities
 
-As Page or UI extension will run inside sandboxed iframe, clicking links or navigating will be limited.
-When browser URL changes, Foundry UI Page will receive that data via iframe hash change event.
-You can listen to hash change event and process your app internal navigation. 
+As the Page or UI extension will run inside a sandboxed iframe, the `navigateTo` method must be used to change the url of the parent context (Falcon Console).
+
+To open an external url (in a new tab): 
 
 ```javascript
-window.addEventListener("hashchange", (event) => {
-  let rawHash = new URL(event.newURL).hash;
-
-  const path = rawHash.substring(1);
-}, false);
-
-// to read initial hash when your app loads:
-const initialPath = document.location.hash.substring(1);
+falcon.navigation.navigateTo({
+  path: 'https://www.github.com',
+});
 ```
 
-If you have links in your application, that point to the internal URLs of your application (for example navigation from /page-1 to /page-2) - 
-you can add `data-` attribute to those links, and add onClick handler, that will handle navigation outside of iframe and will update iframe hash.
+To navigate to a new url within Falcon Console: 
 
 ```javascript
-// find all links with data attribute - `data-internal-link` 
-document.querySelector('[data-internal-link]')
-  .addEventListener('click', (event) => falcon.navigation.onClick(event, '_self', 'internal'));
-```
-
-If you have external links that you want to navigate to, for example www.crowdstrike.com, you can add `data-` attribute to identify those:
-
-```javascript
-// find all links with data attribute - `data-external-link` 
-document.querySelector('[data-external-link]')
-      .addEventListener('click', (event) => falcon.navigation.onClick(event));
+falcon.navigation.navigateTo({
+  path: '/login',
+  type: "falcon",
+});
 ```
 
 ### Modal utility
