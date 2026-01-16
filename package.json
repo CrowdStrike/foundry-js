@@ -30,18 +30,15 @@
     "dist"
   ],
   "scripts": {
-    "_build": "concurrently 'npm:build:*'",
-    "_start": "concurrently 'npm:watch:*'",
     "build": "rollup -c ./config/rollup.config.ts --configPlugin typescript",
-    "api-docs": "typedoc",
     "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
     "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
     "lint:js": "eslint . --cache",
     "lint:js:fix": "eslint . --fix",
     "lint:types": "tsc --noEmit",
-    "prepublishOnly": "yarn build",
+    "prepublishOnly": "pnpm build",
     "release": "changeset publish",
-    "start": "yarn build --watch",
+    "start": "pnpm build --watch",
     "test": "vitest"
   },
   "dependencies": {
@@ -65,14 +62,10 @@
     "eslint-plugin-prettier": "5.5.4",
     "eslint-plugin-sort-imports-es6-autofix": "0.6.0",
     "happy-dom": "20.0.0",
-    "jsdom": "27.0.0",
     "p-event": "7.0.0",
     "prettier": "3.6.2",
     "rollup": "4.52.3",
     "tslib": "2.8.1",
-    "typedoc": "0.28.13",
-    "typedoc-plugin-missing-exports": "4.1.0",
-    "typedoc-plugin-rename-defaults": "0.7.3",
     "typescript": "5.9.2",
     "vitest": "3.2.4"
   },

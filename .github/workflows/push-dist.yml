@@ -13,16 +13,17 @@ jobs:
     name: Push dist
     runs-on: ubuntu-latest
     steps: 
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+      - run: corepack enable  
       - name: Install Node
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
           node-version: 24.11.1
-          cache: yarn
+          cache: pnpm
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: pnpm install
       - name: Build
-        run: yarn build
+        run: pnpm build
       - name: Push to dist branch
         uses: kategengler/put-built-npm-package-contents-on-branch@a8f939b1c3a57b62efbc5d73685f55e97db734bb # v2.1.0
         with:
