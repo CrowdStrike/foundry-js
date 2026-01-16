@@ -35,6 +35,9 @@ export class Navigation<DATA extends LocalData = LocalData> {
     });
   }
 
+  /**
+   * @deprecated Use navigateTo directly
+   */
   public async onClick(
     event: MouseEvent | KeyboardEvent,
     defaultTarget: (typeof ALLOWED_TARGETS)[number] = '_self',
