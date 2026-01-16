@@ -18,6 +18,7 @@ jobs:
     permissions:
         pull-requests: write
         contents: write
+        id-token: write #Required for OIDC
     steps:
       - name: Checkout Repo
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
@@ -25,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
-          node-version: 22.x
+          node-version: 24.11.1
           cache: yarn
 
       - name: Install Dependencies
@@ -39,4 +40,4 @@ jobs:
           publish: yarn release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: '' # https://github.com/changesets/changesets/issues/1152#issuecomment-3190884868
