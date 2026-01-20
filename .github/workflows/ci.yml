@@ -19,15 +19,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 
+      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+      - run: corepack enable 
       - name: Install Node
         uses: actions/setup-node@395ad3262231945c25e8478fd5baf05154b1d79f
         with:
           node-version: 24.11.1
-          cache: yarn
+          cache: pnpm
       - name: Install Dependencies
-        run: yarn install --immutable
+        run: pnpm install
       - name: Lint
-        run: yarn lint
+        run: pnpm lint
       - name: Run Tests
-        run: yarn test
+        run: pnpm test
