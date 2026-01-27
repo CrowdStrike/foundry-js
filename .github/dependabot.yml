@@ -9,3 +9,5 @@ updates:
         versions: [">=6.0.2"]
       - dependency-name: "actions/setup-node"
         versions: [">=6.2.0"]
+      - dependency-name: "changesets/action"
+        versions: [">=1.6.0"]
