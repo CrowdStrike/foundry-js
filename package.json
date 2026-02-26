@@ -1,0 +1,79 @@
+{
+  "name": "@crowdstrike/foundry-js",
+  "version": "0.21.0",
+  "description": "foundry-js is the JavaScript SDK for authoring UI Extensions for CrowdStrike's Foundry platform.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CrowdStrike/foundry-js.git"
+  },
+  "license": "MIT",
+  "author": "CrowdStrike UX Team",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./apis/*": {
+      "types": "./dist/apis/*/index.d.ts"
+    }
+  },
+  "typesVersions": {
+    "*": {
+      "*": [
+        "dist/*/index.d.ts",
+        "dist/*"
+      ]
+    }
+  },
+  "directories": {},
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "rollup -c ./config/rollup.config.ts --configPlugin typescript",
+    "lint": "concurrently 'npm:lint:*(!fix)' --names 'lint:'",
+    "lint:fix": "concurrently 'npm:lint:*:fix' --names 'fix:'",
+    "lint:js": "eslint . --cache",
+    "lint:js:fix": "eslint . --fix",
+    "lint:types": "tsc --noEmit",
+    "prepublishOnly": "pnpm build",
+    "release": "changeset publish",
+    "start": "pnpm build --watch",
+    "test": "vitest"
+  },
+  "dependencies": {
+    "emittery": "1.2.0",
+    "typescript-memoize": "1.1.1",
+    "uuid": "13.0.0"
+  },
+  "devDependencies": {
+    "@changesets/changelog-github": "0.5.1",
+    "@changesets/cli": "2.29.7",
+    "@eslint/js": "9.36.0",
+    "@rollup/plugin-node-resolve": "16.0.1",
+    "@rollup/plugin-replace": "6.0.2",
+    "@rollup/plugin-typescript": "12.1.4",
+    "@types/node": "25.0.3",
+    "@typescript-eslint/eslint-plugin": "8.45.0",
+    "@typescript-eslint/parser": "8.45.0",
+    "concurrently": "9.2.1",
+    "eslint": "9.39.1",
+    "happy-dom": "20.0.2",
+    "p-event": "7.0.0",
+    "rollup": "4.54.0",
+    "tslib": "2.8.1",
+    "typescript": "5.9.3",
+    "vitest": "4.0.13"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "pnpm": {
+    "overrides": {
+      "human-id": "4.1.2",
+      "@babel/runtime": "7.28.4",
+      "iconv-lite": "0.7.0",
+      "fastq": "1.19.1"
+    }
+  }
+}
