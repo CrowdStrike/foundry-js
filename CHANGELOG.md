@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.21.0
+
+### Minor Changes
+
+- [#234](https://github.com/CrowdStrike/foundry-js/pull/234) [`7af3bbc`](https://github.com/CrowdStrike/foundry-js/commit/7af3bbce8d0fe7be908791db1161607841705b8c) Thanks [@rhinchey-cs](https://github.com/rhinchey-cs)! - Deprecates the onClick navigation helper
+
 ## 0.20.0
 
 ### Minor Changes
@@ -81,7 +87,7 @@
   document
     .querySelector('[data-internal-links]')
     .addEventListener('click', (event) =>
-      falcon.navigation.onClick(event, '_self', 'internal'),
+      falcon.navigation.onClick(event, '_self', 'internal')
     );
   ```
 
@@ -163,7 +169,7 @@
     .path('/actions')
     .post(
       { action: 'ok' },
-      { query: { param1: 'value1' }, header: { header1: 'value1' } },
+      { query: { param1: 'value1' }, header: { header1: 'value1' } }
     );
   ```
 
