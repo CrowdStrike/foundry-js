@@ -428,7 +428,6 @@ export type PayloadOf<RESPONSE extends ResponseMessage> = RESPONSE['payload'];
 
 export type ExtensionType = 'extension' | 'page';
 
-export interface ExtensionIdentifier {
-  type: ExtensionType;
-  id: string;
-}
+export type ExtensionIdentifier =
+  | { type: ExtensionType; id: string; name?: never }
+  | { type: ExtensionType; name: string; id?: never };
