@@ -1,5 +1,11 @@
 # @crowdstrike/foundry-js
 
+## 0.22.0
+
+### Minor Changes
+
+- [#245](https://github.com/CrowdStrike/foundry-js/pull/245) [`75505f2`](https://github.com/CrowdStrike/foundry-js/commit/75505f2e4781a07228e1e8bd6fc0b0cb619ed62d) Thanks [@dbutterfield77](https://github.com/dbutterfield77)! - Updated ExtensionIdentifier type to support `name` queries
+
 ## 0.21.0
 
 ### Minor Changes
