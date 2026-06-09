@@ -40,11 +40,11 @@ export class Logscale<DATA extends LocalData = LocalData> {
    * @param query
    * @returns Promise that resolves with the data
    */
-  public async query(
+  public async query<T = unknown>(
     // @todo the proper type here is unclear  - we need to make clear how the user needs to call this
     query: LogscaleRequestMessage['payload']['data'],
   ) {
-    return this.falcon.bridge.postMessage<LogscaleRequestMessage>({
+    return this.falcon.bridge.postMessage<LogscaleRequestMessage, T>({
       type: 'loggingapi',
       payload: {
         type: 'dynamic-execute',
@@ -59,11 +59,11 @@ export class Logscale<DATA extends LocalData = LocalData> {
    * @param savedQuery
    * @returns
    */
-  public async savedQuery(
+  public async savedQuery<T = unknown>(
     // @todo the proper type here is unclear  - we need to make clear how the user needs to call this
     savedQuery: LogscaleRequestMessage['payload']['data'],
   ) {
-    return this.falcon.bridge.postMessage<LogscaleRequestMessage>({
+    return this.falcon.bridge.postMessage<LogscaleRequestMessage, T>({
       type: 'loggingapi',
       payload: {
         type: 'saved-query-execute',
