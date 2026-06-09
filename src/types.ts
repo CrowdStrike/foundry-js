@@ -197,7 +197,7 @@ export interface CollectionRequestMessage extends BaseMessage {
         type: 'write';
         key: string;
         collection: string;
-        data: Record<string, unknown>;
+        data: object;
       }
     | {
         type: 'search';
