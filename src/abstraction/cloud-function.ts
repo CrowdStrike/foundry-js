@@ -56,7 +56,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     private readonly definition: CloudFunctionDefinition,
   ) {}
 
-  private async execute({ path, method, body, params }: ExecuteParameters) {
+  private async execute<T = unknown>({ path, method, body, params }: ExecuteParameters): Promise<T> {
     const functionDefinition =
       'id' in this.definition
         ? {
@@ -78,13 +78,13 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
       },
     });
 
-    return new Promise((resolve, reject) => {
+    return new Promise<T>((resolve, reject) => {
       const execution = result?.resources?.[0] as { execution_id?: string };
 
       if (!execution?.execution_id) {
         reject(result?.errors);
       } else {
-        this.pollForResult({
+        this.pollForResult<T>({
           resolve,
           reject,
           executionId: execution?.execution_id,
@@ -93,25 +93,25 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     });
   }
 
-  private async getExecutionResult(
+  private async getExecutionResult<T = unknown>(
     executionId: string,
-  ): Promise<Record<string, unknown> | undefined> {
+  ): Promise<T | undefined> {
     const resultResponse =
       await this.falcon.api.faasGateway.getEntitiesExecutionV1({
         id: executionId,
       });
 
-    const executionResult = resultResponse?.resources?.[0] as { payload?: unknown };
+    const executionResult = resultResponse?.resources?.[0] as { payload?: T };
 
-    return executionResult?.payload as Record<string, unknown> | undefined;
+    return executionResult?.payload;
   }
 
-  private pollForResult({
+  private pollForResult<T = unknown>({
     resolve,
     reject,
     executionId,
   }: {
-    resolve: (value: unknown) => void;
+    resolve: (value: T) => void;
     reject: (value?: unknown) => void;
     executionId: string;
   }) {
@@ -119,7 +119,7 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
 
     this.intervalId = window.setInterval(async () => {
       try {
-        const payload = await this.getExecutionResult(executionId);
+        const payload = await this.getExecutionResult<T>(executionId);
 
         if (payload) {
           window.clearInterval(this.intervalId);
@@ -152,8 +152,8 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
       path,
       queryParams: searchParams,
 
-      get: async (params: GetParameters['params'] = {}) => {
-        return this.get({
+      get: async <T = unknown>(params: GetParameters['params'] = {}) => {
+        return this.get<T>({
           path,
           params: {
             query: params?.query ?? searchParams ?? {},
@@ -162,11 +162,11 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         });
       },
 
-      post: async (
+      post: async <T = unknown>(
         body: PostParameters['body'],
         params: PostParameters['params'] = {},
       ) => {
-        return this.post({
+        return this.post<T>({
           path,
           params: {
             query: params?.query ?? searchParams ?? {},
@@ -176,11 +176,11 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         });
       },
 
-      patch: async (
+      patch: async <T = unknown>(
         body: PatchParameters['body'],
         params: PostParameters['params'] = {},
       ) => {
-        return this.patch({
+        return this.patch<T>({
           path,
           params: {
             query: params?.query ?? searchParams ?? {},
@@ -190,11 +190,11 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         });
       },
 
-      put: async (
+      put: async <T = unknown>(
         body: PutParameters['body'],
         params: PostParameters['params'] = {},
       ) => {
-        return this.put({
+        return this.put<T>({
           path,
           params: {
             query: params?.query ?? searchParams ?? {},
@@ -204,11 +204,11 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
         });
       },
 
-      delete: async (
+      delete: async <T = unknown>(
         body: DeleteParameters['body'],
         params: PostParameters['params'] = {},
       ) => {
-        return this.delete({
+        return this.delete<T>({
           path,
           params: {
             query: params?.query ?? searchParams ?? {},
@@ -220,16 +220,16 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     };
   }
 
-  public async get({ path, params }: GetParameters) {
-    return this.execute({
+  public async get<T = unknown>({ path, params }: GetParameters): Promise<T> {
+    return this.execute<T>({
       path,
       method: CloudFunction.GET,
       params,
     });
   }
 
-  public async post({ path, params, body }: PostParameters) {
-    return this.execute({
+  public async post<T = unknown>({ path, params, body }: PostParameters): Promise<T> {
+    return this.execute<T>({
       path,
       method: CloudFunction.POST,
       body,
@@ -237,8 +237,8 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     });
   }
 
-  public async patch({ path, params, body }: PatchParameters) {
-    return this.execute({
+  public async patch<T = unknown>({ path, params, body }: PatchParameters): Promise<T> {
+    return this.execute<T>({
       path,
       method: CloudFunction.PATCH,
       body,
@@ -246,8 +246,8 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     });
   }
 
-  public async put({ path, params, body }: PutParameters) {
-    return this.execute({
+  public async put<T = unknown>({ path, params, body }: PutParameters): Promise<T> {
+    return this.execute<T>({
       path,
       method: CloudFunction.PUT,
       body,
@@ -255,8 +255,8 @@ export class CloudFunction<DATA extends LocalData = LocalData> {
     });
   }
 
-  public async delete({ path, params, body }: DeleteParameters) {
-    return this.execute({
+  public async delete<T = unknown>({ path, params, body }: DeleteParameters): Promise<T> {
+    return this.execute<T>({
       path,
       method: CloudFunction.DELETE,
       body,
