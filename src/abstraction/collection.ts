@@ -1,6 +1,8 @@
 import type FalconApi from '../api';
 import type { CollectionRequestMessage, LocalData } from '../types';
 
+export type CollectionItem = object;
+
 interface CollectionDefinition {
   collection: string;
 }
@@ -22,7 +24,10 @@ interface CollectionListDefinition {
   start: string;
 }
 
-export class Collection<DATA extends LocalData = LocalData> {
+export class Collection<
+  DATA extends LocalData = LocalData,
+  ITEM extends CollectionItem = CollectionItem,
+> {
   constructor(
     private readonly falcon: FalconApi<DATA>,
     private readonly definition: CollectionDefinition,
@@ -35,8 +40,8 @@ export class Collection<DATA extends LocalData = LocalData> {
    * @param data
    * @returns
    */
-  public async write(key: string, data: Record<string, unknown>) {
-    return this.falcon.bridge.postMessage({
+  public async write<T extends ITEM = ITEM>(key: string, data: T) {
+    return this.falcon.bridge.postMessage<CollectionRequestMessage, T>({
       type: 'collection',
       payload: {
         type: 'write',
@@ -53,8 +58,8 @@ export class Collection<DATA extends LocalData = LocalData> {
    * @param key
    * @returns
    */
-  public async read(key: string) {
-    return this.falcon.bridge.postMessage<CollectionRequestMessage>({
+  public async read<T extends ITEM = ITEM>(key: string) {
+    return this.falcon.bridge.postMessage<CollectionRequestMessage, T>({
       type: 'collection',
       payload: {
         type: 'read',
@@ -87,13 +92,13 @@ export class Collection<DATA extends LocalData = LocalData> {
    * @param searchDefinition
    * @returns
    */
-  public async search({
+  public async search<T extends ITEM = ITEM>({
     filter,
     offset,
     sort,
     limit,
   }: CollectionSearchDefinition) {
-    return this.falcon.bridge.postMessage<CollectionRequestMessage>({
+    return this.falcon.bridge.postMessage<CollectionRequestMessage, T[]>({
       type: 'collection',
       payload: {
         type: 'search',

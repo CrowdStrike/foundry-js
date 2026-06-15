@@ -3,7 +3,7 @@ import FalconPublicApis from './apis/public-api';
 import { ApiIntegration } from './abstraction/api-integration';
 import { Bridge } from './bridge';
 import { CloudFunction } from './abstraction/cloud-function';
-import { Collection } from './abstraction/collection';
+import { Collection, type CollectionItem } from './abstraction/collection';
 import { Logscale } from './abstraction/logscale';
 import { Memoize } from 'typescript-memoize';
 import { Navigation } from './lib/navigation';
@@ -212,10 +212,14 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
    * @param definition
    * @returns
    */
-  collection({ collection }: { collection: string }) {
+  collection<ITEM extends CollectionItem = CollectionItem>({
+    collection,
+  }: {
+    collection: string;
+  }) {
     assertConnection(this);
 
-    const co = new Collection(this, { collection });
+    const co = new Collection<DATA, ITEM>(this, { collection });
 
     this.collections.push(co);
 

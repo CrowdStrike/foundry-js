@@ -1,5 +1,5 @@
 import type FalconApi from '../api';
-import type { LocalData } from '../types';
+import type { ApiResponsePayload, LocalData } from '../types';
 
 interface ApiIntegrationDefinition {
   definitionId: string;
@@ -23,7 +23,7 @@ export class ApiIntegration<DATA extends LocalData = LocalData> {
     private readonly definition: ApiIntegrationDefinition,
   ) {}
 
-  public async execute({ request }: ExecuteParameters = {}) {
+  public async execute<T = unknown>({ request }: ExecuteParameters = {}): Promise<ApiResponsePayload<T>> {
     return this.falcon.api.plugins.postEntitiesExecuteV1({
       resources: [
         {
@@ -32,6 +32,6 @@ export class ApiIntegration<DATA extends LocalData = LocalData> {
           request,
         },
       ],
-    });
+    }) as Promise<ApiResponsePayload<T>>;
   }
 }
