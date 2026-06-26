@@ -167,6 +167,32 @@ To call API Integration, App should be initially provisioned, and configuration 
 });
 ```
 
+### Working with AgentWorks
+
+To invoke an AgentWorks agent and stream its response, call `falcon.agentWorks.invoke()` with the agent ID and any parameters. It returns an `AgentStream` that emits `data` chunks as they arrive, followed by a terminal `end` or `error`.
+
+```javascript
+  const stream = falcon.agentWorks.invoke('<agent-id>', { prompt: 'Summarize this detection' });
+
+  // receive each chunk as it streams in
+  stream.on('data', (chunk) => {
+    // append chunk to your UI
+  });
+
+  // the stream completed successfully
+  stream.on('end', () => {
+    // finalize output
+  });
+
+  // the stream terminated with an error
+  stream.on('error', (err) => {
+    // handle err.message
+  });
+
+  // cancel an in-flight stream early
+  stream.abort();
+```
+
 ### Navigation utilities
 
 As the Page or UI extension will run inside a sandboxed iframe, the `navigateTo` method must be used to change the url of the parent context (Falcon Console).

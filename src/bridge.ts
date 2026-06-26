@@ -4,6 +4,8 @@ import { VERSION } from './apis/version';
 import { isValidResponse } from './utils';
 
 import type {
+  AgentWorksRequestMessage,
+  AgentWorksResponseMessage,
   BroadcastMessage,
   DataUpdateMessage,
   LivereloadMessage,
@@ -56,6 +58,11 @@ export class Bridge<DATA extends LocalData = LocalData> {
   private pendingMessages = new Map<
     string,
     (_result: PayloadOf<ResponseMessage>) => void
+  >();
+
+  private streamSubscriptions = new Map<
+    string,
+    (_payload: AgentWorksResponseMessage['payload']) => void
   >();
 
   private targetOrigin = '*';
@@ -133,6 +140,55 @@ export class Bridge<DATA extends LocalData = LocalData> {
     });
   }
 
+  /**
+   * Open a long-lived stream. Unlike {@link postMessage}, the subscription is
+   * not removed after the first response: many messages may be delivered for
+   * the same `messageId` until the caller invokes the returned `close()`.
+   *
+   * No timeout is applied, since a stream can run for an arbitrary duration.
+   */
+  openStream(
+    message: AgentWorksRequestMessage,
+    subscriber: (_payload: AgentWorksResponseMessage['payload']) => void,
+  ): { messageId: string; close: () => void } {
+    const messageId = uuidv4();
+
+    this.streamSubscriptions.set(messageId, subscriber);
+
+    const eventData: MessageEnvelope<AgentWorksRequestMessage> = {
+      message,
+      meta: {
+        messageId,
+        version: VERSION,
+      },
+    };
+
+    window.parent.postMessage(eventData, this.targetOrigin);
+
+    return {
+      messageId,
+      close: () => {
+        this.streamSubscriptions.delete(messageId);
+      },
+    };
+  }
+
+  /**
+   * Send a follow-up message that reuses an existing stream's `messageId`
+   * (e.g. an `abort` request for an in-flight invocation).
+   */
+  sendStreamMessage(messageId: string, message: AgentWorksRequestMessage) {
+    const eventData: MessageEnvelope<AgentWorksRequestMessage> = {
+      message,
+      meta: {
+        messageId,
+        version: VERSION,
+      },
+    };
+
+    window.parent.postMessage(eventData, this.targetOrigin);
+  }
+
   private handleMessageWrapper = (
     event: MessageEvent<MessageEnvelope<ResponseMessage<DATA>> | unknown>,
   ) => {
@@ -175,6 +231,19 @@ export class Bridge<DATA extends LocalData = LocalData> {
     const sanitizedMessageId = sanitizeMessageId(messageId);
     if (!sanitizedMessageId) {
       this.throwError(`Received message with invalid messageId format`);
+      return;
+    }
+
+    if (message.type === 'agentWorks') {
+      // Streaming responses deliver many messages for one messageId. The
+      // subscription is owned by the AgentStream, which removes it via close()
+      // once the stream completes, errors, or is aborted.
+      const subscriber = this.streamSubscriptions.get(sanitizedMessageId);
+
+      if (typeof subscriber === 'function') {
+        subscriber(message.payload);
+      }
+
       return;
     }
 

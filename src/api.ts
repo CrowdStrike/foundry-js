@@ -1,5 +1,6 @@
 import Emittery from 'emittery';
 import FalconPublicApis from './apis/public-api';
+import { AgentWorks } from './abstraction/agent-works';
 import { ApiIntegration } from './abstraction/api-integration';
 import { Bridge } from './bridge';
 import { CloudFunction } from './abstraction/cloud-function';
@@ -87,6 +88,7 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
   private cloudFunctions: CloudFunction<DATA>[] = [];
   private apiIntegrations: ApiIntegration<DATA>[] = [];
   private collections: Collection<DATA>[] = [];
+  private _agentWorks?: AgentWorks<DATA>;
 
   /**
    * Connect to the main Falcon Console from within your UI extension.
@@ -246,9 +248,31 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
     return new Logscale(this);
   }
 
+  /**
+   * The {@link AgentWorks} class allows you to invoke AgentWorks agents and
+   * stream their responses.
+   *
+   * ```js
+   * const stream = await api.agentWorks.invoke('agent-id', { prompt: '...' });
+   *
+   * stream.on('data', (chunk) => console.log(chunk));
+   * stream.on('end', () => console.log('done'));
+   * ```
+   */
+  get agentWorks() {
+    assertConnection(this);
+
+    if (!this._agentWorks) {
+      this._agentWorks = new AgentWorks(this.bridge);
+    }
+
+    return this._agentWorks;
+  }
+
   destroy() {
     this.cloudFunctions.forEach((cf) => cf.destroy());
 
+    this._agentWorks?.destroy();
     this.resizeTracker?.destroy();
     this.bridge.destroy();
   }
