@@ -23,7 +23,7 @@ type AgentStreamEventName = keyof AgentStreamEvents;
  * `data` chunks as they arrive, plus a terminal `end` or `error`:
  *
  * ```js
- * const stream = await api.agentWorks.invoke('agent-id', { prompt: '...' });
+ * const stream = api.agentWorks.invoke('agent-id', { prompt: '...' });
  *
  * stream.on('data', (chunk) => render(chunk));
  * stream.on('error', (err) => showError(err));
@@ -38,6 +38,7 @@ export class AgentStream<DATA extends LocalData = LocalData> {
   private bridge: Bridge<DATA>;
   private messageId: string;
   private close: () => void;
+  private onFinish?: () => void;
   private finished = false;
 
   /**
@@ -46,8 +47,10 @@ export class AgentStream<DATA extends LocalData = LocalData> {
   constructor(
     bridge: Bridge<DATA>,
     request: { agentId: string; params?: AgentWorksInvokeParams },
+    onFinish?: () => void,
   ) {
     this.bridge = bridge;
+    this.onFinish = onFinish;
 
     const { messageId, close } = bridge.openStream(
       {
@@ -92,6 +95,7 @@ export class AgentStream<DATA extends LocalData = LocalData> {
 
     this.finished = true;
     this.close();
+    this.onFinish?.();
   }
 
   /**
@@ -163,21 +167,30 @@ export class AgentWorks<DATA extends LocalData = LocalData> {
     agentId: string,
     params?: AgentWorksInvokeParams,
   ): AgentStream<DATA> {
-    const stream = new AgentStream(this.bridge, {
-      agentId,
-      params,
-    });
+    const stream: AgentStream<DATA> = new AgentStream(
+      this.bridge,
+      { agentId, params },
+      () => this.remove(stream),
+    );
 
     this.streams.push(stream);
 
     return stream;
   }
 
+  private remove(stream: AgentStream<DATA>): void {
+    const index = this.streams.indexOf(stream);
+
+    if (index !== -1) {
+      this.streams.splice(index, 1);
+    }
+  }
+
   /**
    * @internal
    */
   public destroy(): void {
-    this.streams.forEach((stream) => stream.destroy());
+    [...this.streams].forEach((stream) => stream.destroy());
     this.streams = [];
   }
 }

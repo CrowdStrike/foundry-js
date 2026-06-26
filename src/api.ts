@@ -253,12 +253,14 @@ export default class FalconApi<DATA extends LocalData = LocalData> {
    * stream their responses.
    *
    * ```js
-   * const stream = await api.agentWorks.invoke('agent-id', { prompt: '...' });
+   * const stream = api.agentWorks.invoke('agent-id', { prompt: '...' });
    *
    * stream.on('data', (chunk) => console.log(chunk));
    * stream.on('end', () => console.log('done'));
    * ```
    */
+  // Cached manually rather than via @Memoize() because destroy() needs the
+  // instance reference to tear down any open streams.
   get agentWorks() {
     assertConnection(this);
 

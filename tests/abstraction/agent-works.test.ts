@@ -138,6 +138,21 @@ test('it ignores chunks received after the stream finishes', async () => {
   expect(chunks).toEqual([]);
 });
 
+test('it ignores chunks received after an error', async () => {
+  const pending = captureInvocation();
+  const stream = api.agentWorks.invoke('agent-1');
+  const { messageId } = await pending;
+
+  const chunks: unknown[] = [];
+  stream.on('data', (chunk) => chunks.push(chunk));
+
+  sendFromHost(messageId, { subtype: 'error', error: 'boom' });
+  sendFromHost(messageId, { subtype: 'chunk', data: 'late' });
+  await nextTick();
+
+  expect(chunks).toEqual([]);
+});
+
 test('abort sends an abort message and emits end', async () => {
   const pending = captureInvocation();
   const stream: AgentStream = api.agentWorks.invoke('agent-1');
