@@ -20,7 +20,8 @@ export type MessageType =
   | 'livereload'
   | 'resize'
   | 'openModal'
-  | 'closeModal';
+  | 'closeModal'
+  | 'agentWorks';
 
 export interface BaseMessage {
   type: MessageType;
@@ -277,6 +278,47 @@ export interface BroadcastMessage<PAYLOAD = unknown> extends BaseMessage {
   payload: PAYLOAD;
 }
 
+// AgentWorks (streaming agent invocation)
+
+/**
+ * Parameters passed to an AgentWorks agent invocation. Forwarded as-is to the
+ * AgentWorks streaming API by the Falcon Console host.
+ */
+export interface AgentWorksInvokeParams {
+  [key: string]: unknown;
+}
+
+/**
+ * Request sent from the extension to the host to either start (`invoke`) or
+ * cancel (`abort`) a streaming agent invocation. A single `messageId`
+ * correlates the whole stream, so the `abort` request reuses the `messageId`
+ * of the `invoke` request it cancels.
+ */
+export interface AgentWorksRequestMessage extends BaseMessage {
+  type: 'agentWorks';
+  payload:
+    | {
+        action: 'invoke';
+        agentId: string;
+        params?: AgentWorksInvokeParams;
+      }
+    | {
+        action: 'abort';
+      };
+}
+
+/**
+ * One message in an agent invocation stream. Many `chunk` messages may be sent
+ * for a single `messageId`, terminated by exactly one `complete` or `error`.
+ */
+export interface AgentWorksResponseMessage extends BaseMessage {
+  type: 'agentWorks';
+  payload:
+    | { subtype: 'chunk'; data: unknown }
+    | { subtype: 'complete' }
+    | { subtype: 'error'; error: string };
+}
+
 // Livereload
 
 export interface LivereloadMessage extends BaseMessage {
@@ -387,7 +429,8 @@ export type RequestMessage =
   | ApiRequestMessage
   | FileUploadRequestMessage
   | LogscaleRequestMessage
-  | OpenModalRequestMessage;
+  | OpenModalRequestMessage
+  | AgentWorksRequestMessage;
 
 export { ApiIdentifier };
 
@@ -401,7 +444,8 @@ export type ResponseMessage<DATA extends LocalData = LocalData> =
   | CollectionResponseMessage
   | LivereloadMessage
   | LogscaleResponseMessage
-  | OpenModalResponseMessage;
+  | OpenModalResponseMessage
+  | AgentWorksResponseMessage;
 
 import type { ResponseFor as ApiResponseFor } from './apis/types-response-for';
 
@@ -420,7 +464,9 @@ type ResponseFor<
           ? FileUploadResponseMessage<FILEUPLOADTYPE>
           : REQ extends OpenModalRequestMessage
             ? OpenModalResponseMessage
-            : ApiResponseFor<REQ>;
+            : REQ extends AgentWorksRequestMessage
+              ? AgentWorksResponseMessage
+              : ApiResponseFor<REQ>;
 
 export { ResponseFor };
 
