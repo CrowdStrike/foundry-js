@@ -4,7 +4,7 @@
 
 The `foundry-js` JavaScript library provides convenient access to CrowdStrike's Foundry API for authoring UI pages and extensions.
 
-### Installation
+## Installation
 
 ```sh
 npm install @crowdstrike/foundry-js
@@ -16,107 +16,135 @@ pnpm add @crowdstrike/foundry-js
 
 ## Overview 🔎
 
-SDK provides abstractions to build Foundry Pages, Extensions and interact with Foundry artifacts - Workflows, Collections, LogScale, API Integrations and CrowdStrike APIs.
+This JavaScript SDK provides abstractions to build Foundry Pages, Extensions and interact with Foundry artifacts - Workflows, Collections, LogScale, API Integrations and CrowdStrike APIs.
 
 ## Usage
 
-When application starts, it should establish connection to Falcon Console. If connection is not establishes in first 5 seconds - app or extension will be dropped from loading on the page.
+When an application starts, it should establish a connection to Falcon Console. If a connection is not established in first 5 seconds, the app or extension will be dropped from loading on the page.
 
 ```javascript
 import FalconApi from '@crowdstrike/foundry-js';
 
-(async () => {
+async () => {
   const falcon = new FalconApi();
-  
+
   await falcon.connect();
-});
+};
 ```
 
-### Receive events from Falcon Console
+### Receiving events from Falcon Console
 
-When UI extensions is loaded, it might receive data for the context it is loaded, 
-for example if UI extension was built for Detection side panel, it will receive detection associated data.
-If `data` is updated in Falcon Console - event will automatically execute and pass new data.
+When a UI extension is loaded, it might receive data for the context it is loaded in. For example, if the UI extension was built for a Detection side panel, it will receive detection associated data.
+If `data` is updated in Falcon Console - the event will automatically execute and pass the new data.
 
 ```javascript
-(async () => {
+async () => {
   falcon.events.on('data', (data) => {
     // store received `data` and use it inside your application
   });
-});
+};
 ```
+
+The `data` object conforms to the `LocalData` [interface](./src/types.ts) and includes the following properties:
+
+| Property        | Type                                 | Description                                                                                                                           |
+| --------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
+| `app.id`        | `string`                             | The ID of the app                                                                                                                     |
+| `user.uuid`     | `string`                             | UUID of the signed-in user                                                                                                            |
+| `user.username` | `string`                             | Username of the signed-in user                                                                                                        |
+| `theme`         | `'theme-light' \| 'theme-dark'`      | Current theme in Falcon Console                                                                                                       |
+| `cid`           | `string`                             | Current customer ID                                                                                                                   |
+| `locale`        | `string`                             | Locale of the current user, e.g. `'en-us'`                                                                                            |
+| `timezone`      | `string` (optional)                  | Timezone of the current user, e.g. `'America/New_York'`                                                                               |
+| `dateFormat`    | `string` (optional)                  | Date format preferred by the user, in a [`moment.js` format](https://momentjs.com/docs/#/displaying/format/)                          |
+| `parentUrl`     | `string` (optional)                  | URL of the Falcon Console page hosting this extension, excluding the protocol and hostname                                            |
+| `permissions`   | `Record<string, boolean>` (optional) | Map of custom app permissions, where each key is a permission name and the value indicates whether it is granted for the current user |
 
 ### Working with Workflows
 
-To call on-demand workflow:
+To call an on-demand workflow:
 
 ```javascript
-(async () => {
+async () => {
   const config = { name: 'WorkflowName', depth: 0 };
 
-  const pendingResult = await falcon.api.workflows.postEntitiesExecuteV1({}, config);
+  const pendingResult = await falcon.api.workflows.postEntitiesExecuteV1(
+    {},
+    config,
+  );
 
-  const result = await falcon.api.workflows.getEntitiesExecutionResultsV1({ ids: triggerResult.resources[0] });  
-});
+  const result = await falcon.api.workflows.getEntitiesExecutionResultsV1({
+    ids: triggerResult.resources[0],
+  });
+};
 ```
 
 ### Working with Collections
 
 ```javascript
-(async () => {
+async () => {
   const sampleData = {
-    "name": "John",
-    "age": 42,
-    "aliases": ["Doe", "Foundry"]
+    name: 'John',
+    age: 42,
+    aliases: ['Doe', 'Foundry'],
   };
-  
-  const collection = falcon
-    .collection({collection: '<collectionName>' });
 
-  // to write a collection
+  const collection = falcon.collection({ collection: '<collectionName>' });
+
+  // Write to a collection
   const result = await collection.write('test-key', sampleData);
 
-  // read collection
+  // Read from a collection
   const record = await collection.read('test-key');
   // record.age === 42
-  
-  // search collection, `filter` does NOT use FQL (Falcon Query Language). An exact match for the name has to be used in this example below
-  const searchResult = await collection.search({ filter: `name:'exact-name-value'` });
 
-  // list the object keys in the collection, pagination is supported using; `start`, `end` and `limit`.
+  // Search a collection
+  // NOTE: `filter` does NOT use FQL (Falcon Query Language). An exact match for the name has to be used in this example below.
+  const searchResult = await collection.search({
+    filter: `name:'exact-name-value'`,
+  });
+
+  // List the object keys in the collection
+  // NOTE: Pagination is supported using; `start`, `end` and `limit`.
   const listResult = await collection.list({ start, end, limit });
-  
-  // deletes record
+
+  // Delete a record
   const deleteResponse = await collection.delete('test-key');
-});
+};
 ```
 
 ### Working with LogScale
 
 ```javascript
-(async () => {
-  // write to LogScale
+async () => {
+  // Write to LogScale
   const writeResult = await falcon.logscale.write({ test: 'check' });
   // writeResult.resources?.[0]?.rows_written === 1
-  
-  // run dynamic query
-  const queryResult = await falcon.logscale.query({ search_query: "*", start: "1h" });
+
+  // Run a dynamic query
+  const queryResult = await falcon.logscale.query({
+    search_query: '*',
+    start: '1h',
+  });
   // queryResult.resources?.[0]?.event_count > 0
-  
-  // run saved query
-  const savedQueryResult = await falcon.logscale.savedQuery({ id: "<savedQueryId>", start: "30d", mode: 'sync' });
+
+  // Run a saved query
+  const savedQueryResult = await falcon.logscale.savedQuery({
+    id: '<savedQueryId>',
+    start: '30d',
+    mode: 'sync',
+  });
   // savedQueryResult.resources?.[0]?.event_count > 0
-});
+};
 ```
 
 ### Working with API Integration
 
-To call API Integration, App should be initially provisioned, and configuration for API Integration should be set up. 
+To call API Integration, the App should be initially provisioned, and configuration for API Integration should be set up.
 
 ```javascript
-(async () => {
-  // we assume, that API Integration was created and operation Get Cities exists
-  
+async () => {
+  // The following assumes that an API Integration was created and the operation 'Get Cities' exists
   const apiIntegration = falcon.apiIntegration({
     definitionId: '<api-integration-id from manifest.yml>',
     operationId: 'Get Cities',
@@ -126,78 +154,77 @@ To call API Integration, App should be initially provisioned, and configuration 
     request: {
       params: {
         path: {
-          country: 'Spain'
-        }
-      }
-    }
+          country: 'Spain',
+        },
+      },
+    },
   });
   // response.resources?.[0]?.status_code === 200
-  // date is at response.resources[0].response_body
-});
+  // Date is at response.resources[0].response_body
+};
 ```
 
 ### Working with Cloud Functions
 
 ```javascript
-(async () => {
+async () => {
   const config = {
     name: 'CloudFunctionName',
-    version: 1
+    version: 1,
   };
-  
+
   const cloudFunction = falcon.cloudFunction(config);
 
-  // you can specify path parameters that will be passsed to your Cloud Function. 
-  // `id` and `mode` - example query params that your Cloud Function will receive 
-  const getResponse = await cloudFunction.path('/?id=150&mode=compact')
-    .get();
+  // You can specify path parameters that will be passsed to your Cloud Function.
+  // `id` and `mode` - example query params that your Cloud Function will receive
+  const getResponse = await cloudFunction.path('/?id=150&mode=compact').get();
 
-  // you can call different HTTP methods - GET, POST, PATCH, PUT, DELETE 
-  const postResponse = await cloudFunction.path('/')
-    .post({ name: 'test' });
+  // You can call different HTTP methods - GET, POST, PATCH, PUT, DELETE
+  const postResponse = await cloudFunction.path('/').post({ name: 'test' });
 
-  const patchResponse = cloudFunction.path('/')
-    .patch({ name: 'test' });
-  
-  const putResponse = cloudFunction.path('/')
-    .put({ name: 'test' });
-  
-  const deleteResponse = cloudFunction.path('/?id=100')
-    .delete();
-});
+  const patchResponse = cloudFunction.path('/').patch({ name: 'test' });
+
+  const putResponse = cloudFunction.path('/').put({ name: 'test' });
+
+  const deleteResponse = cloudFunction.path('/?id=100').delete();
+};
 ```
 
 ### Working with AgentWorks
 
-To invoke an AgentWorks agent and stream its response, call `falcon.agentWorks.invoke()` with the agent ID and any parameters. It returns an `AgentStream` that emits `data` chunks as they arrive, followed by a terminal `end` or `error`.
+To invoke an AgentWorks agent and stream its response, call `falcon.agentWorks.invoke()` with the agent ID and any parameters. It will return an `AgentStream` that emits `data` chunks as they arrive, followed by a terminal `end` or `error`.
 
 ```javascript
-  const stream = falcon.agentWorks.invoke('<agent-id>', { prompt: 'Summarize this detection' });
+const stream = falcon.agentWorks.invoke('<agent-id>', {
+  prompt: 'Summarize this detection',
+});
 
-  // receive each chunk as it streams in
-  stream.on('data', (chunk) => {
-    // append chunk to your UI
-  });
+// Receive each chunk as it streams in
+stream.on('data', (chunk) => {
+  // Append chunk to your UI
+});
 
-  // the stream completed successfully
-  stream.on('end', () => {
-    // finalize output
-  });
+// The stream completed successfully
+stream.on('end', () => {
+  // Finalize output
+});
 
-  // the stream terminated with an error
-  stream.on('error', (err) => {
-    // handle err.message
-  });
+// The stream terminated with an error
+stream.on('error', (err) => {
+  // Handle err.message
+});
 
-  // cancel an in-flight stream early
-  stream.abort();
+// Cancel an in-flight stream early
+stream.abort();
 ```
 
 ### Navigation utilities
 
-As the Page or UI extension will run inside a sandboxed iframe, the `navigateTo` method must be used to change the url of the parent context (Falcon Console).
+As the Page or UI extension will run inside a sandboxed iframe, the `navigateTo` method must be used to change the URL of the parent context (Falcon Console).
 
-To open an external url (in a new tab): 
+The `parentUrl` property on the `data` object (see [Receiving events from Falcon Console](#receiving-events-from-falcon-console)) provides the current URL of the Falcon Console page hosting the extension (excluding the protocol and hostname). This can be useful as context when constructing navigation paths and reacting to navigation changes.
+
+To open an external URL (in a new tab):
 
 ```javascript
 falcon.navigation.navigateTo({
@@ -205,54 +232,52 @@ falcon.navigation.navigateTo({
 });
 ```
 
-To navigate to a new url within Falcon Console: 
+To navigate to a new URL within Falcon Console:
 
 ```javascript
 falcon.navigation.navigateTo({
   path: '/login',
-  type: "falcon",
+  type: 'falcon',
 });
 ```
 
 ### Modal utility
 
-To open a modal within Falcon Console, rendering UI extension of your choice:
+To open a modal within Falcon Console and render a UI extension of your choice:
 
 ```javascript
 const result = await api.ui.openModal(
-  { 
-    id: '<extension ID as defined in the manifest>', 
-    type: 'extension' // 'extension' | 'page'
-  },
-  'Modal title', 
   {
-    path: '/', // initial path that will be set when page or extension loads  
-    data: { foo: 'bar' }, // data to pass to the modal
-    size: 'lg', // width of the modal - 'sm', 'md', 'lg', 'xl'. 'md' is default
-    align: 'top', // vertical alignment - 'top' or undefined
-  } // OpenModalOptions
+    id: '<extension ID as defined in the manifest>',
+    type: 'extension', // 'extension' | 'page'
+  },
+  'Modal title',
+  {
+    path: '/', // Initial path that will be set when page or extension loads
+    data: { foo: 'bar' }, // Data to pass to the modal
+    size: 'lg', // Width of the modal - 'sm', 'md', 'lg', 'xl'. 'md' is default
+    align: 'top', // Vertical alignment - 'top' or undefined
+  }, // OpenModalOptions
 );
 
-// to close modal:
+// To close the modal:
 await api.ui.closeModal();
 
-await api.ui.closeModal({ foo: 'bar' });// you can pass payload
+await api.ui.closeModal({ foo: 'bar' }); // You can pass payload
 ```
 
 ## Sample apps
 
-| Application                                                                        | Framework |
-|------------------------------------------------------------------------------------|-----------|
-| [ Triage with MITRE Attack ](https://github.com/CrowdStrike/foundry-sample-mitre ) | Vue       |
-| [ Scalable RTR ]( https://github.com/CrowdStrike/foundry-sample-scalable-rtr )     | React     |
-| [ Rapid Response ]( https://github.com/CrowdStrike/foundry-sample-rapid-response ) | React     |
+| Application                                                                       | Framework |
+| --------------------------------------------------------------------------------- | --------- |
+| [ Triage with MITRE Attack ](https://github.com/CrowdStrike/foundry-sample-mitre) | Vue       |
+| [ Scalable RTR ](https://github.com/CrowdStrike/foundry-sample-scalable-rtr)      | React     |
+| [ Rapid Response ](https://github.com/CrowdStrike/foundry-sample-rapid-response)  | React     |
 
-## Additionally
+## Additional resources
 
-|                                                                                           | Description                                                                                   |
-|-------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------|
-| [ Javascript Blueprint ](https://github.com/CrowdStrike/foundry-js-blueprint-javascript ) | Starter Javascript blueprint used in Foundry CLI                                              |
-| [ React Blueprint ]( https://github.com/CrowdStrike/foundry-js-blueprint-react )          | Starter React blueprint used in Foundry CLI                                                   |
-| [Falcon Shoelace](https://github.com/CrowdStrike/falcon-shoelace)                         | [Shoelace Library](https://shoelace.style/) of web components styled to fit in Falcon Console |
-
-
+|                                                                                          | Description                                                                                   |
+| ---------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [ Javascript Blueprint ](https://github.com/CrowdStrike/foundry-js-blueprint-javascript) | Starter Javascript blueprint used in Foundry CLI                                              |
+| [ React Blueprint ](https://github.com/CrowdStrike/foundry-js-blueprint-react)           | Starter React blueprint used in Foundry CLI                                                   |
+| [Falcon Shoelace](https://github.com/CrowdStrike/falcon-shoelace)                        | [Shoelace Library](https://shoelace.style/) of web components styled to fit in Falcon Console |
