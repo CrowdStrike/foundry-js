@@ -33,8 +33,9 @@ export interface ConnectRequestMessage extends BaseMessage {
   type: 'connect';
 }
 
-export interface ConnectResponseMessage<DATA extends LocalData = LocalData>
-  extends BaseMessage {
+export interface ConnectResponseMessage<
+  DATA extends LocalData = LocalData,
+> extends BaseMessage {
   type: 'connect';
   payload: {
     origin: string;
@@ -94,14 +95,20 @@ export interface LocalData {
   dateFormat?: string;
 
   /**
+   * URL of the Falcon Console page hosting this extension, excluding the protocol and hostname
+   */
+  parentUrl?: string;
+
+  /**
    * A map of custom app permissions, mapping permission keys to a boolean, indicating the permission status for the current user and that particular permission.
    */
   permissions?: Permissions;
   [key: string]: unknown;
 }
 
-export interface DataUpdateMessage<DATA extends LocalData = LocalData>
-  extends BaseMessage {
+export interface DataUpdateMessage<
+  DATA extends LocalData = LocalData,
+> extends BaseMessage {
   type: 'data';
   payload: DATA;
 }
@@ -260,14 +267,16 @@ export interface OpenModalRequestMessage extends BaseMessage {
   };
 }
 
-export interface CloseModalRequestMessage<PAYLOAD = unknown>
-  extends BaseMessage {
+export interface CloseModalRequestMessage<
+  PAYLOAD = unknown,
+> extends BaseMessage {
   type: 'closeModal';
   payload: PAYLOAD;
 }
 
-export interface OpenModalResponseMessage<PAYLOAD = unknown>
-  extends BaseMessage {
+export interface OpenModalResponseMessage<
+  PAYLOAD = unknown,
+> extends BaseMessage {
   type: 'openModal';
   payload: PAYLOAD;
 }
